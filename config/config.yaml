@@ -1,17 +1,60 @@
-DEBUG_MODE: True        # True, False
-SECRET_KEY_ENV: LOCAL     # GCP, LOCAL
-ENVIRONMENT: DEV       # DEV, PROD
+# 執行環境參數
+DEBUG_MODE: True
+# True, False
+SECRET_KEY_ENV: LOCAL     
+# GCP, LOCAL
+ENVIRONMENT: DEV       
+# DEV, PROD
+
+# GCP 設置參數
 GCP_PROJECT_ID: bilingrok
-
-LINEBOT_WEBHOOK_PORT: 5000
-
 SERVICE_ACCOUNT_NAME: bilinggrok-linebot
 SERVICE_ACCOUNT_DESCRIPTION: Handle Line Bot Webhook Events
 SERVICE_ACCOUNT_DISPLAY_NAME: bilinggrok-linebot
 GCP_SA_SECRET_FILE: config/sa-linebot@bilingrok.iam.gserviceaccount.com.json
+SERVICE_ACCOUNT: sa-linebot@bilingrok.iam.gserviceaccount.com
+# SERVICE_ACCOUNT = SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
 
+
+# APP 部署參數
+# GCP_COMPUTE_TYPE: cloud-run
+# APP_NAME: 'linebot-flask'
+# APP_REGION: 'asia-east1'
+# ALLOW_UNAUTHENTICATED: 'allow-unauthenticated' 
+# 'no-allow-unauthenticated'
+# APP_PORT: 5000
+
+
+# Docker Image 設定
+WORK_DIR: "."
+IMAGE_NAME: bilingrok
+IMAGE_VERSION: "v0.0.1"
+DOCKERFILE_PATH: "."
+DOCKERFILE_NAME: "Dockerfile"
+
+# Docker Container 設定
+GCP_COMPUTE_TYPE: cloud-run
+CONTAINER_NAME: "bilingrok"
+CONTAINER_REGION: 'asia-east1'
+HOST_PORT: "5000"
+CONTAINER_PORT: "5000"
+ALLOW_UNAUTHENTICATED: 'allow-unauthenticated' 
+ENV_FILE: "config/.env"
+
+
+# Cloud Build 參數
+REPO_NAME: "bilingrok"
+GITHUB_USER_NAME: "JustinRHHsu"
+CLOUD_BUILD_TRIGGER_REGION: "us-central1"
+BRANCH_NAME: "main"
+BUILD_CONFIG_FILE: "cloudbuild.yaml"
+EVENT_TYPE: "push"
+
+# 會話 Memory 參數
 NUMBER_OF_MESSASES_FROM_CHAT_HISTORY: 10
 MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
+
+
 
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
 # QUEUE_LOCATION_MESSAGE_STORE: asia-east1

@@ -37,7 +37,7 @@ def get_gcp_credential():
 
 class Config:
     
-    PORT = yaml_config['LINEBOT_WEBHOOK_PORT']
+    PORT = yaml_config['CONTAINER_PORT']
     DEBUG = yaml_config['DEBUG_MODE']
     NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY']
     MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD']
