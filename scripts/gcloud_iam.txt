@@ -1,0 +1,11 @@
+roles/editor
+roles/secretmanager.admin
+roles/datastore.user
+
+# roles/secretmanager.secretAccessor  
+# roles/cloudbuild.builds.editor
+# roles/cloudbuild.connectionAdmin
+# roles/artifactregistry.writer
+# roles/logging.logWriter
+# roles/storage.admin
+# roles/source.reader

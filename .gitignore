@@ -1,0 +1,25 @@
+# .gitignore
+
+# 忽略 node_modules 資料夾
+**/cloud_function/
+**/venv/
+
+# 忽略日誌文件
+*.log
+
+# 忽略環境變數文件
+/config/.env
+/config/sa-linebot@bilingrok.iam.gserviceaccount.com.json
+
+
+# 忽略 Python 編譯文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 忽略 VSCode 設定資料夾
+.vscode/
+
+# 忽略 Docker 設定文件
+.dockerignore
+Dockerfile*

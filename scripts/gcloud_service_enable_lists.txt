@@ -1,0 +1,22 @@
+# manage gcloud services
+# line with '#' will be ignore
+# line without '#' will be load and enable the gcloud service
+
+# 專案要啟用的 gcloud services
+secretmanager.googleapis.com
+firestore.googleapis.com
+
+
+# 未啟用的 gcloud services 列表
+# iam.googleapis.com
+# cloudbuild.googleapis.com
+# artifactregistry.googleapis.com
+# oauth2.googleapis.com
+# storage.googleapis.com
+# logging.googleapis.com
+# pubsub.googleapis.com
+# cloudfunctions.googleapis.com
+# compute.googleapis.com
+# bigquery.googleapis.com
+# monitoring.googleapis.com
+# sqladmin.googleapis.com
