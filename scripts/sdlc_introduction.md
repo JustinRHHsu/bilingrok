@@ -123,11 +123,32 @@ docker_build_and_run.sh
 
 
 
-# Git
+# 建立 .gitignore
+建立 .gitignore
+    - 語法
+        - *.log              ：忽略特定文件
+        - **/temp            ：忽略特定目錄
+        - folder_name/       ：忽略 logs 資料夾底下的所有檔案
+        - *$py.class         ：忽略特定文件類型，忽略所有以 $py.class 結尾的文
+        - .vscode            ：忽略特定工具或編輯器的設定文件
+        - __pycache__        ：忽略特定模式的文件
+    - 常用
+        - __pycache__
+        - .vscode
+        - .dockerignore
+        - Dockerfile*
+        - .env
+        - sa-*
+
+
+# 初始化 git
 git_init.sh
 目標：設定 gcloud 所需的服務和權限
-1. Build Docker Image
-2. Run Docker Image
+1. 檢查是否已安裝 GitHub CLI
+2. 檢查遠端儲存庫是否存在
+3. 初始化 Git 儲存庫
+4. 使用 GitHub CLI 創建遠端儲存庫
+5. 推送本地分支到遠端儲存庫
 
 
 

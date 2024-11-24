@@ -98,9 +98,13 @@ if [[ "$answer" =~ ^[Yy]$ ]]; then
     echo -e "${GREEN}成功: 推送本地分支到遠端儲存庫${NC}"
   else
     echo -e "${RED}錯誤: 推送本地分支到遠端儲存庫失敗${NC}"
-    exit 1
+    echo -e "${YELLOW}嘗試使用 --allow-unrelated-histories 來解決${NC}"
+    git pull origin "$current_branch" --allow-unrelated-histories
+    if git push -u origin "$current_branch"; then
+      echo -e "${GREEN}成功: 推送本地分支到遠端儲存庫${NC}"
+    else
+      echo -e "${RED}錯誤: 推送本地分支到遠端儲存庫失敗${NC}"
+      exit 1
+    fi
   fi
-else
-  echo -e "${YELLOW}已取消推送本地分支到遠端儲存庫${NC}"
-  exit 0
 fi
