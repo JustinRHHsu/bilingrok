@@ -10,6 +10,7 @@
 # 忽略環境變數文件
 .env
 sa-*
+.gitignore
 
 # 忽略 Python 編譯文件
 __pycache__
