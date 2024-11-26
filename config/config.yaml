@@ -28,7 +28,7 @@ DB_NAME: bilingrok
 
 # Docker Image 設定
 WORK_DIR: "."
-IMAGE_NAME: bilingrok
+IMAGE_NAME: "bilingrok"
 IMAGE_VERSION: "v0.0.1"
 DOCKERFILE_PATH: "."
 DOCKERFILE_NAME: "Dockerfile"
@@ -37,9 +37,9 @@ DOCKERFILE_NAME: "Dockerfile"
 GCP_COMPUTE_TYPE: cloud-run
 CONTAINER_NAME: "bilingrok"
 CONTAINER_REGION: 'asia-east1'
-HOST_PORT: "5000"
-CONTAINER_PORT: "5000"
-ALLOW_AUTHENTICATED: '--allow-unauthenticated' 
+HOST_PORT: 5000
+CONTAINER_PORT: 5000
+ALLOW_AUTHENTICATED: "--allow-unauthenticated"
 ENV_FILE: "config/.env"
 
 
