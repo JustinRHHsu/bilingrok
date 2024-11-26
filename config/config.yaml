@@ -39,7 +39,7 @@ CONTAINER_NAME: "bilingrok"
 CONTAINER_REGION: 'asia-east1'
 HOST_PORT: "5000"
 CONTAINER_PORT: "5000"
-ALLOW_UNAUTHENTICATED: 'allow-unauthenticated' 
+ALLOW_AUTHENTICATED: '--allow-unauthenticated' 
 ENV_FILE: "config/.env"
 
 

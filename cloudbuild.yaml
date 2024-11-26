@@ -20,7 +20,7 @@ substitutions:
   _CONTAINER_REGION: 'asia-east1'
   _HOST_PORT: '5000'
   _CONTAINER_PORT: '5000'
-  _ALLOW_UNAUTHENTICATED: 'allow-unauthenticated'
+  _ALLOW_AUTHENTICATED: '--allow-unauthenticated'
   _ENV_FILE: 'config/.env'
   _REPO_NAME: 'bilingrok'
   _GITHUB_USER_NAME: 'JustinRHHsu'
@@ -56,16 +56,18 @@ steps:
     id: 'Deploy App'
     entrypoint: bash
     args: [
-      '-c',
-      'gcloud run deploy ${_CONTAINER_NAME} \
-      --image=gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:$COMMIT_SHA \
-      --region=${_CONTAINER_REGION} \
-      --platform-managed \
-      --${_ALLOW_UNAUTHENTICATED} \
-      --port=${_CONTAINER_PORT} \
-      --service-account="bilinggrok-linebot@bilingrok.iam.gserviceaccount.com" \
-      --min-instances=${_MIN_INSTANCES} \
-      --max-instances=${_MAX_INSTANCES}'
+      'gcloud',
+      'run',
+      'deploy',
+      '${_CONTAINER_NAME}',
+      '--image', 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:$COMMIT_SHA',
+      '--region', '${_CONTAINER_REGION}',
+      '--platform', 'managed',
+      '${_ALLOW_AUTHENTICATED}',
+      '--port', '${_CONTAINER_PORT}',
+      '--service-account', 'bilinggrok-linebot@bilingrok.iam.gserviceaccount.com',
+      '--min-instances', '${_MIN_INSTANCES}',
+      '--max-instances', '${_MAX_INSTANCES}'
     ]
     secretEnv: ['LINE_CHANNEL_ACCESS_TOKEN','LINE_CHANNEL_SECRET','XAI_API_KEY']  
 # 從 .env 檔案中取得 secretEnv 並且傳遞到 cloudbuild.yaml
