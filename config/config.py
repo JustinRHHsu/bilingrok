@@ -82,11 +82,11 @@ class Config:
     
 class DB:
     def init_firestore_db():
-        if yaml_config['ENVIROMENT'] == 'PROD':
+        if yaml_config['ENVIRONMENT'] == 'PROD':
             print(f"[PROD] Access: GCP Firestore with with {yaml_config['GCP_CRED']}")
             db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], database=yaml_config['DB_NAME'])
             return db
-        elif yaml_config['ENVIROMENT'] == 'DEV':
+        elif yaml_config['ENVIRONMENT'] == 'DEV':
             print(f"[DEV] Access: GCP Firestore with {yaml_config['GCP_CRED']}")
             cred = service_account.Credentials.from_service_account_file(yaml_config['GCP_SA_SECRET_FILE'])
             db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], credentials=yaml_config['GCP_CRED'], database=yaml_config['DB_NAME'])
