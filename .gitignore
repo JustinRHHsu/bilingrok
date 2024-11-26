@@ -19,7 +19,3 @@ __pycache__
 
 # 忽略 VSCode 設定資料夾
 .vscode
-
-# 忽略 Docker 設定文件
-.dockerignore
-Dockerfile*
