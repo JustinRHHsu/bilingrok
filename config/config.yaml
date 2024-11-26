@@ -52,8 +52,8 @@ BUILD_CONFIG_FILE: "cloudbuild.yaml"
 EVENT_TYPE: "push"
 
 # Cloud Run 參數
-MIN_INSTANCES: 1
-MAX_INSTANCES: 2
+MIN_INSTANCES: 0
+MAX_INSTANCES: 10
 
 
 # 會話 Memory 參數

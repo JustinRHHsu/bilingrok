@@ -27,7 +27,7 @@ def register_text_handler(handler, configuration):
     def handle_message(event):
         
         # 取得 Line Webhook 資料
-        # print(f"=== Event ===\n{event}\n=====================")
+        print(f"=== Event ===\n{event}\n=====================")
         user_id = event.source.user_id
         role = 1
         user_message = event.message.text.strip()
@@ -48,9 +48,11 @@ def register_text_handler(handler, configuration):
             'reply_token': reply_token,
             'message_timestamp': message_timestamp
         }
+        print(f"=== Message Data ===\n{message_data}\n=====================")
         
         # 獲取用戶資料和聊天記錄
         user_data, chat_history = get_or_create_user(user_id)
+        print(f"=== User Data ===\n{user_data}\n=====================")
         
         # Save user message to chat history
         # TBD 是否可以用 Cloud Task 異步處理
