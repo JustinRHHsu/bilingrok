@@ -1,3 +1,4 @@
+import json
 from flask import Blueprint, request, abort, current_app
 from linebot.v3 import WebhookHandler
 from linebot.v3.messaging import Configuration
@@ -21,6 +22,8 @@ register_all_handlers(handler, configuration)
 
 @callback_route.route("/callback", methods=['POST'])
 def callback():
+    
+    
     # signature = request.headers['X-Line-Signature']
     signature = request.headers.get('X-Line-Signature')
     if not signature:
@@ -30,6 +33,8 @@ def callback():
     
     body = request.get_data(as_text=True)
     print(f"=== Request body ===\n{body}")
+    event = json.loads(body)
+    print(f"=== Webhook Event Body ===\n{event}")
     # current_app.logger.info(f"\n=== Request body ===\n{body}")
 
     try:
