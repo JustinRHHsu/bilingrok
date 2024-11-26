@@ -8,6 +8,7 @@ import logging
 number_of_recent_messages = Config.NUMBER_OF_MESSASES_FROM_CHAT_HISTORY
 
 db = DB.init_firestore_db()
+print(f"Firestore DB: {db}")
 # db = firestore.Client(project=Config.GCP_PROJECT_ID, credentials=Config.GCP_CRED, database=Config.DB_NAME)
 
 def get_or_create_user(user_id):

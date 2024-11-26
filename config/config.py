@@ -39,6 +39,7 @@ def get_gcp_credential():
 
 
 class Config:
+    print(f"=== Loading Configuration ===")
     
     PORT = yaml_config['CONTAINER_PORT']
     DEBUG = yaml_config['DEBUG_MODE']
@@ -78,9 +79,13 @@ class Config:
     # QUEUE_MESSAGE_STORE = yaml_config['QUEUE_MESSAGE_STORE']
     # QUEUE_LOCATION_MESSAGE_STORE = yaml_config['QUEUE_LOCATION_MESSAGE_STORE']
     
+    print(f"=== Configuration Loaded ===")
     
     
 class DB:
+    
+    print(f"=== Loading Firestore Database ===")
+    
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
             print(f"[PROD] Access: GCP Firestore with default credentials")
@@ -95,3 +100,4 @@ class DB:
             logging.error("Error: No Firestore database found.")
             return None
 
+    print(f"=== Firestore Database Loaded ===")
