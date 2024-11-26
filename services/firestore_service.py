@@ -1,4 +1,4 @@
-# from google.cloud import firestore
+from google.cloud import firestore
 import datetime
 from config.config import Config, DB
 # from google.oauth2 import service_account
