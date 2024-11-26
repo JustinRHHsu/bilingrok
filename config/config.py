@@ -2,8 +2,10 @@ import os
 from dotenv import load_dotenv
 import yaml
 from google.cloud import secretmanager
+from google.auth import default
 from google.oauth2 import service_account
 import logging
+from google.cloud import firestore
 
 # 讀取 config.yaml 文件
 with open('config/config.yaml', 'r') as file:
@@ -24,7 +26,7 @@ def get_gcp_credential():
     if yaml_config['SECRET_KEY_ENV'] == 'GCP' and yaml_config['ENVIRONMENT'] == 'PROD':
         logging.info("Accessing GCP Secret Manager...")
         # 已部署到雲端，應用程式會自動使用雲端提供的預設憑證
-        cred = None
+        cred, project = default()
         return cred
     elif yaml_config['SECRET_KEY_ENV'] == 'LOCAL' or yaml_config['ENVIRONMENT'] == 'DEV':
         # 本地端已下載 secret key 的 json 檔路徑，生成憑證
@@ -33,6 +35,7 @@ def get_gcp_credential():
     else:
         logging.error("Error: No GCP credential found.")
         return None
+
 
 
 class Config:
@@ -49,10 +52,9 @@ class Config:
         logging.info("Accessing GCP Secret Manager...")
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID']
         LINE_CHANNEL_ACCESS_TOKEN = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_ACCESS_TOKEN')
-        print(f"LINE_CHANNEL_ACCESS_TOKEN: {LINE_CHANNEL_ACCESS_TOKEN} @config.py")
         LINE_CHANNEL_SECRET = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_SECRET')
-        print(f"LINE_CHANNEL_SECRET: {LINE_CHANNEL_SECRET} @config.py")
         GROK_API_KEY = access_secret_version(GCP_PROJECT_ID, 'XAI_API_KEY')
+        DB_NAME = yaml_config['DB_NAME']
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME']
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com" 
         GCP_CRED = get_gcp_credential()
@@ -61,6 +63,7 @@ class Config:
         LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
         GROK_API_KEY = os.getenv('XAI_API_KEY')
+        DB_NAME = yaml_config['DB_NAME']
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID']
         GCP_CRED = get_gcp_credential()
         
@@ -76,3 +79,19 @@ class Config:
     # QUEUE_LOCATION_MESSAGE_STORE = yaml_config['QUEUE_LOCATION_MESSAGE_STORE']
     
     
+    
+class DB:
+    def init_firestore_db():
+        if yaml_config['ENVIROMENT'] == 'PROD':
+            print(f"[PROD] Access: GCP Firestore with with {yaml_config['GCP_CRED']}")
+            db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], database=yaml_config['DB_NAME'])
+            return db
+        elif yaml_config['ENVIROMENT'] == 'DEV':
+            print(f"[DEV] Access: GCP Firestore with {yaml_config['GCP_CRED']}")
+            cred = service_account.Credentials.from_service_account_file(yaml_config['GCP_SA_SECRET_FILE'])
+            db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], credentials=yaml_config['GCP_CRED'], database=yaml_config['DB_NAME'])
+            return db
+        else:
+            logging.error("Error: No Firestore database found.")
+            return None
+

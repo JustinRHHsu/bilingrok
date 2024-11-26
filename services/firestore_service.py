@@ -1,15 +1,14 @@
-from google.cloud import firestore
+# from google.cloud import firestore
 import datetime
-from config.config import Config
+from config.config import Config, DB
 # from google.oauth2 import service_account
 import json
 import logging
 
-# credential = service_account.Credentials.from_service_account_file(Config.GCP_SA_SECRET_FILE)
-print(f"Access: GCP Firestore with {Config.GCP_CRED}")
 number_of_recent_messages = Config.NUMBER_OF_MESSASES_FROM_CHAT_HISTORY
 
-db = firestore.Client(project=Config.GCP_PROJECT_ID, credentials=Config.GCP_CRED, database="bilingrok")
+db = DB.init_firestore_db()
+# db = firestore.Client(project=Config.GCP_PROJECT_ID, credentials=Config.GCP_CRED, database=Config.DB_NAME)
 
 def get_or_create_user(user_id):
     user_ref = db.collection('users').document(user_id)

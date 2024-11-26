@@ -12,9 +12,10 @@ SERVICE_ACCOUNT_NAME: bilinggrok-linebot
 SERVICE_ACCOUNT_DESCRIPTION: Handle Line Bot Webhook Events
 SERVICE_ACCOUNT_DISPLAY_NAME: bilinggrok-linebot
 GCP_SA_SECRET_FILE: config/sa-linebot@bilingrok.iam.gserviceaccount.com.json
-# SERVICE_ACCOUNT: sa-linebot@bilingrok.iam.gserviceaccount.com
-# SERVICE_ACCOUNT = SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
+# SERVICE_ACCOUNT: SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
 
+# Database 設置參數
+DB_NAME: bilingrok
 
 # APP 部署參數
 # GCP_COMPUTE_TYPE: cloud-run
