@@ -12,7 +12,7 @@ callback_route = Blueprint('callback_route', __name__)
 # Line API configuration
 print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
 configuration = Configuration(access_token=Config.LINE_CHANNEL_ACCESS_TOKEN)
-print(f"Configuration: {Config.LINE_CHANNEL_SECRET}")
+print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
 handler = WebhookHandler(Config.LINE_CHANNEL_SECRET)
 
 # 註冊所有消息處理程式，ex: Text Message, Image Meesage, Audio Message
@@ -29,19 +29,23 @@ def callback():
     print(f"=== Webhook Event Signature ===\n{signature}")
     
     body = request.get_data(as_text=True)
-    print(f"=== Webhook Event Request body ===\n{body}")
-    current_app.logger.info(f"\n=== Request body ===\n{body}")
+    print(f"=== Request body ===\n{body}")
+    # current_app.logger.info(f"\n=== Request body ===\n{body}")
 
     try:
+        print("=== Starting to handle Webhook Event ===")
         handler.handle(body, signature)
         print("=== Webhook Event Signature Verified ===")
     except InvalidSignatureError:
+        print("=== Invalid Signature Error ===")
         current_app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
     except Exception as e:
+        print(f"=== An error occurred: {e} ===")
         current_app.logger.error(f"An error occurred: {e}")
         abort(500)
-        
+    
+    print("=== Webhook Event handled successfully ===")    
     return 'OK', 200
 
 
