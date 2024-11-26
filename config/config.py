@@ -43,6 +43,7 @@ class Config:
     print(f"=== Loading Configuration ===")
     
     PORT = yaml_config['CONTAINER_PORT']
+    print(f"PORT: {PORT}")
     DEBUG = yaml_config['DEBUG_MODE']
     NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY']
     MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD']
