@@ -30,5 +30,13 @@ def callback():
     except InvalidSignatureError:
         current_app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
-    
+    except Exception as e:
+        current_app.logger.error(f"An error occurred: {e}")
+        abort(500)
     return 'OK', 200
+
+
+
+@callback_route.route("/whoareyou", methods=['GET'])
+def whoareyou():
+    return "Hello, I'm a Chatbot!"
