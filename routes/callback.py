@@ -22,8 +22,10 @@ register_all_handlers(handler, configuration)
 @callback_route.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
+    print(f"=== Webhook Event Signature ===\n{signature}")
     body = request.get_data(as_text=True)
-    # current_app.logger.info(f"\n=== Request body ===\n{body}")
+    print(f"=== Webhook Event Request body ===\n{body}")
+    current_app.logger.info(f"\n=== Request body ===\n{body}")
 
     try:
         handler.handle(body, signature)
