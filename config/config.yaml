@@ -1,9 +1,9 @@
 # 執行環境參數
-DEBUG_MODE: True
+DEBUG_MODE: False
 # True, False
-SECRET_KEY_ENV: LOCAL     
+SECRET_KEY_ENV: GCP     
 # GCP, LOCAL
-ENVIRONMENT: DEV       
+ENVIRONMENT: PROD    
 # DEV, PROD
 
 # GCP 設置參數
