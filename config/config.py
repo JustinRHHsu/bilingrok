@@ -83,7 +83,7 @@ class Config:
 class DB:
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
-            print(f"[PROD] Access: GCP Firestore with default credentials")}")
+            print(f"[PROD] Access: GCP Firestore with default credentials")
             db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], database=yaml_config['DB_NAME'])
             return db
         elif yaml_config['ENVIRONMENT'] == 'DEV':
