@@ -1,8 +1,10 @@
 import json
 from flask import Blueprint, request, abort, current_app
 from linebot.v3 import WebhookHandler
-from linebot.v3.messaging import Configuration
 from linebot.v3.exceptions import InvalidSignatureError
+
+from linebot.v3.messaging import Configuration
+
 # from handlers.message_handler import handle_message_event
 from handlers.handler_registry import register_all_handlers
 from config.config import Config
@@ -10,11 +12,19 @@ from config.config import Config
 callback_route = Blueprint('callback_route', __name__)
 
 
+
+LINE_CHANNEL_ACCESS_TOKEN = 'R2ofHIXEe9CX7NVkI3/1gpvsihyZFLWQ1K3cviGf23V9Vm2nMrinPT7IpTr1H9YCAQ/sjVfm0K0jXx9rVto1iMi4Tl0Uyna/cIoezl8Pi74lRqXHT1YENw8gGoW3CK1ngAdf7SQYOv514FUvERkA7gdB04t89/1O/w1cDnyilFU='
+LINE_CHANNEL_SECRET = 'c3256685cb342904f8bcdeebcd533a2b'
+
 # Line API configuration
-print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
-configuration = Configuration(access_token=Config.LINE_CHANNEL_ACCESS_TOKEN)
-print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
-handler = WebhookHandler(Config.LINE_CHANNEL_SECRET)
+# print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
+# configuration = Configuration(access_token=Config.LINE_CHANNEL_ACCESS_TOKEN)
+configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
+
+# print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
+# handler = WebhookHandler(Config.LINE_CHANNEL_SECRET)
+handler = WebhookHandler(LINE_CHANNEL_SECRET)
+
 
 # 註冊所有消息處理程式，ex: Text Message, Image Meesage, Audio Message
 register_all_handlers(handler, configuration)
@@ -22,15 +32,8 @@ register_all_handlers(handler, configuration)
 
 @callback_route.route("/callback", methods=['POST'])
 def callback():
-    
-    
     # signature = request.headers['X-Line-Signature']
-    signature = request.headers.get('X-Line-Signature')
-    if not signature:
-        current_app.logger.error("Missing X-Line-Signature header.")
-        abort(400)
-    print(f"=== Webhook Event Signature ===\n{signature}")
-    
+    signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
 
     try:
