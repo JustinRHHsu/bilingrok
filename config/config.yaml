@@ -1,5 +1,5 @@
 # 執行環境參數
-DEBUG_MODE: True
+DEBUG_MODE: False
 # True, False
 SECRET_KEY_ENV: GCP
 # GCP, LOCAL
@@ -11,7 +11,7 @@ GCP_PROJECT_ID: bilingrok
 SERVICE_ACCOUNT_NAME: bilingrok-linebot
 SERVICE_ACCOUNT_DESCRIPTION: Handle Line Bot Webhook Events
 SERVICE_ACCOUNT_DISPLAY_NAME: bilingrok-linebot
-GCP_SA_SECRET_FILE: config/sa-linebot@bilingrok.iam.gserviceaccount.com.json
+GCP_SA_SECRET_FILE: config/bilingrok-64cb8b639621.json
 # SERVICE_ACCOUNT: SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
 
 # Database 設置參數

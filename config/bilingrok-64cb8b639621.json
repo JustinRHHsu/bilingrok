@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bilingrok",
+  "private_key_id": "64cb8b6396212153d927bd05eca7c6cd51792649",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXGGNAlSz87fLZ\nVlDx2UGhX+LIH9Wl0CJj2byTLMRuvhLZM/BZppNM0C89v9YI4QeOiHtJ65GZpE69\nKw/DnwBx9Mw+4MWm5xXx4xNtb4Ge5rpq4d0U4sx4vg8FTlNcxkNVR6wirDRwHQB7\nb9yDKjPw+Q7zo/kZtJdsrxPr0EBrGAOsEwQ3P1QTjNG6jmdI40F5f46Z4uUmu4g1\nNjvICVUi44AFQtLRffKJtlxkohWQIrZ/lUZjxwu0yh+f+q1Kp6zMyVUu9CIfU0rJ\nmWfSEsF0Bq8d3uVIB0weSAV9SF6ab7M0++mgsu0e9QoNyJw1B9mdOZY6srkpA786\ncqzjdCLbAgMBAAECggEAEYkdC8PEYt5izuJ7pnXmbgoo0b0QGJxdQWVlw1bwvUGG\nAntKq7zvX3zR3sLC3mjvbZVdaajTTxeIo9+5hqSPcqpMggeoKMStAVOvT4Yfbwes\nHvdzpxbjUCgOqjj658uCyQT2b1e5BkH3alwDJZ3iRVdCavhe0qLo6A4xq66Rq1wC\negfk9maFsuSTg0+o7MBcRXhPzzCzP51vU71wVzl709v4VPdkxo44fc+U74lcnctE\nLopbrSYFsZruBoc0eGEkIkfc1Vy5HVnbzjSU4Z1j5sePhUQAb4529Cr/e1Tw9TUT\nEPmFN0swqTwADq+51JoI7qq8KMS26kr4OYiAf6UAMQKBgQDGPL1lcpToA9cSjMV0\nG01Q8CtqrSlFhboTWuh1JggPFcuUrS7SVElpOezYlpCv90Qd7Aud87z/2ht0I/cq\ny9siuJS4p98iw7pd//RZm7BhhqupuxzTWS+WIr7HSYFt3z/kVFs+wnnCMonfe4wG\ngwFpyUy4YzKHzeuThISLl4LKRwKBgQDDHyZDnQjLd4A3rU7VAcmacicQN9TwVE+C\nrh6Ekv/kVNu7p0AI57tVaRhiHBOLuduii6THWhrHirDWHP2NahQ2fijtqy2NMEfn\n3xr0jweD72SjE+Fy8vxhaczW3LlmdesR6/vwx/7fyQ5LiFk+YGBRgyh657G/W29T\nnJhejHKYzQKBgDZoR0cHmqzPGQFDV5IVSDQVpqThn7kwCbD0O2ajqISTY8uLeJVL\ngtZ5inKraEyTXcOknE+erNm/v9cxY84AI0W1SUQg9tHwzD6uWB8b5t3te0HbU/8B\ntFjNcnT5zKceJcgCCwT/lTFic4q9uuGypPmmwQK+Xwj80FIthb9WNxRTAoGAbMro\nbdiX98KIlgKmqrOVcezmBO/sZZfMwWNOFsNTtD7wSWAGnzB9zjCL7OAUsdqOMMJF\nvPVrawjUcn21jeywmnWbYnEIM+nQneNSxzsciJ6o8Rh7orkCqVnxYXeuVAe5asO2\nNNl+Lc6PjuPWRqY77hcAMg8Pl09m8iqk9kq+9p0CgYEArLbX7aD6ZiB9HpgOjMs7\nanhNX0tEHy5Kb7fITlQdkYhukfxFBC8fHq/gApj6+5S9y1t6wxfeoVF4mxtRznAZ\n8JX+Bm3GG8cHyh7wjdEM0HC+jn4lfUGtmhXuCypx3N3i+IwMmXFp5XQ771clOk2O\nGe+i/yR7v2ee6TfWcKJj2Dk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bilingrok-linebot@bilingrok.iam.gserviceaccount.com",
+  "client_id": "110578287036475872677",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bilingrok-linebot%40bilingrok.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
