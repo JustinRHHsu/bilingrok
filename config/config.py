@@ -45,14 +45,18 @@ class Config:
     PORT = yaml_config['CONTAINER_PORT']
     print(f"PORT: {PORT}")
     DEBUG = yaml_config['DEBUG_MODE']
+    print(f"DEBUG: {DEBUG}")
     NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY']
+    print(f"NUMBER_OF_MESSASES_FROM_CHAT_HISTORY: {NUMBER_OF_MESSASES_FROM_CHAT_HISTORY}")
     MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD']
+    print(f"MESSAGES_FOR_REVIEW_LEARNING_CARD: {MESSAGES_FOR_REVIEW_LEARNING_CARD}")
     
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV']
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
+        print(f"Accessing GCP Secret Manager...")
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID']
         LINE_CHANNEL_ACCESS_TOKEN = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_SECRET')
@@ -62,6 +66,7 @@ class Config:
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com" 
         GCP_CRED = get_gcp_credential()
     elif SECRET_KEY_ENV == 'LOCAL':
+        print(f"Accessing local .env file...")
         logging.info("Accessing local .env file...")
         LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
