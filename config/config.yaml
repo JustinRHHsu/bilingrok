@@ -36,7 +36,7 @@ DOCKERFILE_NAME: "Dockerfile"
 # Docker Container 設定
 GCP_COMPUTE_TYPE: cloud-run
 CONTAINER_NAME: "bilingrok"
-CONTAINER_REGION: 'asia-east1'
+CONTAINER_REGION: 'us-central1'
 HOST_PORT: 5000
 CONTAINER_PORT: 5000
 ALLOW_AUTHENTICATED: "--allow-unauthenticated"
