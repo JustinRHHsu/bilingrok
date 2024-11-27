@@ -1,14 +1,14 @@
 serviceAccount: 'bilingrok-linebot@bilingrok.iam.gserviceaccount.com'
 
 substitutions:
-  _DEBUG_MODE: 'True'
+  _DEBUG_MODE: 'False'
   _SECRET_KEY_ENV: 'GCP'
   _ENVIRONMENT: 'PROD'
   _GCP_PROJECT_ID: 'bilingrok'
   _SERVICE_ACCOUNT_NAME: 'bilingrok-linebot'
   _SERVICE_ACCOUNT_DESCRIPTION: 'Handle Line Bot Webhook Events'
   _SERVICE_ACCOUNT_DISPLAY_NAME: 'bilingrok-linebot'
-  _GCP_SA_SECRET_FILE: 'config/sa-linebot@bilingrok.iam.gserviceaccount.com.json'
+  _GCP_SA_SECRET_FILE: 'config/bilingrok-64cb8b639621.json'
   _DB_NAME: 'bilingrok'
   _WORK_DIR: '.'
   _IMAGE_NAME: 'bilingrok'
@@ -66,7 +66,7 @@ steps:
       '--port', '${_CONTAINER_PORT}',
       '--service-account', 'bilingrok-linebot@bilingrok.iam.gserviceaccount.com'
     ]
-    secretEnv: ['LINE_CHANNEL_ACCESS_TOKEN','LINE_CHANNEL_SECRET','XAI_API_KEY']  
+    secretEnv: ['LINE_CHANNEL_ACCESS_TOKEN','LINE_CHANNEL_SECRET','XAI_API_KEY','STG_LINE_CHANNEL_ACCESS_TOKEN','STG_LINE_CHANNEL_SECRET']  
 # 從 .env 檔案中取得 secretEnv 並且傳遞到 cloudbuild.yaml
 #     dir: '${_WORK_DIR}'
 #'--min-instances', '${_MIN_INSTANCES}',
@@ -85,6 +85,10 @@ availableSecrets:
     - versionName: projects/$PROJECT_ID/secrets/LINE_CHANNEL_SECRET/versions/latest
       env: 'LINE_CHANNEL_SECRET'
     - versionName: projects/$PROJECT_ID/secrets/XAI_API_KEY/versions/latest
-      env: 'XAI_API_KEY'  
+      env: 'XAI_API_KEY'
+    - versionName: projects/$PROJECT_ID/secrets/STG_LINE_CHANNEL_ACCESS_TOKEN/versions/latest
+      env: 'STG_LINE_CHANNEL_ACCESS_TOKEN'
+    - versionName: projects/$PROJECT_ID/secrets/STG_LINE_CHANNEL_SECRET/versions/latest
+      env: 'STG_LINE_CHANNEL_SECRET'  
 # 從 .env 檔案中取得 secretManager 並且傳遞到 cloudbuild.yaml
     
