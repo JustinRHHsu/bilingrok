@@ -64,7 +64,7 @@ steps:
       '--platform', 'managed',
       '${_ALLOW_AUTHENTICATED}',
       '--port', '${_CONTAINER_PORT}',
-      '--service-account', 'bilingrok-linebot@bilingrok.iam.gserviceaccount.com',
+      '--service-account', 'bilinggrok-linebot@bilingrok.iam.gserviceaccount.com',
     ]
     secretEnv: ['LINE_CHANNEL_ACCESS_TOKEN','LINE_CHANNEL_SECRET','XAI_API_KEY']  
 # 從 .env 檔案中取得 secretEnv 並且傳遞到 cloudbuild.yaml
