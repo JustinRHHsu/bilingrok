@@ -53,6 +53,8 @@ class Config:
     
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV']
+    print(f"SECRET_KEY: {SECRET_KEY_ENV}")
+    
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
