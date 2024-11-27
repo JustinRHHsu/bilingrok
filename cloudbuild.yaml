@@ -1,13 +1,13 @@
-serviceAccount: 'bilinggrok-linebot@bilingrok.iam.gserviceaccount.com'
+serviceAccount: 'bilingrok-linebot@bilingrok.iam.gserviceaccount.com'
 
 substitutions:
-  _DEBUG_MODE: 'False'
+  _DEBUG_MODE: 'True'
   _SECRET_KEY_ENV: 'GCP'
   _ENVIRONMENT: 'PROD'
   _GCP_PROJECT_ID: 'bilingrok'
-  _SERVICE_ACCOUNT_NAME: 'bilinggrok-linebot'
+  _SERVICE_ACCOUNT_NAME: 'bilingrok-linebot'
   _SERVICE_ACCOUNT_DESCRIPTION: 'Handle Line Bot Webhook Events'
-  _SERVICE_ACCOUNT_DISPLAY_NAME: 'bilinggrok-linebot'
+  _SERVICE_ACCOUNT_DISPLAY_NAME: 'bilingrok-linebot'
   _GCP_SA_SECRET_FILE: 'config/sa-linebot@bilingrok.iam.gserviceaccount.com.json'
   _DB_NAME: 'bilingrok'
   _WORK_DIR: '.'
@@ -17,7 +17,7 @@ substitutions:
   _DOCKERFILE_NAME: 'Dockerfile'
   _GCP_COMPUTE_TYPE: 'cloud-run'
   _CONTAINER_NAME: 'bilingrok'
-  _CONTAINER_REGION: 'asia-east1'
+  _CONTAINER_REGION: 'us-central1'
   _HOST_PORT: '5000'
   _CONTAINER_PORT: '5000'
   _ALLOW_AUTHENTICATED: '--allow-unauthenticated'
@@ -64,10 +64,13 @@ steps:
       '--platform', 'managed',
       '${_ALLOW_AUTHENTICATED}',
       '--port', '${_CONTAINER_PORT}',
-      '--service-account', 'bilinggrok-linebot@bilingrok.iam.gserviceaccount.com',
+      '--service-account', 'bilingrok-linebot@bilingrok.iam.gserviceaccount.com'
     ]
     secretEnv: ['LINE_CHANNEL_ACCESS_TOKEN','LINE_CHANNEL_SECRET','XAI_API_KEY']  
 # 從 .env 檔案中取得 secretEnv 並且傳遞到 cloudbuild.yaml
+#     dir: '${_WORK_DIR}'
+#'--min-instances', '${_MIN_INSTANCES}',
+# '--max-instances', '${_MAX_INSTANCES}'
 
 images:
   - 'gcr.io/${_GCP_PROJECT_ID}/${_IMAGE_NAME}:$COMMIT_SHA'

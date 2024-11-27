@@ -8,9 +8,9 @@ ENVIRONMENT: PROD
 
 # GCP 設置參數
 GCP_PROJECT_ID: bilingrok
-SERVICE_ACCOUNT_NAME: bilinggrok-linebot
+SERVICE_ACCOUNT_NAME: bilingrok-linebot
 SERVICE_ACCOUNT_DESCRIPTION: Handle Line Bot Webhook Events
-SERVICE_ACCOUNT_DISPLAY_NAME: bilinggrok-linebot
+SERVICE_ACCOUNT_DISPLAY_NAME: bilingrok-linebot
 GCP_SA_SECRET_FILE: config/sa-linebot@bilingrok.iam.gserviceaccount.com.json
 # SERVICE_ACCOUNT: SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
 
