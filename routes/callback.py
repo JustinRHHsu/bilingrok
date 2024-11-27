@@ -32,10 +32,6 @@ def callback():
     print(f"=== Webhook Event Signature ===\n{signature}")
     
     body = request.get_data(as_text=True)
-    print(f"=== Request body ===\n{body}")
-    event = json.loads(body)
-    print(f"=== Webhook Event Body ===\n{event}")
-    # current_app.logger.info(f"\n=== Request body ===\n{body}")
 
     try:
         print("=== Starting to handle Webhook Event ===")
