@@ -13,17 +13,21 @@ callback_route = Blueprint('callback_route', __name__)
 
 
 
-LINE_CHANNEL_ACCESS_TOKEN = 'R2ofHIXEe9CX7NVkI3/1gpvsihyZFLWQ1K3cviGf23V9Vm2nMrinPT7IpTr1H9YCAQ/sjVfm0K0jXx9rVto1iMi4Tl0Uyna/cIoezl8Pi74lRqXHT1YENw8gGoW3CK1ngAdf7SQYOv514FUvERkA7gdB04t89/1O/w1cDnyilFU='
-LINE_CHANNEL_SECRET = 'c3256685cb342904f8bcdeebcd533a2b'
+# LINE_CHANNEL_ACCESS_TOKEN = 'R2ofHIXEe9CX7NVkI3/1gpvsihyZFLWQ1K3cviGf23V9Vm2nMrinPT7IpTr1H9YCAQ/sjVfm0K0jXx9rVto1iMi4Tl0Uyna/cIoezl8Pi74lRqXHT1YENw8gGoW3CK1ngAdf7SQYOv514FUvERkA7gdB04t89/1O/w1cDnyilFU='
+# LINE_CHANNEL_SECRET = 'c3256685cb342904f8bcdeebcd533a2b'
 
 # Line API configuration
 # print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
-# configuration = Configuration(access_token=Config.LINE_CHANNEL_ACCESS_TOKEN)
-configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
+configuration = Configuration(access_token=Config.LINE_CHANNEL_ACCESS_TOKEN)
+print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
+print("=== This key from secret manager ===")
+# configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 
 # print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
-# handler = WebhookHandler(Config.LINE_CHANNEL_SECRET)
-handler = WebhookHandler(LINE_CHANNEL_SECRET)
+handler = WebhookHandler(Config.LINE_CHANNEL_SECRET)
+print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
+print("=== This key from secret manager ===")
+# handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 
 # 註冊所有消息處理程式，ex: Text Message, Image Meesage, Audio Message
