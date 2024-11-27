@@ -3,7 +3,6 @@ import logging
 import re
 from openai import OpenAI
 from config.config import Config
-# from services.line_service import line_bot_api
 # from services.firestore_service import update_user_data, get_or_create_user
 from utils.prompt_utils import provide_summary
 from prompts.prompt_loader import load_prompts
