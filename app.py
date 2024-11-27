@@ -24,12 +24,14 @@ CHANNEL_ACCESS_TOKEN = 'c3256685cb342904f8bcdeebcd533a2b'
 # 初始化 Webhook Handler
 try:
     handler = WebhookHandler(CHANNEL_SECRET)
+    print(f"Handler Initialized: {handler}")
 except Exception as e:
     print(f"Handler Error: {e}")
 
 # 初始化 Messaging API 設定
 try:
     configuration = Configuration(access_token=CHANNEL_ACCESS_TOKEN)
+    print(f"Configuration Initialized: {configuration}")
 except Exception as e:
     print(f"Configuration Error: {e}")
 
