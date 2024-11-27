@@ -96,7 +96,7 @@ class DB:
         elif yaml_config['ENVIRONMENT'] == 'DEV':
             print(f"[DEV] Access: GCP Firestore with service account credentials")
             cred = service_account.Credentials.from_service_account_file(yaml_config['GCP_SA_SECRET_FILE'])
-            db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], credentials=yaml_config['GCP_CRED'], database=yaml_config['DB_NAME'])
+            db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], credentials=cred, database=yaml_config['DB_NAME'])
             return db
         else:
             logging.error("Error: No Firestore database found.")
