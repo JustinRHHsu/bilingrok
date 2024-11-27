@@ -17,15 +17,6 @@ GCP_SA_SECRET_FILE: config/bilingrok-64cb8b639621.json
 # Database 設置參數
 DB_NAME: bilingrok
 
-# APP 部署參數
-# GCP_COMPUTE_TYPE: cloud-run
-# APP_NAME: 'linebot-flask'
-# APP_REGION: 'asia-east1'
-# ALLOW_UNAUTHENTICATED: 'allow-unauthenticated' 
-# 'no-allow-unauthenticated'
-# APP_PORT: 5000
-
-
 # Docker Image 設定
 WORK_DIR: "."
 IMAGE_NAME: "bilingrok"
@@ -35,8 +26,8 @@ DOCKERFILE_NAME: "Dockerfile"
 
 # Docker Container 設定
 GCP_COMPUTE_TYPE: cloud-run
-CONTAINER_NAME: "bilingrok"
-CONTAINER_REGION: 'us-central1'
+CONTAINER_NAME: "bilingrok-linebot-PROD"
+CONTAINER_REGION: 'asia-east1'
 HOST_PORT: 5000
 CONTAINER_PORT: 5000
 ALLOW_AUTHENTICATED: "--allow-unauthenticated"
@@ -52,14 +43,13 @@ BUILD_CONFIG_FILE: "cloudbuild.yaml"
 EVENT_TYPE: "push"
 
 # Cloud Run 參數
-MIN_INSTANCES: 0
-MAX_INSTANCES: 10
+# MIN_INSTANCES: 0
+# MAX_INSTANCES: 10
 
 
 # 會話 Memory 參數
 NUMBER_OF_MESSASES_FROM_CHAT_HISTORY: 10
 MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
-
 
 
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
