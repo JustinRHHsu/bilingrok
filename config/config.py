@@ -70,8 +70,8 @@ class Config:
     elif SECRET_KEY_ENV == 'LOCAL':
         print(f"Accessing local .env file...")
         logging.info("Accessing local .env file...")
-        LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
-        LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
+        LINE_CHANNEL_ACCESS_TOKEN = os.getenv('STG_LINE_CHANNEL_ACCESS_TOKEN')
+        LINE_CHANNEL_SECRET = os.getenv('STG_LINE_CHANNEL_SECRET')
         GROK_API_KEY = os.getenv('XAI_API_KEY')
         DB_NAME = yaml_config['DB_NAME']
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID']
