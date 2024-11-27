@@ -72,6 +72,8 @@ def register_text_handler(handler, configuration):
             if user_message.startswith('/api_key'):
                 send_loading_animation(configuration, user_id, 5)
                 reply_contents.append('Please enter your API Key...(e.g. xai-xxxxxxx)')
+                reply_contents.append('Don''t have an API Key? No worries! Get one from the link. Elon Musk donates USD 25 monthly before the end in 2024 to support us!')
+                reply_contents.append('https://accounts.x.ai/sign-in')
                 
                 
             # Command: 設定 Native Language

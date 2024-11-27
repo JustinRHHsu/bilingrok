@@ -41,10 +41,10 @@ def get_gcp_credential():
 
 
 class Config:
-    PORT = yaml_config['CONTAINER_PORT'].strip()
-    DEBUG = yaml_config['DEBUG_MODE'].strip()
-    NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY'].strip()
-    MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD'].strip()
+    PORT = yaml_config['CONTAINER_PORT']
+    DEBUG = yaml_config['DEBUG_MODE']
+    NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY']
+    MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD']
     
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()
