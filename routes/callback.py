@@ -19,14 +19,14 @@ callback_route = Blueprint('callback_route', __name__)
 # Line API configuration
 # print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
 access_token = Config.LINE_CHANNEL_ACCESS_TOKEN
-configuration = Configuration(access_token=access_token)
+configuration = Configuration(access_token=access_token.strip())
 print(f"LINE_CHANNEL_ACCESS_TOKEN: {Config.LINE_CHANNEL_ACCESS_TOKEN}")
 print("=== This key from secret manager ===")
 # configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 
 # print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
 channel_secret = Config.LINE_CHANNEL_SECRET
-handler = WebhookHandler(channel_secret)
+handler = WebhookHandler(channel_secret.strip())
 print(f"LINE_CHANNEL_SECRET: {Config.LINE_CHANNEL_SECRET}")
 print("=== This key from secret manager ===")
 # handler = WebhookHandler(LINE_CHANNEL_SECRET)
