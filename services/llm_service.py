@@ -17,7 +17,7 @@ logging.basicConfig(
 # 建立 logger
 logger = logging.getLogger(__name__)
 
-def handle_normal_conversation(user_data, chat_history, user_message):
+def get_ai_assistant_response(user_data, chat_history, user_message):
     
     prompt_template = load_prompts('system_prompt')
     sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data)

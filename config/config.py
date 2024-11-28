@@ -52,6 +52,7 @@ class Config:
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
+        print(f"[Secret Key Source]: GCP")
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
         LINE_CHANNEL_ACCESS_TOKEN = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_SECRET')
@@ -62,6 +63,7 @@ class Config:
         GCP_CRED = get_gcp_credential()
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
+        print(f"[Secret Key Source]: .env")
         LINE_CHANNEL_ACCESS_TOKEN = os.getenv('STG_LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = os.getenv('STG_LINE_CHANNEL_SECRET')
         GROK_API_KEY = os.getenv('XAI_API_KEY')
@@ -82,16 +84,14 @@ class Config:
 class DB:
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
-            print(f"[PROD] Access: GCP Firestore with default credentials")
+            print(f"[PROD] Access: GCP Firestore with 'GCP Default Credentials'")
             db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], database=yaml_config['DB_NAME'])
             return db
         elif yaml_config['ENVIRONMENT'] == 'DEV':
-            print(f"[DEV] Access: GCP Firestore with service account credentials")
+            print(f"[DEV] Access: GCP Firestore with 'Service Account Credentials(.json)'")
             cred = service_account.Credentials.from_service_account_file(yaml_config['GCP_SA_SECRET_FILE'])
             db = firestore.Client(project=yaml_config['GCP_PROJECT_ID'], credentials=cred, database=yaml_config['DB_NAME'])
             return db
         else:
             logging.error("Error: No Firestore database found.")
             return None
-
-    print(f"=== Firestore Database Loaded ===")
