@@ -25,8 +25,10 @@ DOCKERFILE_PATH: "."
 DOCKERFILE_NAME: "Dockerfile"
 
 # Docker Container 設定
+
 GCP_COMPUTE_TYPE: cloud-run
-CONTAINER_NAME: "bilingrok-linebot-PROD"
+# Container Name shoule less 63 characters, lowercase, numbers and dash only
+CONTAINER_NAME: "bilingrok-linebot-prod"
 CONTAINER_REGION: 'asia-east1'
 HOST_PORT: 5000
 CONTAINER_PORT: 5000
