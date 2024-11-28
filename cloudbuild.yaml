@@ -16,7 +16,7 @@ substitutions:
   _DOCKERFILE_PATH: '.'
   _DOCKERFILE_NAME: 'Dockerfile'
   _GCP_COMPUTE_TYPE: 'cloud-run'
-  _CONTAINER_NAME: 'bilingrok-linebot-PROD'
+  _CONTAINER_NAME: 'bilingrok-linebot-prod'
   _CONTAINER_REGION: 'asia-east1'
   _HOST_PORT: '5000'
   _CONTAINER_PORT: '5000'
