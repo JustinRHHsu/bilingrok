@@ -68,7 +68,7 @@ def register_text_handler(handler, configuration):
         # 最後呼叫 reply_message_with_quick_reply() 函數，回傳給用戶
         # Commnad Message
         if user_message.startswith('/') or user_message.startswith('xai-'):
-            
+
             send_loading_animation(configuration, user_id)
             user_data, reply_contents, quick_reply_items = command_logic(user_message, user_data, reply_contents, quick_reply_items)
             
