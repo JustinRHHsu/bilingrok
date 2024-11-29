@@ -54,6 +54,10 @@ NUMBER_OF_MESSASES_FROM_CHAT_HISTORY: 10
 MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
 
 
+# 路徑參數
+FLEX_LIBRARY_PATH: "line_message_template/flex_library"
+
+
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
 # QUEUE_LOCATION_MESSAGE_STORE: asia-east1
 # Cloud Task

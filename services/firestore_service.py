@@ -38,6 +38,7 @@ def get_or_create_user(user_id):
             'conversation_count': 0,
             'native_lang': 'zh-tw',
             'target_lang': 'us-en',
+            'buy_item': '',
             'last_message_timestamp': datetime.datetime.utcnow()
         }
         profile_ref.set(profile_data)
