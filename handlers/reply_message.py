@@ -1,7 +1,10 @@
+# 組裝成 Messenging API 的格式，並回傳給用戶
+
 from linebot.v3.messaging import (
-    ApiClient, MessagingApi, TextMessage,
+    ApiClient, MessagingApi, 
+    TextMessage, ImageMessage,
     ReplyMessageRequest, QuickReply, QuickReplyItem,
-    MessageAction
+    MessageAction, FlexMessage
 )
 
 
@@ -46,32 +49,23 @@ def TO_BE_DELETE_reply_message(reply_contents, reply_token, configuration):
         
         
         
-def reply_message_with_quick_reply(reply_contents, reply_token, configuration, quick_reply_items=None):
+# def reply_message_with_quick_reply(reply_token, configuration, reply_contents, quick_reply_items=None, img_reply_msg_list=None, flex_msg_list=None):
+def line_reply_message(reply_token, configuration, all_messages):    
+    
+    if not all_messages:
+        message = "Error(481): Response error! Please contact with administrator"
+        all_messages[message]
+        return
     
     with ApiClient(configuration) as api_client:
-        
         line_bot_api = MessagingApi(api_client)
         
-        if quick_reply_items:
-            quick_reply = QuickReply(items=[
-                QuickReplyItem(
-                    type="action",
-                    action=MessageAction(label=item[1], text=item[0])
-                ) for item in quick_reply_items
-            ])
-        else:
-            quick_reply = None
-        
-        text_messages = [
-            TextMessage(
-                text=content,
-                quick_reply=quick_reply
-            ) for content in reply_contents
-        ]
+        # 只保留前 5 則訊息
+        all_messages = all_messages[:5]
         
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=reply_token,
-                messages=text_messages
+                messages=all_messages
             )
         )

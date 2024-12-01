@@ -1,9 +1,9 @@
 # 執行環境參數
-DEBUG_MODE: True
+DEBUG_MODE: False
 # True, False
-SECRET_KEY_ENV: LOCAL
+SECRET_KEY_ENV: GCP
 # GCP, LOCAL
-ENVIRONMENT: DEV
+ENVIRONMENT: PROD
 # DEV, PROD
 
 # GCP 設置參數
@@ -52,6 +52,10 @@ EVENT_TYPE: "push"
 # 會話 Memory 參數
 NUMBER_OF_MESSASES_FROM_CHAT_HISTORY: 10
 MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
+
+
+# 路徑參數
+FLEX_LIBRARY_PATH: "line_message_template/flex_library"
 
 
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
