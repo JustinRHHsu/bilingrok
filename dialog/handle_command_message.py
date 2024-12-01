@@ -253,9 +253,8 @@ def command_logic(user_data, user_message, all_messages):
         
     # Command: 設定 API Key    
     elif user_message.startswith('/feedback'):
-        # TBD
-        # user_data, reply_content = handle_feedback_command(user_data, user_message, user_id)
-        pass
+        message_1_text = create_text_message("https://forms.gle/CqCS9yxCdoq6fGaN9")
+        all_messages.append(message_1_text)
         
     else:
         message_1_text = create_text_message('Unknown command. Please check the command and try again.')

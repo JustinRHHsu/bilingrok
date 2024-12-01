@@ -1,0 +1,138 @@
+{
+    "api_key_set_success": {
+      "text": "API Key berjaya disetkan!",
+      "desc": "當 API Key 設定成功時顯示的訊息"
+    },
+    "notify_start_matching": {
+      "text": "Percubaan percuma Bilingrok selama 7 hari telah diaktifkan!\n\nKlik pada imej untuk memulakan pencarian pasangan latihan bahasa anda!",
+      "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對"
+    },
+    "api_key_verification_failed": {
+      "text": "Pengesahan API Key gagal. Sila semak dan cuba lagi.",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "Sila masukkan format API Key yang betul\n(contoh: xai-xxxxxxx).",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "Tahniah! Anda telah menerima kad hadiah bernilai $25 daripada xAI 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "Tonton video untuk mendapatkan API Key xAI! {link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "Ikuti langkah-langkah di bawah untuk menebus perkhidmatan pasangan bahasa Bilingrok secara percuma!\n\n1. Daftar akaun xAI\n2. Jana API Key\n3. Salin dan tampal API Key\nSahkan dalam kotak sembang\n\nSelepas disahkan, anda boleh mula menikmati perkhidmatan pasangan bahasa Bilingrok selama 7 hari! 🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "Daftar xAI untuk mendapatkan percubaan percuma anda.",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "Pilih bahasa utama anda...(klik salah satu pilihan di bawah)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "Maaf, bahasa ini belum disokong. Sila cuba lagi!",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "Hebat! Pasangan bahasa Bilingrok juga boleh bercakap sedikit {language_name} 🤏.",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "Pasangan bahasa anda akan menggunakan {language_name} untuk membantu anda menyusun 'nota'. Nota ini akan menyemak, membetulkan, dan mengoptimumkan perbendaharaan kata, frasa, atau ungkapan harian daripada perbualan anda!",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "Bahasa apa yang anda ingin berlatih...(klik salah satu pilihan di bawah)?\n\nPasangan bahasa anda akan berlatih berbual dan berbicara dengan anda dalam bahasa pilihan anda!",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "Hebat, anda ingin berlatih {target_language_name}!",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "Pasangan bahasa Bilingrok anda akan berbual sepenuhnya dalam {target_language_name}, menyediakan persekitaran yang ideal untuk anda berlatih!\n\nLebih baik lagi, sistem akan secara berkala menyusun nota daripada perbualan anda dalam {native_language_name}, membantu anda mencapai hasil pembelajaran yang lebih baik! 🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "Pilih jenis langganan perkhidmatan pasangan bahasa Bilingrok...(klik salah satu pilihan di bawah)",
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "Langgan Sekarang",
+      "desc": "訂閱：立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "Dapatkan Percubaan Percuma!",
+      "desc": "訂閱：領取試用的按鈕文字。"
+    },
+    "quick_reply_btn_membership": {
+      "text": "Maklumat Keahlian",
+      "desc": "訂閱：會員查詢的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "Ini adalah tawaran istimewa untuk anda! Kami sangat teruja melihat anda berinteraksi dengan pasangan bahasa untuk berlatih secara lebih natural! 🌟",
+      "desc": "強調特別優惠的訊息。"
+    },
+    "back": {
+      "text": "Kembali ↩️",
+      "desc": "返回的按鈕文字。"
+    },
+    "unknown_command": {
+      "text": "Perintah tidak dikenali. Sila semak dan cuba lagi.",
+      "desc": "當輸入未知命令時顯示的訊息。"
+    },
+    "subscription_type": {
+      "text": "Jenis Langganan",
+      "desc": "訂閱類型的標籤。"
+    },
+    "flex_purchase_card_title": {
+      "text": "Keahlian Emas: USD 10 / bulan",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "Langgan Sekarang!",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "Dapatkan Hadiah!",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend": {
+      "text": "Hai~ Saya ingin mengesyorkan aplikasi di LINE bernama Bilingrok, di mana anda boleh mencocokkan pasangan latihan bahasa. Ia seperti mempunyai rakan asing untuk berbual dan berlatih bahasa, sangat hebat! 🌟\n\nTambahan pula, saya telah menghantar hadiah bernilai 25 USD dan percubaan percuma 7 hari 🎁🎁🎁 kepada anda.\n\nKuota adalah terhad, jadi cepat dapatkan sekarang!\nhttps://lin.ee/VYuu0Ct",
+      "desc": "推薦朋友加入好友的訊息"
+    },
+    "share_to_friend_guide": {
+      "text": "Tekan dan tahan 👆 mesej di atas, klik 'Kongsi' untuk menghantar hadiah 25 USD kepada rakan anda!",
+      "desc": "引導用戶長按推薦給朋友"
+    },
+    "Hey": {
+      "text": "Hai~",
+      "desc": "用戶說 Hey，和用戶打招呼 "
+    },
+    "topic_items": {
+      "text": ["Apa yang sedang anda lakukan?", "Saya ada sesuatu nak tanya.", "Sungguh menjengkelkan!", "Saya bosan.", "Mari berbual."],
+      "desc": "Hey 後，讓用戶從裡面找話題"
+    },
+    "alert_api_key_unset": {
+      "text": "Hai~ Nampaknya anda belum mengaktifkan perkhidmatan Bilingrok.\n\nKlik START di bawah dan saya akan membimbing anda untuk menyelesaikan persediaan!",
+      "desc": "用戶輸入訊息，但 API Key 尚未設置"
+    },
+    "alert_subscribe_unavailable": {
+      "text": "Anda belum memilih pelan langganan Bilingrok. Buka menu di bawah, klik SUBSCRIBE dan pilih perkhidmatan yang sesuai untuk anda!",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 為空"
+    },
+    "alert_subscribe_expired": {
+      "text": "Terima kasih atas sokongan anda! Langganan anda telah tamat pada {subscribe_expired_timestamp} (UTC+8).\n\nBuka menu di bawah, klik SUBSCRIBE dan perbaharui pelan anda untuk terus menggunakan perkhidmatan Bilingrok!",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 已過期"
+    },
+    "query_membership": {
+      "text": "**Maklumat Langganan Keahlian**\nJenis Langganan:\n{sub_name}\nTarikh Tamat Tempoh:\n{sub_expire_time}",
+      "desc": "用戶在 subscription 裡查詢會員資訊"
+    }
+  }  

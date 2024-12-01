@@ -1,0 +1,139 @@
+{
+    "api_key_set_success": {
+      "text": "API Key 已成功設定！",
+      "desc": "當 API Key 設定成功時顯示的訊息"
+    },
+    "notify_start_matching": {
+      "text": "已啟用免費 7 日 Bilingrok 體驗！\n\n點擊圖片，開始為您配對語言練習夥伴！",
+      "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對"
+    },
+    "api_key_verification_failed": {
+      "text": "API Key 驗證失敗，請檢查後再試。",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "請輸入正確的 API Key 格式\n（例如：xai-xxxxxxx）。",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "恭喜！您已獲得由 xAI 提供價值 25 美元的禮品卡 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "觀看影片以獲取 xAI API Key！{link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "按照以下步驟操作，即可免費兌換 Bilingrok 語言夥伴服務！\n\n1. 註冊 xAI 帳戶\n2. 生成 API Key\n3. 複製並貼上 API Key\n在聊天欄進行驗證\n\n驗證成功後，您即可開始享受 7 日 Bilingrok 語言夥伴服務！🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "註冊 xAI，領取免費體驗。",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "選擇您的主要母語...(點擊下方選項)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "抱歉，我們暫時不支援此語言，請重試！",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "太好了！Bilingrok 的語言夥伴也會懂一些 {language_name} 🤏。",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "您的語言夥伴會用 {language_name} 幫助您整理「筆記」，包括從對話中回顧、訂正和優化使用的詞彙、片語或口語化表達！",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "您想練習哪種語言...(點擊下方選項)?\n\n語言夥伴將用您選擇的語言與您對話和聊天！",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "太棒了，您想練習 {target_language_name}！",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "Bilingrok 的語言夥伴將全程使用 {target_language_name} 與您聊天，提供理想的語言練習環境！\n\n更棒的是，系統會定期將對話內容整理成 {native_language_name} 筆記，幫助您更好地學習！🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "選擇 Bilingrok 語言夥伴服務的訂閱類型...(點擊下方選項)",
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "立即訂閱",
+      "desc": "訂閱：立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "領取試用！",
+      "desc": "訂閱：領取試用的按鈕文字。"
+    },
+    "quick_reply_btn_membership": {
+      "text": "會員查詢",
+      "desc": "訂閱：會員查詢的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "這是專屬您的特別優惠！我們期待您與語言夥伴互動，讓您的語言練習更自然、更生動！🌟",
+      "desc": "強調特別優惠的訊息。"
+    },
+    "back": {
+      "text": "返回 ↩️",
+      "desc": "返回的按鈕文字。"
+    },
+    "unknown_command": {
+      "text": "未知指令，請檢查後重試。",
+      "desc": "當輸入未知命令時顯示的訊息。"
+    },
+    "subscription_type": {
+      "text": "訂閱類型",
+      "desc": "訂閱類型的標籤。"
+    },
+    "flex_purchase_card_title": {
+      "text": "黃金會員: USD 10 / 月",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "立即訂閱！",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "領取禮物！",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend": {
+      "text": "嗨~ 想推薦您一款 LINE 上的應用程式，叫做 Bilingrok，可以幫您配對語言練習夥伴，就像有一位外國朋友，陪您邊聊天邊練習語言，非常棒！🌟\n\n此外，我還送您一張價值 25 美元的禮品卡以及 7 天免費試用 🎁🎁🎁\n\n數量有限，快去領取吧！\nhttps://lin.ee/VYuu0Ct",
+      "desc": "推薦朋友加入好友的訊息"
+    },
+    "share_to_friend_guide": {
+      "text": "長按👆上方的訊息，點擊「分享」，把 25 美元送給朋友們吧！",
+      "desc": "引導用戶長按推薦給朋友"
+    },
+    "Hey": {
+      "text": "哈囉~",
+      "desc": "用戶說 Hey，和用戶打招呼 "
+    },
+    "topic_items": {
+      "text": ["在做什麼", "問你喔", "好煩喔", "好無聊", "陪我聊天"],
+      "desc": "Hey 後，讓用戶從裡面找話題"
+    },
+    "alert_api_key_unset": {
+      "text": "哈囉~ 看起來您還沒有啟動 Bilingrok 的服務。\n\n請點選下方的 START，我會協助您快速完成設置！",
+      "desc": "用戶輸入訊息，但 API Key 尚未設置"
+    },
+    "alert_subscribe_unavailable": {
+      "text": "您尚未選擇 Bilingrok 訂閱方案。請開啟下方「選單」，點選 SUBSCRIBE，選擇適合您的服務！",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 為空"
+    },
+    "alert_subscribe_expired": {
+      "text": "感謝您的支持，您的訂閱已於 {subscribe_expired_timestamp} (UTC+8) 到期！\n\n請開啟下方「選單」，點選 SUBSCRIBE，續訂以繼續使用 Bilingrok 服務！",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 已過期"
+    },
+    "query_membership": {
+      "text": "**會員訂閱資訊**\n訂閱項目：\n{sub_name}\n到期時間：\n{sub_expire_time}",
+      "desc": "用戶在 subscription 裡查詢會員資訊"
+    }
+  }
+  

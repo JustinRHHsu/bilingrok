@@ -1,0 +1,138 @@
+{
+    "api_key_set_success": {
+      "text": "¡Clave API configurada con éxito!",
+      "desc": "當 API Key 設定成功時顯示的訊息"
+    },
+    "notify_start_matching": {
+      "text": "¡Se ha activado la prueba gratuita de 7 días de Bilingrok!\n\nHaz clic en la imagen para comenzar a buscar tu compañero de práctica de idiomas.",
+      "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對"
+    },
+    "api_key_verification_failed": {
+      "text": "Error al verificar la clave API. Por favor, comprueba e inténtalo de nuevo.",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "Por favor, introduce un formato válido de clave API\n(por ejemplo: xai-xxxxxxx).",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "¡Felicidades! Has recibido una tarjeta de regalo valorada en 25 dólares, cortesía de xAI 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "¡Mira el vídeo para obtener tu clave API de xAI! {link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "¡Sigue estos pasos para canjear tu servicio gratuito de compañero de idiomas de Bilingrok!\n\n1. Regístrate en xAI\n2. Genera tu clave API\n3. Copia y pega la clave API\nEn el cuadro de chat, realiza la verificación\n\nDespués de la verificación, podrás disfrutar de 7 días del servicio de compañero de idiomas de Bilingrok. 🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "Regístrate en xAI para obtener tu prueba gratuita.",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "Selecciona tu lengua materna principal...(haz clic en una de las opciones a continuación)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "Lo sentimos, este idioma no está soportado actualmente. ¡Por favor, inténtalo de nuevo!",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "¡Genial! El compañero de idiomas de Bilingrok también hablará un poco de {language_name} 🤏.",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "Tu compañero de idiomas usará {language_name} para ayudarte a organizar 'notas'. Estas notas revisarán, corregirán y optimizarán vocabulario, frases o expresiones coloquiales utilizadas en tus conversaciones.",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "¿Qué idioma quieres practicar...(haz clic en una de las opciones a continuación)?\n\nTu compañero de idiomas practicará conversaciones y chateará contigo en el idioma que elijas.",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "¡Estupendo! Quieres practicar {target_language_name}.",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "El compañero de idiomas de Bilingrok charlará contigo completamente en {target_language_name} para proporcionarte un entorno ideal para practicar.\n\nAdemás, el sistema organizará periódicamente notas de tus conversaciones en {native_language_name} para ayudarte a mejorar tus resultados de aprendizaje. 🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "Elige el tipo de suscripción para los servicios de compañero de idiomas de Bilingrok...(haz clic en una de las opciones a continuación)",
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "Suscribirse ahora",
+      "desc": "訂閱：立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "¡Obtén la prueba gratuita!",
+      "desc": "訂閱：領取試用的按鈕文字。"
+    },
+    "quick_reply_btn_membership": {
+      "text": "Información de la suscripción",
+      "desc": "訂閱：會員查詢的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "¡Aquí tienes una oferta especial para ti! Estamos emocionados de verte interactuar con tu compañero de idiomas para practicar de una manera más natural y fluida. 🌟",
+      "desc": "強調特別優惠的訊息。"
+    },
+    "back": {
+      "text": "Volver ↩️",
+      "desc": "返回的按鈕文字。"
+    },
+    "unknown_command": {
+      "text": "Comando desconocido. Por favor, compruébalo e inténtalo de nuevo.",
+      "desc": "當輸入未知命令時顯示的訊息。"
+    },
+    "subscription_type": {
+      "text": "Tipo de suscripción",
+      "desc": "訂閱類型的標籤。"
+    },
+    "flex_purchase_card_title": {
+      "text": "Membresía Dorada: USD 10 / mes",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "¡Suscríbete ahora!",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "¡Obtén el regalo!",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend": {
+      "text": "¡Hola~! Quiero recomendarte una aplicación en LINE llamada Bilingrok, que te empareja con un compañero de práctica de idiomas. Es como tener un amigo extranjero con quien chatear mientras practicas idiomas. ¡Es genial! 🌟\n\nAdemás, te envío un regalo de 25 dólares y una prueba gratuita de 7 días 🎁🎁🎁\n\nHay cantidad limitada, ¡así que apúrate a reclamarlo!\nhttps://lin.ee/VYuu0Ct",
+      "desc": "推薦朋友加入好友的訊息"
+    },
+    "share_to_friend_guide": {
+      "text": "Mantén presionado 👆 el mensaje anterior, haz clic en 'Compartir' y envía el regalo de 25 dólares a tus amigos.",
+      "desc": "引導用戶長按推薦給朋友"
+    },
+    "Hey": {
+      "text": "¡Hola~!",
+      "desc": "用戶說 Hey，和用戶打招呼 "
+    },
+    "topic_items": {
+      "text": ["¿Qué haces?", "Quiero preguntarte algo.", "¡Qué molesto!", "Estoy aburrido.", "Hablemos."],
+      "desc": "Hey 後，讓用戶從裡面找話題"
+    },
+    "alert_api_key_unset": {
+      "text": "¡Hola~! Parece que aún no has activado el servicio de Bilingrok.\n\nHaz clic en START abajo y te guiaré para configurarlo rápidamente.",
+      "desc": "用戶輸入訊息，但 API Key 尚未設置"
+    },
+    "alert_subscribe_unavailable": {
+      "text": "Aún no has seleccionado un plan de suscripción de Bilingrok. Abre el menú abajo, haz clic en SUBSCRIBE y elige el servicio que más te convenga.",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 為空"
+    },
+    "alert_subscribe_expired": {
+      "text": "Gracias por tu apoyo. Tu suscripción expiró el {subscribe_expired_timestamp} (UTC+8).\n\nAbre el menú abajo, haz clic en SUBSCRIBE y renueva tu plan para seguir usando Bilingrok.",
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 已過期"
+    },
+    "query_membership": {
+      "text": "**Información de la suscripción**\nTipo de suscripción:\n{sub_name}\nFecha de expiración:\n{sub_expire_time}",
+      "desc": "用戶在 subscription 裡查詢會員資訊"
+    }
+  }  
