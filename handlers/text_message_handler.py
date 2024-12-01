@@ -1,17 +1,7 @@
-import datetime
-import csv
-
-from config.config import Config
-
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
-from linebot.v3.messaging import (
-    ApiClient, MessagingApi, TextMessage,
-    ReplyMessageRequest, QuickReply, QuickReplyItem,
-    MessageAction
-)
 
-from services.firestore_service import get_or_create_user, add_chat_message, update_user_profile, get_recent_messages
-from services.llm_service import get_ai_assistant_response, conversation_review_card_generation, check_llm_api
+from services.firestore_service import get_or_create_user, update_user_profile
+# from services.llm_service import get_ai_assistant_response, conversation_review_card_generation 
 
 # from handlers.api_key_handler import handle_api_key_command
 # from handlers.feedback_handler import handle_feedback_command
@@ -21,7 +11,8 @@ from handlers.reply_message import line_reply_message
 
 from handlers.load_animation import send_loading_animation
 from dialog.handle_command_message import command_logic
-from handlers.line_bot_message_builder import create_text_message, create_image_message, create_flex_message, create_quick_reply_message
+from dialog.handle_general_message import general_msg_logic
+# from handlers.line_bot_message_builder import create_text_message, create_flex_image_action_message
 
 
 def register_text_handler(handler, configuration):
@@ -35,12 +26,13 @@ def register_text_handler(handler, configuration):
         reply_token = event.reply_token
         message_timestamp = event.timestamp     # linebot timestamp in milliseconds
         
+        
         # TBD
         # waiting_message_time_slot = Config.TIME_SLOT_PROCESS_MESSAGES_TO_LLM
         # session_expired_time = Config.SESSION_EXPIRED_TIME
         
         # 初始化設定
-        message_for_review_learning_card = Config.MESSAGES_FOR_REVIEW_LEARNING_CARD
+        # message_for_review_learning_card = Config.MESSAGES_FOR_REVIEW_LEARNING_CARD
         all_messages = []
         
         # 組合聊天訊息格式
@@ -53,6 +45,10 @@ def register_text_handler(handler, configuration):
         
         # 獲取用戶資料和聊天記錄
         user_data, chat_history = get_or_create_user(user_id)
+        
+        api_key = user_data.get('api_key', '')
+        subscribe_expire_time = user_data.get('subscribe_expired_timestamp', '')
+        
         
         # Save user message to chat history
         # TBD 是否可以用 Cloud Task 異步處理
@@ -74,41 +70,9 @@ def register_text_handler(handler, configuration):
             
         # Normal Conversation - 和 Companion 對話、練習語言
         else:
+            
             send_loading_animation(configuration, user_id)
-            add_chat_message(user_id, message_data)    
-            
-            # 建立或更新 Cloud Task，讓 Message 定時 30 秒後，一呼叫 LLM API 處理
-            # create_or_update_task(user_id)
-            # 要先儲存下來
-            
-            # 讓 LLM API 處理回覆內容
-            user_data, reply_content, reply_timestamp = get_ai_assistant_response(user_data, chat_history, user_message)
-            message_1_text = create_text_message(reply_content)
-            all_messages.append(message_1_text)
-            
-            # 組合 Assistant Message 回覆的訊息，存入 Chat History
-            
-            message_data = {
-                'role': 2,    # 1: User, 2: Assistant
-                'message': reply_content,   
-                'message_timestamp': reply_timestamp
-            }
-            add_chat_message(user_id, message_data)
-            
-            
-            # 更新用戶對話次數和最後對話時間
-            user_data['conversation_count'] += 2        # 一則 User message，一則 Assistant message
-            user_data['last_message_timestamp'] = message_timestamp     # user message 的 timestamp        
-            
-            
-            
-            # 判斷是否需要提供學習卡片
-            # 如果 user_data['conversation_count'] 的值 / 10 的餘數為 0，則提供對話摘要
-            # 每 10 條對話提供一次，提供一個對話學習卡片
-            if user_data['conversation_count'] % message_for_review_learning_card == 0:
-                user_data, ai_suggestion = conversation_review_card_generation(user_data, chat_history)
-                message_2_text = create_text_message(ai_suggestion)
-                all_messages.append(message_2_text)
+            user_data, all_messages = general_msg_logic(user_data, message_data, chat_history, all_messages)
             
         
         # 更新用戶資料
@@ -117,6 +81,6 @@ def register_text_handler(handler, configuration):
         
         # 回覆用戶訊息
         # 回傳給用戶的訊息，是否需要提供 Quick Reply。有的話，傳入有包含組裝 quick_reply_items 的 reply_message 函數
-        
+        print(f"##Reply Messages: {all_messages}")
         
         line_reply_message(reply_token, configuration, all_messages)

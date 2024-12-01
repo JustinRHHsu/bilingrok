@@ -1,0 +1,22 @@
+{
+  "subscribe_items": [
+    {
+      "name": "7 Days Free Trial",
+      "code": "xai-free",
+      "description": "xAI Grok API - USD 25 till the end of 2024",
+      "price": 0.0
+    },
+    {
+      "name": "Product B",
+      "code": "B002",
+      "description": "Description for Product B",
+      "price": 150.0
+    },
+    {
+      "name": "Product C",
+      "code": "C003",
+      "description": "Description for Product C",
+      "price": 200.0
+    }
+  ]
+}

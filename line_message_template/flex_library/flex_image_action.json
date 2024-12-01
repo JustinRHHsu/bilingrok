@@ -1,0 +1,14 @@
+{
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://storage.googleapis.com/linebot_materials/onboarding-start.jpeg",
+      "size": "full",
+      "aspectRatio": "200:60",
+      "aspectMode": "cover",
+      "action": {
+        "type": "message",
+        "text": "/language"
+      }
+    }
+  }

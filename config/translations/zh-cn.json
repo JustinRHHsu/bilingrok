@@ -1,0 +1,111 @@
+{
+    "api_key_set_success": {
+      "text": "API Key 设置成功！",
+      "desc": "当 API Key 设置成功时显示的消息"
+    },
+    "api_key_verification_failed": {
+      "text": "API Key 验证失败，请检查后重试。",
+      "desc": "当 API Key 验证失败时显示的消息"
+    },
+    "api_key_format_error": {
+      "text": "请输入正确的 API Key 格式（例如：xai-xxxxxxx）。",
+      "desc": "当 API Key 格式不正确时显示的消息。"
+    },
+    "trial_offer_desc": {
+      "text": "恭喜！您已收到由 xAI 提供的价值 25 美元的礼品卡 🎁🎁🎁",
+      "desc": "提供免费试用作为安慰的消息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "观看视频，获取 xAI API Key！{link}",
+      "desc": "查看 xAI API Key 设置教学视频"
+    },
+    "trial_steps": {
+      "text": "按照以下步骤操作，免费兑换 Bilingrok 语言伙伴服务：\n\n1. 注册 xAI 账户\n2. 生成 API Key\n3. 将 API Key 复制并粘贴到对话框进行验证\n\n验证成功后，您将获得 7 天免费的 Bilingrok 语言伙伴服务！🎉🎉🎉",
+      "desc": "开始 7 天免费试用的步骤。"
+    },
+    "free_trial": {
+      "text": "注册 xAI 开始免费体验。",
+      "desc": "引导进入 xAI 网站注册"
+    },
+    "choose_language": {
+      "text": "选择您的母语...(点击下列选项)",
+      "desc": "提示用户选择他们的母语。"
+    },
+    "language_not_supported": {
+      "text": "抱歉，我们暂时不支持此语言，请重试！",
+      "desc": "当选择的语言不受支持时显示的消息。"
+    },
+    "confirm_native_language": {
+      "text": "太好了！Bilingrok 的语言伙伴也会说一点{language_name} 🤏。",
+      "desc": "确认用户的母语的消息。"
+    },
+    "native_language_value": {
+      "text": "您的语言伙伴会用{language_name}帮助您整理“笔记”。这些笔记会从您们的对话中，回顾、纠正并优化使用的词汇、短语或口语化表达！",
+      "desc": "解释使用用户母语的价值的消息。"
+    },
+    "practice_language": {
+      "text": "您想练习哪种语言...(点击下列选项)\n\n语言伙伴会用您选择的语言陪您练习对话！",
+      "desc": "提示用户选择他们想练习的语言。"
+    },
+    "confirm_target_language": {
+      "text": "太棒了！您想练习{target_language_name}！",
+      "desc": "确认用户期望学习语言的消息。"
+    },
+    "match_language_partner": {
+      "text": "Bilingrok 为您匹配的语言伙伴，将会全程使用{target_language_name}和您聊天，帮助您获得更好的语言练习环境。\n\n更棒的是，系统会定期从您和伙伴的对话中，用{native_language_name}帮助您整理成笔记，帮助您更好地提升语言能力！🌟",
+      "desc": "解释订阅的好处的消息。"
+    },
+    "subscribe_offer": {
+      "text": "选择您订阅的 Bilingrok 语言伙伴服务...(点击下列选项)",
+      "desc": "提供用户订阅 Bilingrok 的优惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "立即订阅",
+      "desc": "立即订阅的按钮文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "领取试用！",
+      "desc": "立即订阅按钮的另一个选项 - 领取试用的按钮文字。"
+    },
+    "special_offer": {
+      "text": "这是为您提供的特别优惠！我们迫不及待想为您匹配语言伙伴了！🌟",
+      "desc": "强调特别优惠的消息。"
+    },
+    "back": {
+      "text": "返回 ↩️",
+      "desc": "返回的按钮文字。"
+    },
+    "unknown_command": {
+      "text": "未知命令，请检查后重试。",
+      "desc": "当输入未知命令时显示的消息。"
+    },
+    "subscription_type": {
+      "text": "订阅类型",
+      "desc": "订阅类型的标签。"
+    },
+    "flex_purchase_card_title": {
+      "text": "黄金会员: USD 10 / 每月",
+      "desc": "Flex JSON 中购买卡片的显示标题"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "马上订阅！",
+      "desc": "Flex JSON 中购买卡片的按钮名称"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "领取礼物！",
+      "desc": "Flex JSON 中稍后购买卡片的按钮名称"
+    },
+    "share_to_friend_guide": {
+      "text": "长按 👆 上面的消息，点击「分享」，赶快把25美元送给朋友们吧！",
+      "desc": "引导用户长按推荐给朋友"
+    },
+    "Hey": {
+      "text": "你好~",
+      "desc": "用户说 Hey，和用户打招呼"
+    },
+    "topic_items": {
+      "text": ["你在干嘛？", "问你一下哦。", "好烦啊！", "好无聊啊。", "陪我聊聊天吧。"],
+      "desc": "Hey 后，让用户从里面找话题"
+    }
+  }
+  

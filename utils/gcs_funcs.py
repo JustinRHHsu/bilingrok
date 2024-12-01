@@ -1,6 +1,5 @@
 from google.cloud import storage
 from datetime import timedelta
-import os
 from config.config import Config
 
 

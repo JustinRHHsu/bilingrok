@@ -49,7 +49,6 @@ def TO_BE_DELETE_reply_message(reply_contents, reply_token, configuration):
         
         
         
-# def reply_message_with_quick_reply(reply_token, configuration, reply_contents, quick_reply_items=None, img_reply_msg_list=None, flex_msg_list=None):
 def line_reply_message(reply_token, configuration, all_messages):    
     
     if not all_messages:

@@ -10,7 +10,7 @@ The output must be limited in 1000 characters.
 The output follow below format and reference the example. 
 
 ///The Example of Card///
-📌📌 QUICK NOTES 📌📌
+📌📌📌 QUICK NOTES 📌📌📌
 【Vocabulary & Phrase】
 ‧ entrepreneur (adj.) 創業家
 ‧ oven (n.) 烤箱
@@ -18,4 +18,4 @@ The output follow below format and reference the example.
 【Suggestions & Corrections】
 ‧ 通常表達想要做什麼，會像 I'd like to have dinner with friends.
 
-👍👍 Proud of You 💪💪
+📌📌📌 Proud of You 📌📌📌

@@ -1,4 +1,5 @@
 import os
+from datetime import timezone, timedelta
 from dotenv import load_dotenv
 import yaml
 from google.cloud import secretmanager
@@ -46,6 +47,9 @@ class Config:
     NUMBER_OF_MESSASES_FROM_CHAT_HISTORY = yaml_config['NUMBER_OF_MESSASES_FROM_CHAT_HISTORY']
     MESSAGES_FOR_REVIEW_LEARNING_CARD = yaml_config['MESSAGES_FOR_REVIEW_LEARNING_CARD']
     FLEX_LIBRARY_PATH = yaml_config['FLEX_LIBRARY_PATH']
+    TIME_ZONE_UTC_PLUS_8 = timezone(timedelta(hours=8))
+    PROMPT_TEMPLATE_PATH = yaml_config['PROMPT_TEMPLATE_PATH']
+    AGENT_CHARACTER_PATH = yaml_config['AGENT_CHARACTER_PATH']
     
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()

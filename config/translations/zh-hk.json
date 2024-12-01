@@ -1,0 +1,111 @@
+{
+    "api_key_set_success": {
+      "text": "API Key 設定成功！",
+      "desc": "當 API Key 設定成功時顯示的訊息"
+    },
+    "api_key_verification_failed": {
+      "text": "API Key 驗證失敗，請檢查後再試。",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "請輸入正確的 API Key 格式（例如：xai-xxxxxxx）。",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "恭喜！你已收到由 xAI 提供價值 25 美元的禮品卡 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "觀看影片以取得 xAI API Key！{link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "按照以下步驟操作，免費兌換 Bilingrok 語言夥伴服務：\n\n1. 註冊 xAI 帳戶\n2. 生成 API Key\n3. 將 API Key 複製並貼上於對話框進行驗證\n\n驗證成功後，即可享用 7 天免費 Bilingrok 語言夥伴服務！🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "註冊 xAI 開始免費體驗。",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "選擇你的母語...(點擊下列選項)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "很抱歉，我們暫時未支援此語言，請再試一次！",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "太棒了！Bilingrok 語言夥伴也會說一點{language_name} 🤏。",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "你的語言夥伴將用{language_name}協助整理「筆記」，這些筆記會從對話中提取內容，幫助你復習、糾正及提升用詞、片語或口語化表達！",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "你想練習哪種語言...(點擊下列選項)\n\n語言夥伴會用你選擇的語言與你練習對話！",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "太好了！你想練習{target_language_name}！",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "Bilingrok 的語言夥伴會全程以{target_language_name}與你對話，為你提供最佳的語言練習環境。\n\n更棒的是，系統會定期從對話中以{native_language_name}為你整理筆記，幫助你更快提升語言能力！🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "選擇你想訂閱的 Bilingrok 語言夥伴服務...(點擊下列選項)",
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "立即訂閱",
+      "desc": "立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "領取試用！",
+      "desc": "立即訂閱按鈕的另一個選項 - 領取試用的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "這是一個為你準備的特別優惠！我們迫不及待要為你匹配語言夥伴了！🌟",
+      "desc": "強調特別優惠的訊息。"
+    },
+    "back": {
+      "text": "返回 ↩️",
+      "desc": "返回的按鈕文字。"
+    },
+    "unknown_command": {
+      "text": "未知命令，請檢查後再試。",
+      "desc": "當輸入未知命令時顯示的訊息。"
+    },
+    "subscription_type": {
+      "text": "訂閱類型",
+      "desc": "訂閱類型的標籤。"
+    },
+    "flex_purchase_card_title": {
+      "text": "黃金會員: USD 10 / 每月",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "立即訂閱！",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "領取禮物！",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend_guide": {
+      "text": "長按 👆 上面的訊息，點擊「分享」，快啲送25美元俾你嘅朋友啦！",
+      "desc": "引導用戶長按推薦俾朋友"
+    },
+    "Hey": {
+      "text": "你好~",
+      "desc": "用戶講 Hey，和用戶打招呼"
+    },
+    "topic_items": {
+      "text": ["你做緊咩呀？", "問你一樣嘢。", "好煩呀！", "好悶呀。", "陪我傾吓計啦。"],
+      "desc": "Hey 後，俾用戶從入面揀話題"
+    }
+  }
+  

@@ -1,0 +1,15 @@
+{
+    "type": "bubble",
+    "size": "kilo",
+    "hero": {
+      "type": "video",
+      "url": "{video_url}",
+      "previewUrl": "{video_preview_image_url}",
+      "altContent": {
+        "type": "image",
+        "size": "full",
+        "aspectMode": "cover",
+        "url": "https://scontent.frmq2-2.fna.fbcdn.net/v/t39.30808-6/435054396_122107971254258590_7384984729242899516_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=tGjGWNBU7aUQ7kNvgHkE02N&_nc_zt=23&_nc_ht=scontent.frmq2-2.fna&_nc_gid=A9s-tXiTcC8pCuoKSGQOrmK&oh=00_AYDQG91MdFljZAgO8H0vlWfUrUHVSK0DVAVBtku_5UKEeQ&oe=67534678"
+      }
+    }
+  }

@@ -1,7 +1,7 @@
 import os
 
-def load_prompts(prompt_filename):
-    directory = os.path.dirname(__file__)
+def load_prompts(directory, prompt_filename):
+    
     filepath = os.path.join(directory, prompt_filename + '.txt')
     
     if not os.path.exists(filepath):

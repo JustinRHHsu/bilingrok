@@ -5,15 +5,23 @@ from config.config import Config, DB
 import json
 import logging
 
+
 number_of_recent_messages = Config.NUMBER_OF_MESSASES_FROM_CHAT_HISTORY
 
 db = DB.init_firestore_db()
 # db = firestore.Client(project=Config.GCP_PROJECT_ID, credentials=Config.GCP_CRED, database=Config.DB_NAME)
 
+
+def load_schema(schema_filename):
+    with open(f'db/{schema_filename}.json', 'r') as file:
+        schema = json.load(file)
+    return schema
+
 def get_or_create_user(user_id):
     user_ref = db.collection('users').document(user_id)
     profile_ref = user_ref.collection('profile').document('info')
     profile_doc = profile_ref.get()
+    
     print(f"Access: User {user_id} profile: {profile_doc}")
     logging.info(f"Access: User {user_id} /profile: {profile_doc}")
 
@@ -25,24 +33,15 @@ def get_or_create_user(user_id):
     
     # 如果用戶資料不存在，則建立用戶資料
     else:
-        profile_data = {
-            'user_id': user_id,
-            'mode': 1,
-            'name': '',
-            'gender': '',
-            'grok_api_key': Config.GROK_API_KEY,
-            'api_key_update_timestamp': datetime.datetime.utcnow(),
-            'prompt_tokens': 0,
-            'completion_tokens': 0,
-            'personalized_prompt': '',
-            'conversation_count': 0,
-            'native_lang': 'zh-tw',
-            'target_lang': 'us-en',
-            'buy_item': '',
-            'last_message_timestamp': datetime.datetime.utcnow()
-        }
+        profile_data = load_schema('profile_schema')
+        
+        profile_data['user_id'] = user_id
+        profile_data['last_message_timestamp'] = datetime.datetime.utcnow()
+        profile_data['acc_created_timestamp'] = datetime.datetime.utcnow()
+        
         profile_ref.set(profile_data)
         logging.info(f"Create: User {user_id} profile: {profile_data}")
+        
         return profile_data, []
 
 def update_user_profile(user_id, data):
