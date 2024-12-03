@@ -1,0 +1,27 @@
+{
+    "user_id": "",
+    "name": "",
+    "gender": "",
+
+    "mode": 1,
+    "api_key_type": "",
+    "api_key": "",
+    "api_key_created_timestamp": "",
+    "api_key_updated_timestamp": "",
+    
+    "personalized_prompt": "",
+
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "conversation_count": 0,
+    
+    "native_lang": "zh-tw",
+    "target_lang": "us-en",
+
+    "subscribe_item": "",
+    "subscribe_expired_timestamp": "",
+    "credits": 0,
+    
+    "last_message_timestamp": "",
+    "acc_created_timestamp": ""
+}

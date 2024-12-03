@@ -1,19 +1,24 @@
 # 處理 User Message 為 Command Message 的業務邏輯
 # 處理訊息、回應訊息、詢問用戶
 
-
-from services.llm_service import check_llm_api
+from services.llm_service import check_llm_api, start_conversation_when_matched
 from utils.gcs_funcs import generate_signed_url
-import csv
+import csv, json
 
-from handlers.line_bot_message_builder import create_image_message, create_text_message, create_quick_reply_message, create_flex_message
+from handlers.line_bot_message_builder import create_image_message, create_text_message, create_quick_reply_message, create_flex_message, create_flex_image_action_message
+from handlers.script_translation import load_translations
+import random
+from datetime import datetime, timedelta, timezone
+from config.config import Config
 
 def command_logic(user_data, user_message, all_messages):
+    native_lang = user_data.get('native_lang', 'zh-tw')
+    translations = load_translations(native_lang)
+    time_zone = Config.TIME_ZONE_UTC_PLUS_8
     
-    all_messages = []
+    # all_messages = []
     
     # General: User Message 符合 API Key 格式(xai-開頭)，期望設置 API Key
-    # API Key 的檢查包括：格式、長度、是否有效，三項檢查
     if user_message.startswith('xai-'):
         api_key = user_message
         api_key_length = 84  # 假設 api key 的總長度為 84 個字元
@@ -22,36 +27,82 @@ def command_logic(user_data, user_message, all_messages):
         if len(user_message) == api_key_length:
             # 檢查 API Key 是否有效
             if check_llm_api(api_key):
-                user_data['api_key'] = api_key
-                message_1_text = create_text_message("API Key set successfully! Thanks Elon Musk donates USD 25 monthly before the end in 2024 to support us.")
+                
+                # api_key 無值，新創建的 API Key
+                if not user_data['api_key'] or user_data['api_key'] == '':
+                    # API 通過驗證成功，更新 user_data
+                    # xAI 註冊成功，取得 Bilingrok 7 天的使用，只有1次機會。所以，換 xAI API Key 並不會重新計算 7 天
+                    user_data['api_key_type'] = "xai"
+                    user_data['api_key'] = api_key
+                    user_data['api_key_created_timestamp'] = datetime.now(time_zone)
+                    print(f"api_key_created_timestamp: {user_data['api_key_created_timestamp']}")
+                    user_data['api_key_updated_timestamp'] = datetime.now(time_zone)
+                    print(f"api_key_updated_timestamp: {user_data['api_key_updated_timestamp']}")
+                    user_data['subscribe_item'] = "xai-free"
+                    user_data['subscribe_expired_timestamp'] = user_data['api_key_created_timestamp'] + timedelta(days=7)
+                    print(f"subscribe_expired_timestamp={user_data['subscribe_expired_timestamp']}")
+                    user_data['credits'] = 0
+                
+                # api_key 已存在，拿新的 API Key 重新設置
+                else:
+                    user_data['api_key'] = api_key
+                    user_data['api_key_updated_timestamp'] = datetime.now(time_zone)
+                    print(f"api_key_updated_timestamp: {user_data['api_key_updated_timestamp']}")
+                
+                # 通知 API Key 更新成功！
+                message_1_text = create_text_message(translations["api_key_set_success"]["text"])
                 all_messages = [message_1_text]
+                
+                # 顯示配對語言夥伴的訊息
+                message_2_text = create_text_message(translations["notify_start_matching"]["text"])
+                all_messages = [message_2_text]
+                
+                img_url =  "https://storage.googleapis.com/linebot_materials/hey_small.jpeg"
+                signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
+                aspectRatio = "100:100"
+                action_text = "/MatchPartner"
+                message_3_text = create_flex_image_action_message("flex_image_action", img_url, aspectRatio, action_text)
+                all_messages.append(message_3_text)     
+                
             else:
-                message_1_text = create_text_message("API Key verification failed. Please check and try again.")
+                message_1_text = create_text_message(translations["api_key_verification_failed"]["text"])
                 all_messages = [message_1_text]
         else:
-            message_1_text = create_text_message("Please enter the correct API Key format. (e.g. xai-xxxxxxx)")
+            message_1_text = create_text_message(translations["api_key_format_error"]["text"])
             all_messages = [message_1_text]    
     
     
-    
     # Command: 設定 API Key
-    elif user_message.startswith('/api_key'):
-        meesage_1_text = create_text_message("Please enter your API Key...(e.g. xai-xxxxxxx).")
-        all_messages = [meesage_1_text]
-        message_2_text = create_text_message("Don''t have an API Key? No worries! Get one from the link. Elon Musk donates USD 25 monthly before the end in 2024 to support us!")
-        all_messages.append(message_2_text)
-        message_3_text = create_text_message("https://accounts.x.ai/sign-in")
-        all_messages.append(message_3_text)
+    elif user_message.startswith('/onboarding'):
         
-
+        json_filename = "flex_image_action"
+        img_url = "https://storage.googleapis.com/linebot_materials/onboarding-start.jpeg"
+        signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
+        aspectRatio = "200:60"
+        action_text = "/language"
+        message_1_flex = create_flex_image_action_message(json_filename, img_url, aspectRatio, action_text)
+        all_messages.append(message_1_flex)
+    
+    
+    elif user_message.startswith('/sub: xai-free'):
+        message_1_text = create_text_message(translations["trial_offer_desc"]["text"])
+        all_messages.append(message_1_text)
+        
+        message_2_text = create_text_message(translations["trial_steps"]["text"])
+        all_messages.append(message_2_text)
+        
+        yt_url = "https://www.youtube.com/watch?v=Ff-D38eCJ5s"
+        message_3_flex = create_text_message(translations["xai_api_yt_video_guide"]["text"].format(link=yt_url))
+        all_messages.append(message_3_flex)
+        
+        message_4_flex = create_flex_message(translations["free_trial"]["text"], "flex_xai_gift", user_data['native_lang'])
+        all_messages.append(message_4_flex)
+        
     
     # Command: 設定 Native Language
     elif user_message.startswith('/language'):
-        # (4) (詢問)用戶體驗：需要再徵詢我的意見
-        text = "Choose the language you’re most comfortable with...(Please select an option below)"
+        text = translations["choose_language"]["text"]
         
-        # (5) (選項)用戶體驗：針對徵詢的意見，提供我有這些選項
-        # 組合 Quick Reply 的選項
         # 從 language_list.csv 讀取所有支援的語言列表
         language_list = []
         with open('./config/language_list.csv', newline='') as csvfile:
@@ -63,16 +114,12 @@ def command_logic(user_data, user_message, all_messages):
                 language_list.append(item)
 
         print(f"quick_reply_items={language_list}")
-        message_1_qucik_reply = create_quick_reply_message(text, language_list)
+        message_1_quick_reply = create_quick_reply_message(text, language_list)
+        all_messages.append(message_1_quick_reply)
     
-        all_messages.append(message_1_qucik_reply)
-
-    
-        
     # Command: 處理取得的 Native Language，並詢問 Target Language (跟 /language 是連動的)
     elif user_message.startswith('/lang: '):
-        # 資料處理。擷取用戶選擇的 native_lang
-        native_lang = user_message.split('/lang: ')[1]      # e.g. 'zh-tw'
+        native_lang = user_message.split('/lang: ')[1]  # e.g. 'zh-tw'
         valid_lang = False
         
         language_list = []
@@ -81,52 +128,43 @@ def command_logic(user_data, user_message, all_messages):
             for row in reader:
                 language_list.append(row)
         
-        # 判斷每筆記錄的第一列是否在 native_lang 列表中
         for record in language_list:
             lang_code = record[0]
-            if lang_code not in native_lang:
-                valid_lang = False
-            else:
+            if lang_code == native_lang:
                 valid_lang = True
                 break
         
-        if valid_lang:       # 用戶選擇 native language 是有在支援的語言列表中
-            # 把前面 native_lang 儲存到 user_data
+        if valid_lang:
             user_data['native_lang'] = native_lang
+            translations = load_translations(native_lang)
             
-            language_name = None
-            for lang in language_list:
-                if lang[0] == native_lang:
-                    language_name = lang[1]
-                    break
+            def language_name_query(lang):
+                language_name = None
+                for lang in language_list:
+                    if lang[0] == native_lang:
+                        language_name = lang[1]
+                        break
+                return language_name
             
-            # (2) (回應)用戶體驗：確認我的選擇
-            message_1_text = create_text_message(f"Awesome! I can also speak a little {language_name} 🤏.")
+            native_language_name = language_name_query(native_lang)
+            message_1_text = create_text_message(translations["confirm_native_language"]["text"].format(language_name=native_language_name))
             all_messages.append(message_1_text)
-            # (3) (說明)用戶體驗：我的選擇，代表系統會給我的價值
-            message_2_text = create_text_message(f"This way, I can help you organize NOTES in {language_name}, so you can review vocabulary, phrases, or common expressions from our conversations!!")
+            message_2_text = create_text_message(translations["native_language_value"]["text"].format(language_name=native_language_name))
             all_messages.append(message_2_text)
             
-            # (4) (詢問)用戶體驗：需要再徵詢我的意見
-            text = f"Which language would you like to practice? I’ll chat with you in that language! (Please select an option below)"
-            # (5) (選項)用戶體驗：針對徵詢的意見，提供我有這些選項
-            
-            # 從 language_list.csv 讀取語言列表，把 native_lang 過濾掉
+            text = translations["practice_language"]["text"]
             learn_language_list = []
             with open('./config/language_list.csv', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
-                    if row[0] != native_lang:  # 把 native_lang 過濾掉
+                    if row[0] != native_lang:
                         learn_language_list.append({'label': row[1], 'text': f"/learn: {row[0]}"})
                         
-            # (6) (決策)用戶體驗：我選擇了這個選項，代替我發出給系統看得懂的指令
             message_3_quick_reply = create_quick_reply_message(text, learn_language_list)
             all_messages.append(message_3_quick_reply)
-            
-        # 用戶選擇 native language 不在支援的語言列表中
-        else:                   
-            text = "Sorry, we haven''t support this language yet. Please try again."
-            
+        
+        else:
+            text = translations["language_not_supported"]["text"]
             language_list = []
             with open('./config/language_list.csv', newline='') as csvfile:
                 reader = csv.reader(csvfile)
@@ -136,14 +174,11 @@ def command_logic(user_data, user_message, all_messages):
                     item = {'label': row[1], 'text': f"/lang: {row[0]}"}
                     language_list.append(item)
             
-            message_1_qucik_reply = create_quick_reply_message(text, language_list)
-
-            all_messages.append(message_1_qucik_reply)
-        
-        
+            message_1_quick_reply = create_quick_reply_message(text, language_list)
+            all_messages.append(message_1_quick_reply)
+    
     # Command: 設定 Target Language (跟 /lang 是連動的)
     elif user_message.startswith('/learn: '):
-        # 資料處理。擷取用戶選擇的 learn_lang
         native_lang = user_data['native_lang']
         learn_lang = user_message.split('/learn: ')[1]
         valid_lang = False
@@ -154,44 +189,43 @@ def command_logic(user_data, user_message, all_messages):
             for row in reader:
                 language_list.append(row)
         
-        # 判斷每筆記錄的第一列是否在 learn_lang 列表中
+        # 檢查目標語言是否有效
         for record in language_list:
             lang_code = record[0]
-            if lang_code not in learn_lang:
-                valid_lang = False
-            else:
+            if lang_code == learn_lang:
                 valid_lang = True
                 break
         
-        if valid_lang:       # 用戶選擇 learn language 是有在支援的語言列表中
+        if valid_lang:
             user_data['target_lang'] = learn_lang
             
-            language_name = None
-            for lang in language_list:
-                if lang[0] == learn_lang:
-                    language_name = lang[1]
-                    break
+            def language_name_query(language_code):
+                language_name = None
+                for lang in language_list:
+                    if lang[0] == language_code:
+                        language_name = lang[1]
+                        break
+                return language_name
             
-            # (2) (回應)用戶體驗：確認我的選擇
-            message_1_text = create_text_message(f"I'm glad to hear you want to learn {language_name}!")
+            native_language_name = language_name_query(native_lang)
+            target_language_name = language_name_query(learn_lang)
+            
+            message_1_text = create_text_message(translations["confirm_target_language"]["text"].format(target_language_name=target_language_name))
             all_messages.append(message_1_text)
-            # (3) (回應)用戶體驗：我的選擇，代表系統會給我的價值
-            message_2_text = create_text_message(f"Bilingrok will match you with the ideal language partner. 🌟")
+            
+            message_2_text = create_text_message(translations["match_language_partner"]["text"].format(native_language_name=native_language_name, target_language_name=target_language_name))
             all_messages.append(message_2_text)
-            # (4) (詢問)用戶體驗：需要再徵詢我的意見
-            # 引導填入 API Key，接入 command (跟 /api_key 是連動的)
-            text = "Lastly, would you like to subscribe to Bilingrok? Now we offer you a special discount."
+            
+            text = translations["subscribe_offer"]["text"]
             items = [
-                {'label': 'Subscribe Now!', 'text': '/sub: subscribe-now'},
-                {'label': 'later', 'text': '/sub: later'}
+                {'label': translations["quick_reply_btn_subscribe_now"]["text"], 'text': '/sub: subscribe-now'},
+                {'label': translations["quick_reply_btn_xai-free"]["text"], 'text': '/sub: xai-free'}
             ]
             message_3_quick_reply = create_quick_reply_message(text, items)
             all_messages.append(message_3_quick_reply)
         
-        # 用戶選擇 learn language 不在支援的語言列表中 
         else:
-            text = "Sorry, we haven''t support this language yet. Please try again."
-            
+            text = translations["language_not_supported"]["text"]
             language_list = []
             with open('./config/language_list.csv', newline='') as csvfile:
                 reader = csv.reader(csvfile)
@@ -201,66 +235,114 @@ def command_logic(user_data, user_message, all_messages):
                     item = {'label': row[1], 'text': f"/learn: {row[0]}"}
                     language_list.append(item)
             
-            message_1_qucik_reply = create_quick_reply_message(text, language_list)
-
-            all_messages.append(message_1_qucik_reply)
+            message_1_quick_reply = create_quick_reply_message(text, language_list)
+            all_messages.append(message_1_quick_reply)
     
-    
-    
-    elif user_message == "/purchase":
-        
-        text = "Would you like to subscribe to Bilingrok? Now we offer you a special discount."
+    # 點選購買時，兩個選項：立即訂閱*、稍後。稍後會直接連到 /api_instruction 的流程
+    elif user_message == "/Subscribe":
+        text = translations["subscribe_offer"]["text"]
         items = [
-            {'label': 'Subscribe Now!', 'text': '/sub: subscribe-now'},
-            {'label': 'later', 'text': '/sub: later'}
+            {'label': translations["quick_reply_btn_subscribe_now"]["text"], 'text': '/sub: subscribe-now'},
+            {'label': translations["quick_reply_btn_xai-free"]["text"], 'text': '/sub: xai-free'},
+            {'label': translations["quick_reply_btn_membership"]["text"], 'text': '/sub: membership'}
         ]
-        message_3_quick_reply = create_quick_reply_message(text, items)
-        all_messages.append(message_3_quick_reply)
-        
+        message_1_quick_reply = create_quick_reply_message(text, items)
+        all_messages.append(message_1_quick_reply)
         
     
     elif user_message == "/sub: subscribe-now":
-        
-        # 組裝 Flex Message
-        alt_text = "Subscription Type"
+        alt_text = translations["subscription_type"]["text"]
         json_filename = "flex_purchase"
-        message_1_flex = create_flex_message(alt_text, json_filename)
+        message_1_flex = create_flex_message(alt_text, json_filename, user_data['native_lang'])
         all_messages.append(message_1_flex)
         
-        # 回到上一步
-        text = "This is the spcial offer for you! We cannot wait to match you with a language partner! 🌟"
+        text = translations["special_offer"]["text"]
         purchase_items = [
-            {'label': 'back ↩️', 'text': '/purchase'}
+            {'label': translations["back"]["text"], 'text': '/Subscribe'}
         ]
-        
         message_2_quick_reply = create_quick_reply_message(text, purchase_items)
         all_messages.append(message_2_quick_reply)
+    
+    
+    # 查詢會員資訊
+    elif user_message == "/sub: membership":
+        sub_item = user_data['subscribe_item']
+        sub_expire_time = user_data['subscribe_expired_timestamp']
+        sub_expire_time = sub_expire_time.strftime('%Y-%m-%d %H:%M') + " (UTC+8)"
+        print(f"sub_expire_time={sub_expire_time}")
         
+        # 從 subscribe_items.json 中讀取資料
+        with open('./config/subscribe/subscribe_items.json', 'r', encoding='utf-8') as file:
+            subscribe_items = json.load(file)['subscribe_items']
         
+        # 找尋符合 sub_item 的 key，並把 name 取回來儲存成 sub_name
+        sub_name = next((item['name'] for item in subscribe_items if item['code'] == sub_item), "Unknown Subscription")
+        
+        message_1_text = create_text_message(translations["query_membership"]["text"].format(sub_name=sub_name, sub_expire_time=sub_expire_time))
+        all_messages.append(message_1_text)
+    
+    
+    
+    # 暫時未用
     elif user_message == "/sub: later":
-        message_1_text = create_text_message("Uh-oh! We are sorry to hear that...😢")
+        message_1_text = create_text_message(translations["gift_offer"]["text"])
         all_messages.append(message_1_text)
         
-        message_2_text = create_text_message("or we send you a gift - 7-day free trial value USD 25.00! 🎁")
+        message_2_text = create_text_message(translations["trial_steps"]["text"])
         all_messages.append(message_2_text)
         
-        message_3_text = create_text_message(f"3 steps:\n1. Register xAI account\n2. Generate API Key\n3. paste API key on the chat\nand start enjoy the 7-days free trial! 🎉🎉🎉")
-        all_messages.append(message_3_text)
-        
-        message_4_flex = create_flex_message("7-day Free Trial", "flex_xai_gift")
-        all_messages.append(message_4_flex)
+        message_3_flex = create_flex_message(translations["free_trial"]["text"], "flex_xai_gift", user_data['native_lang'])
+        all_messages.append(message_3_flex)
     
-        
-    # Command: 設定 API Key    
+    
     elif user_message.startswith('/feedback'):
-        # TBD
-        # user_data, reply_content = handle_feedback_command(user_data, user_message, user_id)
         pass
-        
-    else:
-        message_1_text = create_text_message('Unknown command. Please check the command and try again.')
-        all_messages = [message_1_text]
     
+    
+    elif user_message == "/ShareToFriend":
+        message_1_text = create_text_message(translations["share_to_friend"]["text"])
+        all_messages.append(message_1_text)
+        
+        message_2_text = create_text_message(translations["share_to_friend_guide"]["text"])
+        all_messages.append(message_2_text)
+    
+    
+    elif user_message == "/Hey":
+        text = translations["Hey"]["text"]
+        print(f"text={text}")
+        topic_items = translations["topic_items"]["text"]
+        print(f"topic_items={topic_items}")
+        sampled_items = random.sample(topic_items, 3)
+        print(f"sampled_items={sampled_items}")
+
+        items = [{'label': item, 'text': item} for i, item in enumerate(sampled_items)]
+        print(f"items={items}")
+        message_1_quick_reply = create_quick_reply_message(text, items)
+        all_messages.append(message_1_quick_reply)
+    
+    
+    elif user_message == "/MatchPartner":
+        start_conversation = start_conversation_when_matched(user_data)
+        
+        try:
+            start_conversation = eval(start_conversation)
+            if isinstance(start_conversation, list):
+                # 逐一取出 start_conversation 中的對話內容，並轉換成 Text Message
+                for message in start_conversation:
+                    message_text = create_text_message(message)
+                    all_messages.append(message_text)
+            else:
+                # 若 start_conversation 不是 list，則轉換成 Text Message
+                message_text = create_text_message("Hey!")
+                all_messages.append(message_text)
+        except:
+            # 若 start_conversation 不能被 eval，則轉換成 Text Message
+            message_text = create_text_message("Hey!")
+            all_messages.append(message_text)
+    
+    else:
+        message_1_text = create_text_message(translations["unknown_command"]["text"])
+        all_messages = [message_1_text]
     
     
     return user_data, all_messages

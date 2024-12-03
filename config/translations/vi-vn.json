@@ -1,0 +1,111 @@
+{
+    "api_key_set_success": {
+      "text": "API Key đã được cài đặt thành công!",
+      "desc": "當 API Key 設定成功時顯示的訊息"
+    },
+    "api_key_verification_failed": {
+      "text": "Xác minh API Key không thành công. Vui lòng kiểm tra và thử lại.",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "Vui lòng nhập API Key đúng định dạng (ví dụ: xai-xxxxxxx).",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "Chúc mừng! Bạn đã nhận được thẻ quà tặng trị giá 25 USD từ xAI 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "Xem video để nhận API Key từ xAI! {link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "Làm theo các bước dưới đây để nhận dịch vụ đối tác ngôn ngữ Bilingrok miễn phí:\n\n1. Đăng ký tài khoản xAI\n2. Tạo API Key\n3. Sao chép và dán API Key vào khung chat để xác minh\n\nSau khi xác minh, bạn có thể trải nghiệm 7 ngày dùng thử miễn phí với Bilingrok! 🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "Đăng ký xAI để bắt đầu dùng thử miễn phí.",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "Chọn ngôn ngữ mẹ đẻ của bạn...(nhấp vào một tùy chọn bên dưới)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "Rất tiếc, ngôn ngữ này hiện chưa được hỗ trợ. Vui lòng thử lại!",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "Tuyệt vời! Đối tác ngôn ngữ của Bilingrok cũng biết một chút {language_name} 🤏.",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "Đối tác ngôn ngữ sẽ giúp bạn tạo \"ghi chú\" bằng {language_name} từ các cuộc trò chuyện. Những ghi chú này sẽ giúp bạn ôn tập, chỉnh sửa và cải thiện từ vựng, cụm từ và cách diễn đạt hàng ngày!",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "Bạn muốn thực hành ngôn ngữ nào...(nhấp vào một tùy chọn bên dưới)\n\nĐối tác ngôn ngữ sẽ sử dụng ngôn ngữ bạn chọn để trò chuyện cùng bạn!",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "Thật tuyệt! Bạn muốn thực hành {target_language_name}!",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "Đối tác ngôn ngữ của bạn từ Bilingrok sẽ trò chuyện bằng {target_language_name} để cung cấp môi trường thực hành tốt nhất.\n\nNgoài ra, hệ thống sẽ định kỳ tạo các ghi chú bằng {native_language_name} từ các cuộc trò chuyện của bạn để giúp bạn cải thiện tốt hơn! 🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "Chọn loại gói dịch vụ đối tác ngôn ngữ Bilingrok...(nhấp vào một tùy chọn bên dưới)",
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+    },
+    "quick_reply_btn_subscribe_now": {
+      "text": "Đăng ký ngay",
+      "desc": "立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "Nhận dùng thử miễn phí!",
+      "desc": "立即訂閱按鈕的另一個選項 - 領取試用的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "Đây là ưu đãi đặc biệt dành riêng cho bạn! Chúng tôi rất mong được ghép đôi bạn với một đối tác ngôn ngữ! 🌟",
+      "desc": "強調特別優惠的訊息。"
+    },
+    "back": {
+      "text": "Quay lại ↩️",
+      "desc": "返回的按鈕文字。"
+    },
+    "unknown_command": {
+      "text": "Lệnh không xác định. Vui lòng kiểm tra và thử lại.",
+      "desc": "當輸入未知命令時顯示的訊息。"
+    },
+    "subscription_type": {
+      "text": "Loại gói dịch vụ",
+      "desc": "訂閱類型的標籤。"
+    },
+    "flex_purchase_card_title": {
+      "text": "Gói thành viên Vàng: 10 USD / tháng",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "Đăng ký ngay!",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "Nhận quà!",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend_guide": {
+    "text": "Nhấn giữ 👆 tin nhắn phía trên, bấm 'Chia sẻ' và nhanh chóng gửi $25 cho bạn bè của bạn!",
+    "desc": "引導用戶長按推薦給朋友"
+    },
+    "Hey": {
+      "text": "Xin chào~",
+      "desc": "用戶說 Hey，和用戶打招呼"
+    },
+    "topic_items": {
+      "text": ["Bạn đang làm gì thế?", "Mình hỏi chút nhé.", "Thật là phiền!", "Chán quá.", "Nói chuyện với mình đi."],
+      "desc": "Hey 後，讓用戶從裡面找話題"
+    }
+  }
+  
