@@ -17,10 +17,17 @@ logging.basicConfig(
 # 建立 logger
 logger = logging.getLogger(__name__)
 
-def get_ai_assistant_response(user_data, chat_history, user_message):
+def get_ai_assistant_response(user_data, chat_history, user_message, extra_data={}):
     
-    prompt_template = load_prompts('system_prompt')
-    sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data)
+    dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
+    prompt_template = load_prompts(dir_sys_prompt, "system_prompt")
+    
+    dir_agent_prompt = Config.AGENT_CHARACTER_PATH
+    agent_character_prompt = load_prompts(dir_agent_prompt, "agent_justin")
+    agent_character_data = {"agent_character": agent_character_prompt}
+    
+    # 把 system_prompt_template 裡的 user_data 和 agent_character_data 帶進去，達到個人化效果
+    sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data, agent_character_data)
     
     messages=[
         {"role": "system", "content": sys_prompt},
@@ -71,7 +78,8 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
 def conversation_review_card_generation(user_data, chat_history):
     # 生成語言學習卡片，系統訊息，不儲存
     
-    prompt_template = load_prompts('conversation_review_card_generation')
+    dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
+    prompt_template = load_prompts(dir_sys_prompt, 'conversation_review_card_generation')
     sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data)
     chat_history_str = "\n".join([f"{msg['role']}: {msg['message']}" for msg in chat_history])
     
@@ -118,6 +126,66 @@ def conversation_review_card_generation(user_data, chat_history):
 
 
 
+def start_conversation_when_matched(user_data):
+    
+    print(f"=== start_conversation_when_matched ===")
+    
+    # 生成話題開啟聊天
+    dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
+    prompt_template_name = 'conversation_starter'
+    prompt_template = load_prompts(dir_sys_prompt, prompt_template_name)
+    
+    dir_agent_prompt = Config.AGENT_CHARACTER_PATH
+    agent_character_prompt = load_prompts(dir_agent_prompt, "agent_justin")
+    agent_character_data = {"agent_character": agent_character_prompt}
+    
+    sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data, agent_character_data)
+    user_message = "Start generating the starting conversation:"
+    
+    messages=[
+        {"role": "system", "content": sys_prompt},
+        {"role": "user", "content": user_message}
+    ]
+    
+    try:
+        client = OpenAI(api_key=Config.GROK_API_KEY, 
+                        base_url="https://api.x.ai/v1"
+                        )
+        
+        response = client.chat.completions.create(
+            model='grok-beta',
+            messages=messages,
+            max_tokens=4096,
+            temperature=0.7,
+        )
+        
+        ai_suggestion = response.choices[0].message.content
+        prompt_tokens = response.usage.prompt_tokens
+        completion_tokens = response.usage.completion_tokens
+        
+        user_data['prompt_tokens'] += prompt_tokens
+        print(f"Prompt tokens: {prompt_tokens}")
+        logging.info(f"Prompt tokens: {prompt_tokens}")
+        user_data['completion_tokens'] += completion_tokens
+        print(f"Completion tokens: {completion_tokens}")
+        logging.info(f"Completion tokens: {completion_tokens}")
+        
+        return ai_suggestion
+        
+    except Exception as e:
+        # 使用 logger 記錄錯誤
+        logger.error(
+            f"[Grok API Error] 請求失敗(卡片) - 錯誤訊息: {str(e)}, "
+            f"錯誤類型: {type(e).__name__}"
+        )
+        
+        reply_content = "Sorry, I'm having trouble understanding you right now. Please try again later."
+        
+        return reply_content
+
+
+
+
 def transform_chat_history(chat_history):
     
     # Check if chat_history is a list of dictionaries containing 'message_timestamp' key
@@ -139,19 +207,22 @@ def transform_chat_history(chat_history):
     return transformed_history
 
 
-def load_dynamic_variables_into_prompt(system_prompt, user_data):
+def load_dynamic_variables_into_prompt(system_prompt, user_data, extra_data={}):
     # Find all placeholders in the format {variable}
     placeholders = re.findall(r'\{(.*?)\}', system_prompt)
     system_prompt_load_dynamic = system_prompt
 
+    # Replace placeholders with actual extra data if available
+    for placeholder in placeholders:
+        if placeholder in extra_data:
+            system_prompt_load_dynamic = system_prompt_load_dynamic.replace(f'{{{placeholder}}}', str(extra_data[placeholder]))
+
     # Replace placeholders with actual user data if available
     for placeholder in placeholders:
         if placeholder in user_data:
-            # print(f"=== Placeholder = {placeholder} &&& user_data = {user_data[placeholder]} =====================")
             system_prompt_load_dynamic = system_prompt_load_dynamic.replace(f'{{{placeholder}}}', str(user_data[placeholder]))
             
-    # print(f"=== System Prompt Load Dynamic ===\n{system_prompt_load_dynamic}\n=====================")
-
+    
     return system_prompt_load_dynamic
 
 

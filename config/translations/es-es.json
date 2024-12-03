@@ -3,6 +3,7 @@
       "text": "¡Clave API configurada con éxito!",
       "desc": "當 API Key 設定成功時顯示的訊息"
     },
+<<<<<<< HEAD
     "notify_start_matching": {
       "text": "¡Se ha activado la prueba gratuita de 7 días de Bilingrok!\n\nHaz clic en la imagen para comenzar a buscar tu compañero de práctica de idiomas.",
       "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對"
@@ -61,10 +62,67 @@
     },
     "subscribe_offer": {
       "text": "Elige el tipo de suscripción para los servicios de compañero de idiomas de Bilingrok...(haz clic en una de las opciones a continuación)",
+=======
+    "api_key_verification_failed": {
+      "text": "Error al verificar la clave API. Por favor, compruébala e inténtalo de nuevo.",
+      "desc": "當 API Key 驗證失敗時顯示的訊息"
+    },
+    "api_key_format_error": {
+      "text": "Introduce un formato válido de clave API (por ejemplo: xai-xxxxxxx).",
+      "desc": "當 API Key 格式不正確時顯示的訊息。"
+    },
+    "trial_offer_desc": {
+      "text": "¡Enhorabuena! Has recibido una tarjeta regalo de 25 USD de xAI 🎁🎁🎁",
+      "desc": "提供免費試用作為安慰的訊息。"
+    },
+    "xai_api_yt_video_guide": {
+      "text": "¡Mira el vídeo y obtén tu clave API de xAI! {link}",
+      "desc": "查看 xAI API Key 設定教學影片"
+    },
+    "trial_steps": {
+      "text": "Sigue los pasos a continuación para canjear el servicio gratuito de tu compañero de idiomas Bilingrok:\n\n1. Regístrate en una cuenta de xAI\n2. Genera una clave API\n3. Copia y pega la clave API en el chat para verificarla\n\nUna vez verificada, ¡disfruta de una prueba gratuita de 7 días de Bilingrok! 🎉🎉🎉",
+      "desc": "開始 7 天免費試用的步驟。"
+    },
+    "free_trial": {
+      "text": "Regístrate en xAI para comenzar tu prueba gratuita.",
+      "desc": "引導進入 xAI 網站註冊"
+    },
+    "choose_language": {
+      "text": "Selecciona tu idioma nativo principal...(haz clic en una opción a continuación)",
+      "desc": "提示用戶選擇他們的母語。"
+    },
+    "language_not_supported": {
+      "text": "Lo sentimos, este idioma aún no está disponible. ¡Inténtalo de nuevo!",
+      "desc": "當選擇的語言不受支持時顯示的訊息。"
+    },
+    "confirm_native_language": {
+      "text": "¡Genial! El compañero de idiomas de Bilingrok también habla un poco de {language_name} 🤏.",
+      "desc": "確認用戶的母語的訊息。"
+    },
+    "native_language_value": {
+      "text": "Tu compañero de idiomas te ayudará a crear \"notas\" en {language_name} basadas en tus conversaciones. Estas notas repasarán, corregirán y mejorarán tu vocabulario, frases y expresiones coloquiales.",
+      "desc": "解釋使用用戶母語的價值的訊息。"
+    },
+    "practice_language": {
+      "text": "¿Qué idioma te gustaría practicar?...(haz clic en una opción a continuación)\n\n¡Tu compañero de idiomas practicará contigo en el idioma elegido!",
+      "desc": "提示用戶選擇他們想練習的語言。"
+    },
+    "confirm_target_language": {
+      "text": "¡Perfecto! ¡Quieres practicar {target_language_name}!",
+      "desc": "確認用戶期望學習語言的訊息。"
+    },
+    "match_language_partner": {
+      "text": "El compañero de idiomas de Bilingrok hablará contigo exclusivamente en {target_language_name}, proporcionándote el mejor entorno para practicar.\n\nAdemás, el sistema creará periódicamente notas en {native_language_name} basadas en tus conversaciones para ayudarte a mejorar. 🌟",
+      "desc": "解釋訂閱的好處的訊息。"
+    },
+    "subscribe_offer": {
+      "text": "Selecciona el tipo de suscripción al servicio de compañero de idiomas de Bilingrok...(haz clic en una opción a continuación)",
+>>>>>>> 23cfeedd47ca6fc56a01c4b9f20c023a5a6dab4b
       "desc": "提供用戶訂閱 Bilingrok 的優惠。"
     },
     "quick_reply_btn_subscribe_now": {
       "text": "Suscribirse ahora",
+<<<<<<< HEAD
       "desc": "訂閱：立即訂閱的按鈕文字。"
     },
     "quick_reply_btn_xai-free": {
@@ -77,6 +135,16 @@
     },
     "special_offer": {
       "text": "¡Aquí tienes una oferta especial para ti! Estamos emocionados de verte interactuar con tu compañero de idiomas para practicar de una manera más natural y fluida. 🌟",
+=======
+      "desc": "立即訂閱的按鈕文字。"
+    },
+    "quick_reply_btn_xai-free": {
+      "text": "¡Prueba gratuita!",
+      "desc": "立即訂閱按鈕的另一個選項 - 領取試用的按鈕文字。"
+    },
+    "special_offer": {
+      "text": "¡Esta es una oferta especial para ti! ¡Estamos deseando emparejarte con un compañero de idiomas! 🌟",
+>>>>>>> 23cfeedd47ca6fc56a01c4b9f20c023a5a6dab4b
       "desc": "強調特別優惠的訊息。"
     },
     "back": {
@@ -92,6 +160,7 @@
       "desc": "訂閱類型的標籤。"
     },
     "flex_purchase_card_title": {
+<<<<<<< HEAD
       "text": "Membresía Dorada: USD 10 / mes",
       "desc": "Flex JSON 中購買卡片的顯示標題"
     },
@@ -136,3 +205,30 @@
       "desc": "用戶在 subscription 裡查詢會員資訊"
     }
   }  
+=======
+      "text": "Membresía Gold: 10 USD / mes",
+      "desc": "Flex JSON 中購買卡片的顯示標題"
+    },
+    "flex_purchase_card_button_label": {
+      "text": "¡Suscribirse ahora!",
+      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+    },
+    "flex_purchase_later_card_button_label": {
+      "text": "¡Reclamar regalo!",
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+    },
+    "share_to_friend_guide": {
+    "text": "Mantén pulsado 👆 el mensaje de arriba, haz clic en 'Compartir' y envía rápidamente $25 a tus amigos.",
+    "desc": "引導用戶長按推薦給朋友"
+    },
+    "Hey": {
+      "text": "¡Hola~!",
+      "desc": "用戶說 Hey，和用戶打招呼"
+    },
+    "topic_items": {
+      "text": ["¿Qué estás haciendo?", "Déjame preguntarte algo.", "¡Qué molesto!", "Estoy aburrido.", "Chatea conmigo."],
+      "desc": "Hey 後，讓用戶從裡面找話題"
+    }
+  }
+  
+>>>>>>> 23cfeedd47ca6fc56a01c4b9f20c023a5a6dab4b

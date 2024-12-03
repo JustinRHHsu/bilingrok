@@ -1,9 +1,9 @@
 # 執行環境參數
-DEBUG_MODE: True
+DEBUG_MODE: False
 # True, False
-SECRET_KEY_ENV: LOCAL
+SECRET_KEY_ENV: GCP
 # GCP, LOCAL
-ENVIRONMENT: DEV
+ENVIRONMENT: PROD
 # DEV, PROD
 
 # GCP 設置參數
@@ -56,7 +56,8 @@ MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
 
 # 路徑參數
 FLEX_LIBRARY_PATH: "line_message_template/flex_library"
-
+PROMPT_TEMPLATE_PATH: "prompts"
+AGENT_CHARACTER_PATH: "prompts/agent_character"
 
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
 # QUEUE_LOCATION_MESSAGE_STORE: asia-east1

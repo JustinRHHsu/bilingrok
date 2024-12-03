@@ -20,7 +20,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "黃金會員: USD 10 / 每月",
+            "text": "{flex_purchase_card_title}",
             "size": "md",
             "weight": "bold",
             "wrap": true
@@ -146,7 +146,7 @@
         "style": "primary",
         "action": {
           "type": "uri",
-          "label": "Subscribe Now!",
+          "label": "{flex_purchase_card_button_label}",
           "uri": "https://buy.stripe.com/9AQ4hx6nQdAveVG001"
         },
         "color": "#FF5722"

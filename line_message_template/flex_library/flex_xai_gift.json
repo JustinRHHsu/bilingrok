@@ -18,7 +18,7 @@
           "style": "primary",
           "action": {
             "type": "uri",
-            "label": "Receive Gift Now!",
+            "label": "{flex_purchase_later_card_button_label}",
             "uri": "https://accounts.x.ai/sign-in"
           },
           "color": "#FF5722"

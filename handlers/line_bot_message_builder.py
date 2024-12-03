@@ -1,7 +1,7 @@
 # line_bot_message_builder.py
 # 組裝 LINE 發送的消息
 
-import os, json
+import os, json, re
 from linebot.v3.messaging import (
     TextMessage, ImageMessage, FlexMessage, QuickReply, QuickReplyItem, MessageAction
 )
@@ -12,6 +12,7 @@ from linebot.v3.messaging import (
     FlexContainer
 )
 from config.config import Config
+from handlers.script_translation import load_translations
 
 """
 # 定義文字內容
@@ -56,22 +57,35 @@ def create_image_message(original_url, preview_url):
 
 
 
-def create_flex_message(alt_text, json_filename):
+def create_flex_message(alt_text, json_filename, native_lang='en-us'):
     """
     建立 Flex Message。
     :param alt_text: Flex Message 的替代文字。
     :param json_filename: Flex Message 的內容檔案名稱。
+    :param native_lang: 用戶的母語，預設為 'en-us'。
     :return: FlexMessage 物件。
     """
-    
-    print(f"==== create_flex_message() =====")
-    
     # 從 JSON 檔案讀取 Flex Message 結構
     with open(f'{Config.FLEX_LIBRARY_PATH}/{json_filename}.json', 'r', encoding='utf-8') as f:
         flex_message_json = json.load(f)
 
     # 將 JSON 轉換為字串格式
     flex_message_str = json.dumps(flex_message_json)
+    
+    # 檢查是否包含 placeholder
+    if re.search(r'\{.*?\}', flex_message_str):
+        # 讀取翻譯檔案
+        translations = load_translations(native_lang)
+
+        # 替換 placeholder
+        for key, value in translations.items():
+            placeholder = f"{{{key}}}"
+            if placeholder in flex_message_str:
+                print(f"## Replacing placeholder: {placeholder} with {value['text']}")
+                flex_message_str = flex_message_str.replace(placeholder, value['text'])
+            else:
+                continue
+
 
     # 將 JSON 字串轉換為 FlexContainer 物件
     flex_container = FlexContainer.from_json(flex_message_str)
@@ -85,6 +99,75 @@ def create_flex_message(alt_text, json_filename):
     return flex_message
     
 
+
+"""
+yt_url = "https://www.youtube.com/watch?v=Ff-D38eCJ5s"
+video_preview_image_url = "https://i.ytimg.com/vi/JF0Z6U4S9Ko/hqdefault.jpg"
+message_3_flex = create_flex_youtube_message("flex_youtube", yt_url, video_preview_image_url)
+all_messages.append(message_3_flex)
+"""
+def create_flex_youtube_message(json_filename, video_url, video_preview_image_url=None):
+    """
+    建立 Flex YouTube Message。
+    :param json_filename: Flex Message 的內容檔案名稱。
+    :param video_url: YouTube 影片的 URL。
+    :param video_preview_image_url: 預覽圖片的 URL，非必填。
+    :return: FlexMessage 物件。
+    """
+    # 從 JSON 檔案讀取 Flex Message 結構
+    with open(f'{Config.FLEX_LIBRARY_PATH}/{json_filename}.json', 'r', encoding='utf-8') as f:
+        flex_message_json = json.load(f)
+
+    # 替換 video_url
+    flex_message_json['hero']['url'] = video_url
+
+    # 如果提供了 video_preview_image_url，則替換
+    if video_preview_image_url:
+        flex_message_json['hero']['previewUrl'] = video_preview_image_url
+
+    # 將 JSON 轉換為字串格式
+    flex_message_str = json.dumps(flex_message_json)
+    
+    print(f"## Flex Message String: {flex_message_str}")
+
+    # 將 JSON 字串轉換為 FlexContainer 物件
+    flex_container = FlexContainer.from_json(flex_message_str)
+
+    # 建立 FlexMessage 物件
+    flex_message = FlexMessage(
+        alt_text="YouTube Video",
+        contents=flex_container
+    )
+
+    return flex_message
+
+
+
+def create_flex_image_action_message(json_filename, img_url, aspectRatio, action_text):
+    # 從 JSON 檔案讀取 Flex Message 結構
+    with open(f'{Config.FLEX_LIBRARY_PATH}/{json_filename}.json', 'r', encoding='utf-8') as f:
+        flex_message_json = json.load(f)
+
+    # 替換參數
+    flex_message_json['hero']['url'] = img_url
+    flex_message_json['hero']['aspectRatio'] = aspectRatio
+    flex_message_json['hero']['action']['text'] = action_text
+    
+    # 將 JSON 轉換為字串格式
+    flex_message_str = json.dumps(flex_message_json)
+    
+    # print(f"## Flex Message String: {flex_message_str}")
+
+    # 將 JSON 字串轉換為 FlexContainer 物件
+    flex_container = FlexContainer.from_json(flex_message_str)
+
+    # 建立 FlexMessage 物件
+    flex_message = FlexMessage(
+        alt_text="Onboarding...",
+        contents=flex_container
+    )
+
+    return flex_message
 
 
 """

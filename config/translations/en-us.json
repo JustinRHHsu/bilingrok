@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "api_key_set_success": {
       "text": "API Key has been set successfully!",
       "desc": "當 API Key 設定成功時顯示的訊息"
@@ -136,3 +137,114 @@
       "desc": "用戶在 subscription 裡查詢會員資訊"
     }
   }  
+=======
+  "api_key_set_success": {
+    "text": "API Key set successfully!",
+    "desc": "當 API Key 設定成功時顯示的訊息"
+  },
+  "api_key_verification_failed": {
+    "text": "API Key verification failed. Please check and try again.",
+    "desc": "當 API Key 驗證失敗時顯示的訊息"
+  },
+  "api_key_format_error": {
+    "text": "Please enter a valid API Key format (e.g., xai-xxxxxxx).",
+    "desc": "當 API Key 格式不正確時顯示的訊息。"
+  },
+  "trial_offer_desc": {
+    "text": "Congratulations! You’ve received a $25 gift card from xAI 🎁🎁🎁",
+    "desc": "提供免費試用作為安慰的訊息。"
+  },
+  "xai_api_yt_video_guide": {
+    "text": "Watch the video to get your xAI API Key! {link}",
+    "desc": "查看 xAI API Key 設定教學影片"
+  },
+  "trial_steps": {
+    "text": "Follow the steps below to redeem your free Bilingrok language partner service:\n\n1. Register for an xAI account\n2. Generate an API Key\n3. Copy and paste the API Key into the chat for verification\n\nOnce verified, enjoy a 7-day free trial of Bilingrok! 🎉🎉🎉",
+    "desc": "開始 7 天免費試用的步驟。"
+  },
+  "free_trial": {
+    "text": "Sign up for xAI to start your free trial.",
+    "desc": "引導進入 xAI 網站註冊"
+  },
+  "choose_language": {
+    "text": "Choose your primary native language...(select below)",
+    "desc": "提示用戶選擇他們的母語。"
+  },
+  "language_not_supported": {
+    "text": "Sorry, this language is not supported yet. Please try again!",
+    "desc": "當選擇的語言不受支持時顯示的訊息。"
+  },
+  "confirm_native_language": {
+    "text": "Great! Your Bilingrok language partner also speaks some {language_name} 🤏.",
+    "desc": "確認用戶的母語的訊息。"
+  },
+  "native_language_value": {
+    "text": "Your language partner will help you create \"notes\" in {language_name} from your conversations. These notes will review, correct, and enhance vocabulary, phrases, or casual expressions!",
+    "desc": "解釋使用用戶母語的價值的訊息。"
+  },
+  "practice_language": {
+    "text": "Which language do you want to practice? (select below)\n\nYour language partner will use the chosen language to practice with you!",
+    "desc": "提示用戶選擇他們想練習的語言。"
+  },
+  "confirm_target_language": {
+    "text": "Awesome, you want to practice {target_language_name}!",
+    "desc": "確認用戶期望學習語言的訊息。"
+  },
+  "match_language_partner": {
+    "text": "Your Bilingrok language partner will chat with you in {target_language_name} to provide the best language practice environment.\n\nEven better, the system will periodically create notes in {native_language_name} from your conversations to help you improve! 🌟",
+    "desc": "解釋訂閱的好處的訊息。"
+  },
+  "subscribe_offer": {
+    "text": "Choose your Bilingrok language partner subscription type...(select below)",
+    "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+  },
+  "quick_reply_btn_subscribe_now": {
+    "text": "Subscribe Now",
+    "desc": "立即訂閱的按鈕文字。"
+  },
+  "quick_reply_btn_xai-free": {
+    "text": "Claim Free Trial!",
+    "desc": "立即訂閱按鈕的另一個選項 - 領取試用的按鈕文字。"
+  },
+  "special_offer": {
+    "text": "This is a special offer just for you! We can’t wait to match you with a language partner! 🌟",
+    "desc": "強調特別優惠的訊息。"
+  },
+  "back": {
+    "text": "Back ↩️",
+    "desc": "返回的按鈕文字。"
+  },
+  "unknown_command": {
+    "text": "Unknown command. Please check and try again.",
+    "desc": "當輸入未知命令時顯示的訊息。"
+  },
+  "subscription_type": {
+    "text": "Subscription Type",
+    "desc": "訂閱類型的標籤。"
+  },
+  "flex_purchase_card_title": {
+    "text": "Gold Membership: USD 10 / month",
+    "desc": "Flex JSON 中購買卡片的顯示標題"
+  },
+  "flex_purchase_card_button_label": {
+    "text": "Subscribe Now!",
+    "desc": "Flex JSON 中購買卡片的按鈕名稱"
+  },
+  "flex_purchase_later_card_button_label": {
+    "text": "Claim Gift!",
+    "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+  },
+  "share_to_friend_guide": {
+    "text": "Long press 👆 the message above, click 'Share,' and quickly send $25 to your friends!",
+    "desc": "引導用戶長按推薦給朋友"
+  },
+  "Hey": {
+    "text": "Hello~",
+    "desc": "用戶說 Hey，和用戶打招呼"
+  },
+  "topic_items": {
+    "text": ["What are you doing?", "Let me ask you something.", "So annoying!", "So bored.", "Chat with me."],
+    "desc": "Hey 後，讓用戶從裡面找話題"
+  }
+}
+>>>>>>> 23cfeedd47ca6fc56a01c4b9f20c023a5a6dab4b
