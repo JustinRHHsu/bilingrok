@@ -17,7 +17,7 @@ logging.basicConfig(
 # 建立 logger
 logger = logging.getLogger(__name__)
 
-def get_ai_assistant_response(user_data, chat_history, user_message, extra_data={}):
+def get_ai_assistant_response(user_data, chat_history, user_message):
     
     dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
     prompt_template = load_prompts(dir_sys_prompt, "system_prompt")
