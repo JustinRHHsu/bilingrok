@@ -88,7 +88,7 @@ def command_logic(user_data, user_message, all_messages):
         message_2_text = create_text_message(translations["trial_steps"]["text"])
         all_messages.append(message_2_text)
         
-        yt_url = "https://www.youtube.com/watch?v=Ff-D38eCJ5s"
+        yt_url = "https://youtube.com/shorts/AEoeEIufl2E?feature=share"
         message_3_flex = create_text_message(translations["xai_api_yt_video_guide"]["text"].format(link=yt_url))
         all_messages.append(message_3_flex)
         

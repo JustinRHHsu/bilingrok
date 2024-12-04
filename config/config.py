@@ -14,8 +14,12 @@ with open('config/config.yaml', 'r') as file:
 
 # 根據 SECRET_KEY_ENV 判斷是否加載本地 .env 文件
 if yaml_config['SECRET_KEY_ENV'] == 'LOCAL':
-    load_dotenv("config/.env")
-
+    if os.path.exists("config/.env"):
+        load_dotenv("config/.env")
+    else:
+        yaml_config['DEBUG_MODE'] = False
+        yaml_config['SECRET_KEY_ENV'] = 'GCP'
+        yaml_config['ENVIRONMENT'] = 'PROD'
 
 def access_secret_version(project_id, secret_id, version_id="latest"):
     client = secretmanager.SecretManagerServiceClient()
