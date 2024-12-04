@@ -232,8 +232,13 @@ def load_dynamic_variables_into_prompt(system_prompt, user_data, extra_data={}):
 
 def check_llm_api(api_key):
     try:
-        client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
+        key = api_key.strip()
+        print(f"=== key ===\n{key}\n =====================")
+        client = OpenAI(api_key=key, 
+                        base_url="https://api.x.ai/v1"
+                        )
         test_message = [{"role": "system", "content": "Hello, how are you?"}]
+        print("[INFO] Testing LLM API connection...")
         
         response = client.chat.completions.create(
             model='grok-beta',
@@ -242,6 +247,7 @@ def check_llm_api(api_key):
             temperature=0.5,
             timeout=5  # 設置超時時間為5秒
         )
+        print(f"[INFO] LLM API response: {response}")
         
         if response and response.choices:
             return True
