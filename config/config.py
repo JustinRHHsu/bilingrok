@@ -15,8 +15,10 @@ with open('config/config.yaml', 'r') as file:
 # 根據 SECRET_KEY_ENV 判斷是否加載本地 .env 文件
 if yaml_config['SECRET_KEY_ENV'] == 'LOCAL':
     if os.path.exists("config/.env"):
+        logging.info("Accessed .env file successful!")
         load_dotenv("config/.env")
     else:
+        logging.info("Accessed .env file FAIL! Turn to accessing GCP")
         yaml_config['DEBUG_MODE'] = False
         yaml_config['SECRET_KEY_ENV'] = 'GCP'
         yaml_config['ENVIRONMENT'] = 'PROD'
