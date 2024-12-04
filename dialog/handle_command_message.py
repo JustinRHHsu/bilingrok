@@ -22,7 +22,8 @@ def command_logic(user_data, user_message, all_messages):
     
     # General: User Message 符合 API Key 格式(xai-開頭)，期望設置 API Key
     if user_message.startswith('xai-'):
-        api_key = user_message
+        api_key = user_message.strip()
+        print(f"Receive xai-api-key: {api_key}")
         api_key_length = 84  # 假設 api key 的總長度為 84 個字元
         
         # 檢查 API Key 長度是否符合
