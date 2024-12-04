@@ -70,11 +70,11 @@ def general_msg_logic(user_data, message_data, chat_history, all_messages):
             user_data['conversation_count'] += 2        # 一則 User message，一則 Assistant message
             user_data['last_message_timestamp'] = message_timestamp     # user message 的 timestamp        
         
-        # 判斷是否需要提供學習卡片
-        if user_data['conversation_count'] % message_for_review_learning_card == 0:
-            user_data, ai_suggestion = conversation_review_card_generation(user_data, chat_history)
-            message_2_text = create_text_message(ai_suggestion)
-            all_messages.append(message_2_text)
+            # 判斷是否需要提供學習卡片
+            if user_data['conversation_count'] % message_for_review_learning_card == 0:
+                user_data, ai_suggestion = conversation_review_card_generation(user_data, chat_history)
+                message_2_text = create_text_message(ai_suggestion)
+                all_messages.append(message_2_text)
             
             
             
