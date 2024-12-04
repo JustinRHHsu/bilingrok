@@ -38,19 +38,15 @@ def command_logic(user_data, user_message, all_messages):
                     user_data['api_key_type'] = "xai"
                     user_data['api_key'] = api_key
                     user_data['api_key_created_timestamp'] = datetime.now(time_zone)
-                    print(f"api_key_created_timestamp: {user_data['api_key_created_timestamp']}")
                     user_data['api_key_updated_timestamp'] = datetime.now(time_zone)
-                    print(f"api_key_updated_timestamp: {user_data['api_key_updated_timestamp']}")
                     user_data['subscribe_item'] = "xai-free"
                     user_data['subscribe_expired_timestamp'] = user_data['api_key_created_timestamp'] + timedelta(days=7)
-                    print(f"subscribe_expired_timestamp={user_data['subscribe_expired_timestamp']}")
                     user_data['credits'] = 0
                 
                 # api_key 已存在，拿新的 API Key 重新設置
                 else:
                     user_data['api_key'] = api_key
                     user_data['api_key_updated_timestamp'] = datetime.now(time_zone)
-                    print(f"api_key_updated_timestamp: {user_data['api_key_updated_timestamp']}")
                 
                 # 通知 API Key 更新成功！
                 message_1_text = create_text_message(translations["api_key_set_success"]["text"])
@@ -124,7 +120,7 @@ def command_logic(user_data, user_message, all_messages):
                 item = {"label": row[1], "text": f"/lang: {row[0]}"}
                 language_list.append(item)
 
-        print(f"quick_reply_items={language_list}")
+        # print(f"quick_reply_items={language_list}")
         message_1_quick_reply = create_quick_reply_message(text, language_list)
         all_messages.append(message_1_quick_reply)
     
@@ -235,7 +231,6 @@ def command_logic(user_data, user_message, all_messages):
                 {"label": translations["quick_reply_btn_subscribe_now"]["text"], "text": "/sub: subscribe-now"},
                 {"label": translations["quick_reply_btn_xai-free"]["text"], "text": "/sub: xai-free"}
             ]
-            print(f"### items={items} ###")
             message_3_quick_reply = create_quick_reply_message(text, items)
             all_messages.append(message_3_quick_reply)
         
@@ -286,7 +281,6 @@ def command_logic(user_data, user_message, all_messages):
         sub_item = user_data['subscribe_item']
         sub_expire_time = user_data['subscribe_expired_timestamp']
         sub_expire_time = sub_expire_time.strftime('%Y-%m-%d %H:%M') + " (UTC+8)"
-        print(f"sub_expire_time={sub_expire_time}")
         
         # 從 subscribe_items.json 中讀取資料
         with open('./config/subscribe/subscribe_items.json', 'r', encoding='utf-8') as file:
@@ -322,19 +316,14 @@ def command_logic(user_data, user_message, all_messages):
     
     elif user_message == "/Hey":
         text = translations["Hey"]["text"]
-        print(f"text={text}")
         topic_items = translations["topic_items"]["text"]
-        print(f"topic_items={topic_items}")
         
         # 過濾掉長度大於 20 的項目
         filtered_topic_items = [item for item in topic_items if len(item) <= 20]
-        print(f"filtered_topic_items={filtered_topic_items}")
-        
         sampled_items = random.sample(filtered_topic_items, 3)
-        print(f"sampled_items={sampled_items}")
-
+        
         items = [{"label": item, "text": item} for i, item in enumerate(sampled_items)]
-        print(f"items={items}")
+        
         message_1_quick_reply = create_quick_reply_message(text, items)
         all_messages.append(message_1_quick_reply)
     

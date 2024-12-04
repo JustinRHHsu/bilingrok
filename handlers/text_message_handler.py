@@ -81,6 +81,6 @@ def register_text_handler(handler, configuration):
         
         # 回覆用戶訊息
         # 回傳給用戶的訊息，是否需要提供 Quick Reply。有的話，傳入有包含組裝 quick_reply_items 的 reply_message 函數
-        print(f"##Reply Messages: {all_messages}")
+        # print(f"##Reply Messages: {all_messages}")
         
         line_reply_message(reply_token, configuration, all_messages)
