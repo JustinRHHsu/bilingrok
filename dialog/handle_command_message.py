@@ -62,7 +62,7 @@ def command_logic(user_data, user_message, all_messages):
                 
                 print(f"[INFO] Notify the user to start matching language partner.")
                 img_url =  "https://storage.googleapis.com/linebot_materials/hey_small.jpeg"
-                signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
+                # signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
                 aspectRatio = "100:100"
                 action_text = "/MatchPartner"
                 message_3_text = create_flex_image_action_message("flex_image_action", img_url, aspectRatio, action_text)
@@ -84,7 +84,7 @@ def command_logic(user_data, user_message, all_messages):
         
         json_filename = "flex_image_action"
         img_url = "https://storage.googleapis.com/linebot_materials/onboarding-start.jpeg"
-        signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
+        # signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
         aspectRatio = "200:60"
         action_text = "/language"
         message_1_flex = create_flex_image_action_message(json_filename, img_url, aspectRatio, action_text)
