@@ -68,6 +68,7 @@ class Config:
         DB_NAME = yaml_config['DB_NAME'].strip()
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME'].strip()
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com"
+        logging.info(f"Exectue actions via Service Account: {SERVICE_ACCOUNT_EMAIL}")
         GCP_CRED = get_gcp_credential()
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
