@@ -95,7 +95,7 @@ def command_logic(user_data, user_message, all_messages):
         flex_config = {
             "button_color": "#FF5722",
             "action_label": f'{translations["redeem_gift-xai"]["text"]}',
-            "action_uri": "https://console.x.ai/"
+            "action_uri": "https://console.x.ai?openExternalBrowser=1"
         }
         message_4_flex = create_flex_message(translations["free_trial"]["text"], "flex_button_link", user_data['native_lang'], flex_config)
         all_messages.append(message_4_flex)
