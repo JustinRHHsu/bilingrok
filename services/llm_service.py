@@ -40,7 +40,8 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
     print(f"[DEBUG] messages: {messages}")
     
     try:
-        client = OpenAI(api_key=Config.GROK_API_KEY, 
+        api_key = user_data.get('api_key', '')
+        client = OpenAI(api_key=api_key,
                         base_url="https://api.x.ai/v1"
                         )
         print(f"[DEBUG] client: {client}")
@@ -94,7 +95,8 @@ def conversation_review_card_generation(user_data, chat_history):
     ]
 
     try:
-        client = OpenAI(api_key=Config.GROK_API_KEY, 
+        api_key = user_data.get('api_key', '')
+        client = OpenAI(api_key=api_key, 
                         base_url="https://api.x.ai/v1"
                         )
         
