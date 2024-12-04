@@ -36,16 +36,9 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "✔ AI Language Companion",
+                    "text": "✔ Match an AI Language Partner",
                     "size": "sm",
                     "wrap": true,
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "text",
-                    "text": "x1",
-                    "align": "end",
-                    "size": "sm",
                     "color": "#6C757D"
                   }
                 ]
@@ -56,16 +49,9 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "✔ Service Days",
+                    "text": "✔ Unlimited Language Chat Practice",
                     "size": "sm",
                     "wrap": true,
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "text",
-                    "text": "x1 month",
-                    "align": "end",
-                    "size": "sm",
                     "color": "#6C757D"
                   }
                 ]
@@ -76,16 +62,9 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "✔ Practice Hours",
+                    "text": "✔ Real-time Practice Note",
                     "size": "sm",
                     "wrap": true,
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "text",
-                    "text": "24x7",
-                    "align": "end",
-                    "size": "sm",
                     "color": "#6C757D"
                   }
                 ]
@@ -96,16 +75,9 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "✔ Messages",
+                    "text": "✔ Learn Languages Naturally",
                     "size": "sm",
                     "wrap": true,
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "text",
-                    "text": "Unlimit",
-                    "align": "end",
-                    "size": "sm",
                     "color": "#6C757D"
                   }
                 ]
@@ -116,16 +88,9 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "✔ Learning Note",
+                    "text": "✔ 24/7 Learning Environment",
                     "size": "sm",
                     "wrap": true,
-                    "color": "#6C757D"
-                  },
-                  {
-                    "type": "text",
-                    "text": "Unlimit",
-                    "align": "end",
-                    "size": "sm",
                     "color": "#6C757D"
                   }
                 ]
@@ -147,7 +112,7 @@
         "action": {
           "type": "uri",
           "label": "{flex_purchase_card_button_label}",
-          "uri": "https://buy.stripe.com/9AQ4hx6nQdAveVG001"
+          "uri": "https://buy.stripe.com/4gwcO3cMe6837tefZ0"
         },
         "color": "#FF5722"
       }

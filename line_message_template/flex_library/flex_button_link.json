@@ -1,0 +1,19 @@
+{
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "{button_color}",
+          "action": {
+            "type": "uri",
+            "label": "{action_label}",
+            "uri": "{action_uri}"
+          }
+        }
+      ]
+    }
+  }

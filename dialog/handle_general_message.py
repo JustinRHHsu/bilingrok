@@ -13,6 +13,7 @@ from config.config import Config
 def general_msg_logic(user_data, message_data, chat_history, all_messages):
     native_lang = user_data.get('native_lang', 'zh-tw')
     translations = load_translations(native_lang)
+    print(f"=== [TEST] translations: {translations['alert_api_key_unset']} ===")
     
     user_id = user_data['user_id']
     api_key = user_data['api_key']

@@ -57,7 +57,7 @@ def create_image_message(original_url, preview_url):
 
 
 
-def create_flex_message(alt_text, json_filename, native_lang='en-us'):
+def create_flex_message(alt_text, json_filename, native_lang='en-us', flex_config={}):
     """
     建立 Flex Message。
     :param alt_text: Flex Message 的替代文字。
@@ -77,15 +77,19 @@ def create_flex_message(alt_text, json_filename, native_lang='en-us'):
         # 讀取翻譯檔案
         translations = load_translations(native_lang)
 
-        # 替換 placeholder
+        # 替換 translations 中的 placeholder
         for key, value in translations.items():
             placeholder = f"{{{key}}}"
             if placeholder in flex_message_str:
                 print(f"## Replacing placeholder: {placeholder} with {value['text']}")
                 flex_message_str = flex_message_str.replace(placeholder, value['text'])
-            else:
-                continue
 
+        # 替換 flex_config 中的 placeholder
+        for key, value in flex_config.items():
+            placeholder = f"{{{key}}}"
+            if placeholder in flex_message_str:
+                print(f"## Replacing placeholder: {placeholder} with {value}")
+                flex_message_str = flex_message_str.replace(placeholder, value)
 
     # 將 JSON 字串轉換為 FlexContainer 物件
     flex_container = FlexContainer.from_json(flex_message_str)

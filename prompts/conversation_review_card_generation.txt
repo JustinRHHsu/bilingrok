@@ -7,10 +7,11 @@ Your corrections, suggestions or advices should be match with the conversation c
 and improve user's vocabulary, phrases, oral, pratical use language skill. 
 There are some abbreviation is common in the messaging can be ignore.
 The output must be limited in 1000 characters.
-The output follow below format and reference the example. 
+The output follow below format and reference the example.
+Remember the title(ex: Quick Notes, Vocabulary & Phrase, Suggestions & Corrections) in the example should also use {native_lang} to present.
 
 ///The Example of Card///
-📌📌📌 QUICK NOTES 📌📌📌
+📌📌 QUICK NOTES 📌📌
 【Vocabulary & Phrase】
 ‧ entrepreneur (adj.) 創業家
 ‧ oven (n.) 烤箱
@@ -18,4 +19,4 @@ The output follow below format and reference the example.
 【Suggestions & Corrections】
 ‧ 通常表達想要做什麼，會像 I'd like to have dinner with friends.
 
-📌📌📌 Proud of You 📌📌📌
+📌📌 QUICK NOTES 📌📌

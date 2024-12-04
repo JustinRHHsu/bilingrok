@@ -16,6 +16,8 @@ def command_logic(user_data, user_message, all_messages):
     translations = load_translations(native_lang)
     time_zone = Config.TIME_ZONE_UTC_PLUS_8
     
+    # print(f"===== translations =====\n{translations}\n====================")
+    
     # all_messages = []
     
     # General: User Message 符合 API Key 格式(xai-開頭)，期望設置 API Key
@@ -85,6 +87,9 @@ def command_logic(user_data, user_message, all_messages):
     
     
     elif user_message.startswith('/sub: xai-free'):
+        # 觸發：點選 subscribe 訂閱後，點選「領取試用！」
+        # 處理：顯示系統訊息 - trial_offer_desc 獲得禮物卡、trial_steps 試用操作說明、free_trial 卡片 Flex 的連結
+        
         message_1_text = create_text_message(translations["trial_offer_desc"]["text"])
         all_messages.append(message_1_text)
         
@@ -95,7 +100,12 @@ def command_logic(user_data, user_message, all_messages):
         message_3_flex = create_text_message(translations["xai_api_yt_video_guide"]["text"].format(link=yt_url))
         all_messages.append(message_3_flex)
         
-        message_4_flex = create_flex_message(translations["free_trial"]["text"], "flex_xai_gift", user_data['native_lang'])
+        flex_config = {
+            "button_color": "#FF5722",
+            "action_label": f'{translations["redeem_gift-xai"]["text"]}',
+            "action_uri": "https://accounts.x.ai/sign-in"
+        }
+        message_4_flex = create_flex_message(translations["free_trial"]["text"], "flex_button_link", user_data['native_lang'], flex_config)
         all_messages.append(message_4_flex)
         
     
@@ -110,7 +120,7 @@ def command_logic(user_data, user_message, all_messages):
             for row in reader:
                 if not row or row[0].startswith('#'):
                     continue
-                item = {'label': row[1], 'text': f"/lang: {row[0]}"}
+                item = {"label": row[1], "text": f"/lang: {row[0]}"}
                 language_list.append(item)
 
         print(f"quick_reply_items={language_list}")
@@ -158,7 +168,7 @@ def command_logic(user_data, user_message, all_messages):
                 reader = csv.reader(csvfile)
                 for row in reader:
                     if row[0] != native_lang:
-                        learn_language_list.append({'label': row[1], 'text': f"/learn: {row[0]}"})
+                        learn_language_list.append({"label": row[1], "text": f"/learn: {row[0]}"})
                         
             message_3_quick_reply = create_quick_reply_message(text, learn_language_list)
             all_messages.append(message_3_quick_reply)
@@ -171,7 +181,7 @@ def command_logic(user_data, user_message, all_messages):
                 for row in reader:
                     if not row or row[0].startswith('#'):
                         continue
-                    item = {'label': row[1], 'text': f"/lang: {row[0]}"}
+                    item = {"label": row[1], "text": f"/lang: {row[0]}"}
                     language_list.append(item)
             
             message_1_quick_reply = create_quick_reply_message(text, language_list)
@@ -179,6 +189,9 @@ def command_logic(user_data, user_message, all_messages):
     
     # Command: 設定 Target Language (跟 /lang 是連動的)
     elif user_message.startswith('/learn: '):
+        # 觸發：點選 /language 後，用戶點選「學習的目標語言」
+        # 處理：顯示系統訊息 - confirm_target_language 確認目標語言、match_language_partner 說明此設置的目的、subscribe_offer 詢問訂閱項目(+ 帶入兩個訂閱項目選項)
+        
         native_lang = user_data['native_lang']
         learn_lang = user_message.split('/learn: ')[1]
         valid_lang = False
@@ -218,9 +231,10 @@ def command_logic(user_data, user_message, all_messages):
             
             text = translations["subscribe_offer"]["text"]
             items = [
-                {'label': translations["quick_reply_btn_subscribe_now"]["text"], 'text': '/sub: subscribe-now'},
-                {'label': translations["quick_reply_btn_xai-free"]["text"], 'text': '/sub: xai-free'}
+                {"label": translations["quick_reply_btn_subscribe_now"]["text"], "text": "/sub: subscribe-now"},
+                {"label": translations["quick_reply_btn_xai-free"]["text"], "text": "/sub: xai-free"}
             ]
+            print(f"### items={items} ###")
             message_3_quick_reply = create_quick_reply_message(text, items)
             all_messages.append(message_3_quick_reply)
         
@@ -232,7 +246,7 @@ def command_logic(user_data, user_message, all_messages):
                 for row in reader:
                     if not row or row[0].startswith('#') or row[0] == native_lang:
                         continue
-                    item = {'label': row[1], 'text': f"/learn: {row[0]}"}
+                    item = {"label": row[1], "text": f"/learn: {row[0]}"}
                     language_list.append(item)
             
             message_1_quick_reply = create_quick_reply_message(text, language_list)
@@ -242,15 +256,17 @@ def command_logic(user_data, user_message, all_messages):
     elif user_message == "/Subscribe":
         text = translations["subscribe_offer"]["text"]
         items = [
-            {'label': translations["quick_reply_btn_subscribe_now"]["text"], 'text': '/sub: subscribe-now'},
-            {'label': translations["quick_reply_btn_xai-free"]["text"], 'text': '/sub: xai-free'},
-            {'label': translations["quick_reply_btn_membership"]["text"], 'text': '/sub: membership'}
+            {"label": translations["quick_reply_btn_subscribe_now"]["text"], "text": "/sub: subscribe-now"},
+            {"label": translations["quick_reply_btn_membership"]["text"], "text": "/sub: membership"},
+            {"label": translations["quick_reply_btn_xai-free"]["text"], "text": "/sub: xai-free"}
         ]
         message_1_quick_reply = create_quick_reply_message(text, items)
         all_messages.append(message_1_quick_reply)
         
     
     elif user_message == "/sub: subscribe-now":
+        # 觸發：點選 subscribe 訂閱後，點選「立即訂閱」
+        # 處理：顯示系統訊息 - flex_purchase 訂閱卡片 Flex 的連結、special_offer 特別優惠(+back 快速回覆返回按鈕)
         alt_text = translations["subscription_type"]["text"]
         json_filename = "flex_purchase"
         message_1_flex = create_flex_message(alt_text, json_filename, user_data['native_lang'])
@@ -258,7 +274,7 @@ def command_logic(user_data, user_message, all_messages):
         
         text = translations["special_offer"]["text"]
         purchase_items = [
-            {'label': translations["back"]["text"], 'text': '/Subscribe'}
+            {"label": translations["back"]["text"], "text": "/Subscribe"}
         ]
         message_2_quick_reply = create_quick_reply_message(text, purchase_items)
         all_messages.append(message_2_quick_reply)
@@ -295,8 +311,8 @@ def command_logic(user_data, user_message, all_messages):
         all_messages.append(message_3_flex)
     
     
-    elif user_message.startswith('/feedback'):
-        message_1_text = create_text_message("https://forms.gle/CqCS9yxCdoq6fGaN9")
+    elif user_message == "/ShareToFriend":
+        message_1_text = create_text_message(translations["share_to_friend"]["text"])
         all_messages.append(message_1_text)
         
         message_2_text = create_text_message(translations["share_to_friend_guide"]["text"])
@@ -308,10 +324,15 @@ def command_logic(user_data, user_message, all_messages):
         print(f"text={text}")
         topic_items = translations["topic_items"]["text"]
         print(f"topic_items={topic_items}")
-        sampled_items = random.sample(topic_items, 3)
+        
+        # 過濾掉長度大於 20 的項目
+        filtered_topic_items = [item for item in topic_items if len(item) <= 20]
+        print(f"filtered_topic_items={filtered_topic_items}")
+        
+        sampled_items = random.sample(filtered_topic_items, 3)
         print(f"sampled_items={sampled_items}")
 
-        items = [{'label': item, 'text': item} for i, item in enumerate(sampled_items)]
+        items = [{"label": item, "text": item} for i, item in enumerate(sampled_items)]
         print(f"items={items}")
         message_1_quick_reply = create_quick_reply_message(text, items)
         all_messages.append(message_1_quick_reply)

@@ -29,6 +29,8 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
     # 把 system_prompt_template 裡的 user_data 和 agent_character_data 帶進去，達到個人化效果
     sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data, agent_character_data)
     
+    print(f"=== sys_prompt ===\n{sys_prompt}\n =====================")
+    
     messages=[
         {"role": "system", "content": sys_prompt},
         *transform_chat_history(chat_history),

@@ -1,249 +1,182 @@
 {
+    "json_format_description": {
+      "text": "ไฟล์นี้มีเนื้อหาการแปลสำหรับการตั้งค่าภาษานี้",
+      "desc": "อธิบายเงื่อนไขและตำแหน่งที่เนื้อหาการแปลนี้ถูกเรียกใช้และแสดง",
+      "type": "sys_msg, warning 為 LINE message； quick_reply_btn 為 LINE 快捷回捷標籤； flex_ 開題為 Flex Message，如：flex_alt_content, flex_body_title, flex_btn"
+    },
     "api_key_set_success": {
       "text": "ตั้งค่า API Key สำเร็จแล้ว!",
-<<<<<<< HEAD
-      "desc": "當 API Key 設定成功時顯示的訊息"
+      "desc": "當 API Key 設定成功時顯示的訊息",
+      "type": "sys_msg"
     },
     "notify_start_matching": {
       "text": "เริ่มใช้งานทดลองฟรี 7 วันของ Bilingrok แล้ว!\n\nคลิกที่รูปเพื่อเริ่มจับคู่คู่หูฝึกภาษา!",
-      "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對"
+      "desc": "API Key 設置成功後，通知用戶將進行語言夥伴配對",
+      "type": "sys_msg"
     },
     "api_key_verification_failed": {
       "text": "การตรวจสอบ API Key ล้มเหลว โปรดตรวจสอบและลองอีกครั้ง",
-      "desc": "當 API Key 驗證失敗時顯示的訊息"
+      "desc": "當 API Key 驗證失敗時顯示的訊息",
+      "type": "warning"
     },
     "api_key_format_error": {
       "text": "กรุณาใส่รูปแบบ API Key ที่ถูกต้อง\n(เช่น: xai-xxxxxxx)",
-      "desc": "當 API Key 格式不正確時顯示的訊息。"
+      "desc": "當 API Key 格式不正確時顯示的訊息。",
+      "type": "warning"
     },
     "trial_offer_desc": {
       "text": "ยินดีด้วย! คุณได้รับบัตรของขวัญมูลค่า 25 ดอลลาร์จาก xAI 🎁🎁🎁",
-      "desc": "提供免費試用作為安慰的訊息。"
+      "desc": "提供免費試用作為安慰的訊息。",
+      "type": "sys_msg"
     },
     "xai_api_yt_video_guide": {
       "text": "ดูวิดีโอเพื่อรับ API Key จาก xAI! {link}",
-      "desc": "查看 xAI API Key 設定教學影片"
+      "desc": "查看 xAI API Key 設定教學影片",
+      "type": "sys_msg"
     },
     "trial_steps": {
       "text": "ทำตามขั้นตอนด้านล่างเพื่อแลกรับบริการคู่หูฝึกภาษาของ Bilingrok ฟรี!\n\n1. ลงทะเบียนบัญชี xAI\n2. สร้าง API Key\n3. คัดลอกและวาง API Key\nยืนยันในกล่องแชท\n\nหลังจากยืนยันแล้ว คุณสามารถเริ่มต้นใช้งาน Bilingrok ได้ 7 วัน! 🎉🎉🎉",
-      "desc": "開始 7 天免費試用的步驟。"
+      "desc": "開始 7 天免費試用的步驟。",
+      "type": "sys_msg"
     },
     "free_trial": {
       "text": "ลงทะเบียนกับ xAI เพื่อรับการทดลองใช้งานฟรี",
-      "desc": "引導進入 xAI 網站註冊"
+      "desc": "引導進入 xAI 網站註冊",
+      "type": "flex_alt_content"
     },
     "choose_language": {
       "text": "เลือกภาษาหลักของคุณ...(คลิกที่ตัวเลือกด้านล่าง)",
-      "desc": "提示用戶選擇他們的母語。"
+      "desc": "提示用戶選擇他們的母語。",
+      "type": "sys_msg"
     },
     "language_not_supported": {
       "text": "ขออภัย เรายังไม่รองรับภาษานี้ กรุณาลองอีกครั้ง!",
-      "desc": "當選擇的語言不受支持時顯示的訊息。"
+      "desc": "當選擇的語言不受支持時顯示的訊息。",
+      "type": "warning"
     },
     "confirm_native_language": {
       "text": "เยี่ยมมาก! คู่หูฝึกภาษาของ Bilingrok จะสามารถพูด {language_name} ได้เล็กน้อย 🤏",
-      "desc": "確認用戶的母語的訊息。"
+      "desc": "確認用戶的母語的訊息。",
+      "type": "sys_msg"
     },
     "native_language_value": {
-      "text": "คู่หูฝึกภาษาของคุณจะใช้ {language_name} ช่วยจัดระเบียบ 'โน้ต' ซึ่งจะทบทวน แก้ไข และปรับปรุงคำศัพท์ วลี หรือสำนวนภาษาพูดจากการสนทนาของคุณ!",
-      "desc": "解釋使用用戶母語的價值的訊息。"
+      "text": "คู่หูฝึกภาษาของคุณจะใช้ {language_name} ช่วยจัดระเบียบ * โน้ต * ซึ่งจะทบทวน แก้ไข และปรับปรุงคำศัพท์ วลี หรือสำนวนภาษาพูดจากการสนทนาของคุณ!",
+      "desc": "解釋使用用戶母語的價值的訊息。",
+      "type": "sys_msg"
     },
     "practice_language": {
       "text": "คุณต้องการฝึกภาษาอะไร...(คลิกที่ตัวเลือกด้านล่าง)?\n\nคู่หูฝึกภาษาของคุณจะพูดคุยและแชทกับคุณในภาษาที่คุณเลือก!",
-      "desc": "提示用戶選擇他們想練習的語言。"
+      "desc": "提示用戶選擇他們想練習的語言。",
+      "type": "sys_msg"
     },
     "confirm_target_language": {
       "text": "เยี่ยมมาก คุณต้องการฝึก {target_language_name}!",
-      "desc": "確認用戶期望學習語言的訊息。"
+      "desc": "確認用戶期望學習語言的訊息。",
+      "type": "sys_msg"
     },
     "match_language_partner": {
       "text": "คู่หูฝึกภาษาของ Bilingrok จะสนทนาโดยใช้ {target_language_name} ทั้งหมด สร้างสภาพแวดล้อมที่เหมาะสมสำหรับการฝึกฝน!\n\nยิ่งไปกว่านั้น ระบบจะจัดระเบียบโน้ตจากการสนทนาของคุณใน {native_language_name} เป็นระยะ เพื่อช่วยให้คุณเรียนรู้ได้ดียิ่งขึ้น! 🌟",
-      "desc": "解釋訂閱的好處的訊息。"
+      "desc": "解釋訂閱的好處的訊息。",
+      "type": "sys_msg"
     },
     "subscribe_offer": {
       "text": "เลือกประเภทการสมัครสมาชิกของ Bilingrok...(คลิกที่ตัวเลือกด้านล่าง)",
-      "desc": "提供用戶訂閱 Bilingrok 的優惠。"
+      "desc": "提供用戶訂閱 Bilingrok 的優惠。",
+      "type": "sys_msg"
     },
     "quick_reply_btn_subscribe_now": {
       "text": "สมัครตอนนี้",
-      "desc": "訂閱：立即訂閱的按鈕文字。"
+      "desc": "訂閱：立即訂閱的按鈕文字。",
+      "type": "quick_reply_btn"
     },
     "quick_reply_btn_xai-free": {
-      "text": "รับการทดลองใช้งานฟรี!",
-      "desc": "訂閱：領取試用的按鈕文字。"
+      "text": "ทดลองใช้งานฟรี",
+      "desc": "訂閱：領取試用的按鈕文字。",
+      "type": "quick_reply_btn"
     },
     "quick_reply_btn_membership": {
       "text": "ข้อมูลการเป็นสมาชิก",
-      "desc": "訂閱：會員查詢的按鈕文字。"
+      "desc": "訂閱：會員查詢的按鈕文字。",
+      "type": "quick_reply_btn"
     },
     "special_offer": {
       "text": "นี่คือข้อเสนอพิเศษสำหรับคุณ! เรารู้สึกตื่นเต้นที่ได้เห็นคุณโต้ตอบกับคู่หูฝึกภาษาเพื่อฝึกฝนภาษาอย่างเป็นธรรมชาติ! 🌟",
-      "desc": "強調特別優惠的訊息。"
+      "desc": "強調特別優惠的訊息。",
+      "type": "sys_msg"
     },
     "back": {
       "text": "ย้อนกลับ ↩️",
-      "desc": "返回的按鈕文字。"
+      "desc": "返回的按鈕文字。",
+      "type": "quick_reply_btn"
     },
     "unknown_command": {
       "text": "คำสั่งไม่ถูกต้อง กรุณาตรวจสอบและลองใหม่อีกครั้ง",
-      "desc": "當輸入未知命令時顯示的訊息。"
+      "desc": "當輸入未知命令時顯示的訊息。",
+      "type": "warning"
     },
     "subscription_type": {
       "text": "ประเภทการสมัครสมาชิก",
-      "desc": "訂閱類型的標籤。"
+      "desc": "訂閱類型的標籤。",
+      "type": "flex_alt_content"
     },
     "flex_purchase_card_title": {
       "text": "สมาชิกทอง: USD 10 / เดือน",
-      "desc": "Flex JSON 中購買卡片的顯示標題"
+      "desc": "Flex JSON 中購買卡片的顯示標題",
+      "type": "flex_body_title"
     },
     "flex_purchase_card_button_label": {
       "text": "สมัครตอนนี้!",
-      "desc": "Flex JSON 中購買卡片的按鈕名稱"
+      "desc": "Flex JSON 中購買卡片的按鈕名稱",
+      "type": "flex_btn"
     },
     "flex_purchase_later_card_button_label": {
       "text": "รับของขวัญ!",
-      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱"
+      "desc": "Flex JSON 中稍後購買卡片的按鈕名稱",
+      "type": "flex_btn"
     },
     "share_to_friend": {
       "text": "สวัสดี~ ฉันอยากจะแนะนำแอปพลิเคชันใน LINE ที่ชื่อว่า Bilingrok ซึ่งช่วยจับคู่คุณกับคู่หูฝึกภาษา เหมือนมีเพื่อนชาวต่างชาติที่ช่วยคุณสนทนาและฝึกภาษา สนุกสุดยอด! 🌟\n\nนอกจากนี้ ฉันยังส่งบัตรของขวัญมูลค่า 25 ดอลลาร์และการทดลองใช้งานฟรี 7 วัน 🎁🎁🎁 ให้คุณ\n\nจำนวนจำกัด รีบรับเลย!\nhttps://lin.ee/VYuu0Ct",
-      "desc": "推薦朋友加入好友的訊息"
+      "desc": "推薦朋友加入好友的訊息",
+      "type": "sys_msg"
     },
     "share_to_friend_guide": {
-      "text": "กดค้าง 👆 ที่ข้อความด้านบน และคลิก 'แชร์' เพื่อส่งของขวัญ 25 ดอลลาร์ให้เพื่อนของคุณ!",
-      "desc": "引導用戶長按推薦給朋友"
+      "text": "กดค้าง 👆 ที่ข้อความด้านบน และคลิก * แชร์ * เพื่อส่งของขวัญ 25 ดอลลาร์ให้เพื่อนของคุณ!",
+      "desc": "引導用戶長按推薦給朋友",
+      "type": "sys_msg"
     },
     "Hey": {
       "text": "สวัสดี~",
-      "desc": "用戶說 Hey，和用戶打招呼 "
+      "desc": "用戶說 Hey，和用戶打招呼 ",
+      "type": "sys_msg"
     },
     "topic_items": {
       "text": ["ทำอะไรอยู่?", "ขอถามอะไรหน่อย", "รำคาญจัง!", "เบื่อจัง", "มาคุยกับฉันหน่อยสิ"],
-      "desc": "Hey 後，讓用戶從裡面找話題"
+      "desc": "Hey 後，讓用戶從裡面找話題",
+      "type": "quick_reply_btn"
     },
     "alert_api_key_unset": {
       "text": "สวัสดี~ ดูเหมือนว่าคุณยังไม่ได้เปิดใช้งานบริการของ Bilingrok\n\nโปรดคลิก START ด้านล่าง แล้วฉันจะช่วยคุณตั้งค่าทันที!",
-      "desc": "用戶輸入訊息，但 API Key 尚未設置"
+      "desc": "用戶輸入訊息，但 API Key 尚未設置",
+      "type": "warning"
     },
     "alert_subscribe_unavailable": {
       "text": "คุณยังไม่ได้เลือกแผนการสมัครสมาชิก Bilingrok โปรดเปิดเมนูด้านล่าง คลิก SUBSCRIBE และเลือกบริการที่เหมาะกับคุณ!",
-      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 為空"
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 為空",
+      "type": "warning"
     },
     "alert_subscribe_expired": {
       "text": "ขอบคุณสำหรับการสนับสนุนของคุณ การสมัครสมาชิกของคุณหมดอายุเมื่อ {subscribe_expired_timestamp} (UTC+8)\n\nโปรดเปิดเมนูด้านล่าง คลิก SUBSCRIBE และต่ออายุการสมัครสมาชิกของคุณเพื่อใช้บริการ Bilingrok ต่อไป!",
-      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 已過期"
+      "desc": "用戶輸入訊息，但 Subscribe Expire Timestamp 已過期",
+      "type": "warning"
     },
     "query_membership": {
       "text": "**ข้อมูลการสมัครสมาชิก**\nประเภทการสมัครสมาชิก:\n{sub_name}\nวันหมดอายุ:\n{sub_expire_time}",
-      "desc": "用戶在 subscription 裡查詢會員資訊"
-    }
-  }  
-=======
-      "desc": "เมื่อ API Key ตั้งค่าสำเร็จ"
+      "desc": "用戶在 subscription 裡查詢會員資訊",
+      "type": "sys_msg"
     },
-    "api_key_verification_failed": {
-      "text": "การตรวจสอบ API Key ล้มเหลว กรุณาตรวจสอบและลองอีกครั้ง",
-      "desc": "เมื่อการตรวจสอบ API Key ล้มเหลว"
-    },
-    "api_key_format_error": {
-      "text": "กรุณาใส่ API Key ในรูปแบบที่ถูกต้อง (เช่น xai-xxxxxxx)",
-      "desc": "เมื่อ API Key มีรูปแบบไม่ถูกต้อง"
-    },
-    "trial_offer_desc": {
-      "text": "ขอแสดงความยินดี! คุณได้รับบัตรของขวัญมูลค่า 25 ดอลลาร์จาก xAI 🎁🎁🎁",
-      "desc": "ข้อความให้กำลังใจเมื่อมีการมอบทดลองใช้งานฟรี"
-    },
-    "xai_api_yt_video_guide": {
-      "text": "ดูวิดีโอเพื่อรับ API Key ของคุณจาก xAI! {link}",
-      "desc": "ลิงก์สำหรับดูวิดีโอสอนเกี่ยวกับ API Key ของ xAI"
-    },
-    "trial_steps": {
-      "text": "ทำตามขั้นตอนด้านล่างเพื่อแลกรับบริการคู่หูด้านภาษา Bilingrok ฟรี:\n\n1. ลงทะเบียนบัญชี xAI\n2. สร้าง API Key\n3. คัดลอกและวาง API Key ในช่องแชทเพื่อยืนยัน\n\nเมื่อยืนยันสำเร็จแล้ว คุณจะสามารถทดลองใช้งาน Bilingrok ฟรี 7 วันได้ทันที! 🎉🎉🎉",
-      "desc": "ขั้นตอนเริ่มต้นการทดลองใช้งานฟรี 7 วัน"
-    },
-    "free_trial": {
-      "text": "ลงทะเบียนที่ xAI เพื่อเริ่มการทดลองใช้งานฟรี",
-      "desc": "คำแนะนำให้ผู้ใช้ไปยังเว็บไซต์ xAI"
-    },
-    "choose_language": {
-      "text": "เลือกภาษาหลักของคุณ...(คลิกตัวเลือกด้านล่าง)",
-      "desc": "ให้ผู้ใช้เลือกภาษาหลักของพวกเขา"
-    },
-    "language_not_supported": {
-      "text": "ขออภัย ขณะนี้ยังไม่มีการรองรับภาษานี้ กรุณาลองอีกครั้ง!",
-      "desc": "ข้อความเมื่อภาษาที่เลือกยังไม่รองรับ"
-    },
-    "confirm_native_language": {
-      "text": "ยอดเยี่ยม! คู่หูด้านภาษาของ Bilingrok ยังพูด {language_name} ได้นิดหน่อย 🤏",
-      "desc": "ยืนยันภาษาหลักของผู้ใช้"
-    },
-    "native_language_value": {
-      "text": "คู่หูของคุณจะช่วยจัดทำ \"โน้ต\" ใน {language_name} จากการสนทนา โดยโน้ตเหล่านี้จะช่วยทบทวน แก้ไข และพัฒนาคำศัพท์ วลี และการแสดงออกที่เป็นธรรมชาติ!",
-      "desc": "อธิบายคุณค่าของการใช้ภาษาหลักของผู้ใช้"
-    },
-    "practice_language": {
-      "text": "คุณต้องการฝึกภาษาใด...(คลิกตัวเลือกด้านล่าง)\n\nคู่หูของคุณจะใช้ภาษาที่คุณเลือกในการฝึกฝนการสนทนา!",
-      "desc": "ให้ผู้ใช้เลือกภาษาที่พวกเขาต้องการฝึก"
-    },
-    "confirm_target_language": {
-      "text": "เยี่ยมมาก! คุณต้องการฝึก {target_language_name}!",
-      "desc": "ยืนยันภาษาที่ผู้ใช้ต้องการเรียน"
-    },
-    "match_language_partner": {
-      "text": "คู่หูด้านภาษาของคุณจาก Bilingrok จะพูดคุยกับคุณใน {target_language_name} เพื่อสร้างสภาพแวดล้อมการฝึกที่ดีที่สุด\n\nยิ่งไปกว่านั้น ระบบจะช่วยจัดทำโน้ตใน {native_language_name} จากการสนทนาของคุณเพื่อให้คุณพัฒนายิ่งขึ้น! 🌟",
-      "desc": "อธิบายประโยชน์ของการสมัครสมาชิก"
-    },
-    "subscribe_offer": {
-      "text": "เลือกประเภทการสมัครสมาชิกบริการคู่หูด้านภาษา Bilingrok...(คลิกตัวเลือกด้านล่าง)",
-      "desc": "นำเสนอข้อเสนอการสมัครสมาชิกของ Bilingrok"
-    },
-    "quick_reply_btn_subscribe_now": {
-      "text": "สมัครเลย",
-      "desc": "ข้อความปุ่มสำหรับสมัครสมาชิกทันที"
-    },
-    "quick_reply_btn_xai-free": {
-      "text": "รับทดลองใช้งานฟรี!",
-      "desc": "ข้อความปุ่มสำหรับทดลองใช้งานฟรี"
-    },
-    "special_offer": {
-      "text": "นี่คือข้อเสนอพิเศษสำหรับคุณ! เราอดใจรอที่จะจับคู่คุณกับคู่หูด้านภาษาไม่ได้เลย! 🌟",
-      "desc": "ข้อความเน้นข้อเสนอพิเศษ"
-    },
-    "back": {
-      "text": "กลับ ↩️",
-      "desc": "ข้อความปุ่มสำหรับกลับ"
-    },
-    "unknown_command": {
-      "text": "คำสั่งไม่ถูกต้อง กรุณาตรวจสอบและลองอีกครั้ง",
-      "desc": "ข้อความเมื่อใส่คำสั่งที่ไม่ถูกต้อง"
-    },
-    "subscription_type": {
-      "text": "ประเภทการสมัครสมาชิก",
-      "desc": "ป้ายแสดงประเภทการสมัครสมาชิก"
-    },
-    "flex_purchase_card_title": {
-      "text": "สมาชิกระดับทอง: USD 10 / เดือน",
-      "desc": "หัวข้อการ์ดซื้อใน Flex JSON"
-    },
-    "flex_purchase_card_button_label": {
-      "text": "สมัครเลย!",
-      "desc": "ข้อความปุ่มการ์ดซื้อใน Flex JSON"
-    },
-    "flex_purchase_later_card_button_label": {
+    "redeem_gift-xai": {
       "text": "รับของขวัญ!",
-      "desc": "ข้อความปุ่มการ์ดซื้อใน Flex JSON สำหรับการซื้อภายหลัง"
-    },
-    "share_to_friend_guide": {
-    "text": "กดค้าง 👆 ที่ข้อความด้านบน แล้วคลิก 'แชร์' เพื่อส่ง $25 ให้เพื่อนของคุณทันที!",
-    "desc": "引導用戶長按推薦給朋友"
-    },
-    "Hey": {
-      "text": "สวัสดี~",
-      "desc": "用戶說 Hey，和用戶打招呼"
-    },
-    "topic_items": {
-      "text": ["ทำอะไรอยู่?", "ถามอะไรหน่อยสิ.", "รำคาญจัง!", "เบื่อจัง.", "คุยกับฉันหน่อย."],
-      "desc": "Hey 後，讓用戶從裡面找話題"
+      "desc": "在 Flex Message 中，點擊領取 xAI 禮物卡 - xai 的註冊網頁",
+      "type": "flex_btn"
     }
-  }
-  
->>>>>>> 23cfeedd47ca6fc56a01c4b9f20c023a5a6dab4b
+}
