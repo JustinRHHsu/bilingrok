@@ -14,8 +14,12 @@ with open('config/config.yaml', 'r') as file:
 
 # 根據 SECRET_KEY_ENV 判斷是否加載本地 .env 文件
 if yaml_config['SECRET_KEY_ENV'] == 'LOCAL':
-    load_dotenv("config/.env")
-
+    if os.path.exists("config/.env"):
+        load_dotenv("config/.env")
+    else:
+        yaml_config['DEBUG_MODE'] = False
+        yaml_config['SECRET_KEY_ENV'] = 'GCP'
+        yaml_config['ENVIRONMENT'] = 'PROD'
 
 def access_secret_version(project_id, secret_id, version_id="latest"):
     client = secretmanager.SecretManagerServiceClient()
@@ -39,8 +43,6 @@ def get_gcp_credential():
         logging.error("Error: No GCP credential found.")
         return None
 
-
-
 class Config:
     PORT = yaml_config['CONTAINER_PORT']
     DEBUG = yaml_config['DEBUG_MODE']
@@ -53,7 +55,6 @@ class Config:
     
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()
-    
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
@@ -76,7 +77,6 @@ class Config:
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
         GCP_CRED = get_gcp_credential()
         
-    
     # Cloud Task
     # TIME_SLOT_PROCESS_MESSAGES_TO_LLM = yaml_config.get('TIME_SLOT_PROCESS_MESSAGES_TO_LLM', 5)
     # SESSION_EXPIRED_TIME = yaml_config.get('SESSION_EXPIRED_TIME', 600)
@@ -84,8 +84,7 @@ class Config:
     # Message Queue
     # QUEUE_MESSAGE_STORE = yaml_config['QUEUE_MESSAGE_STORE']
     # QUEUE_LOCATION_MESSAGE_STORE = yaml_config['QUEUE_LOCATION_MESSAGE_STORE']
-    
-    
+        
 class DB:
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
