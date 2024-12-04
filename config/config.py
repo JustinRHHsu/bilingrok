@@ -14,14 +14,8 @@ with open('config/config.yaml', 'r') as file:
 
 # 根據 SECRET_KEY_ENV 判斷是否加載本地 .env 文件
 if yaml_config['SECRET_KEY_ENV'] == 'LOCAL':
-    if os.path.exists("config/.env"):
-        logging.info("Accessed .env file successful!")
-        load_dotenv("config/.env")
-    else:
-        logging.info("Accessed .env file FAIL! Turn to accessing GCP")
-        yaml_config['DEBUG_MODE'] = False
-        yaml_config['SECRET_KEY_ENV'] = 'GCP'
-        yaml_config['ENVIRONMENT'] = 'PROD'
+    load_dotenv("config/.env")
+
 
 def access_secret_version(project_id, secret_id, version_id="latest"):
     client = secretmanager.SecretManagerServiceClient()
@@ -45,6 +39,8 @@ def get_gcp_credential():
         logging.error("Error: No GCP credential found.")
         return None
 
+
+
 class Config:
     PORT = yaml_config['CONTAINER_PORT']
     DEBUG = yaml_config['DEBUG_MODE']
@@ -58,6 +54,7 @@ class Config:
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()
     
+    
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
         print(f"[Secret Key Source]: GCP")
@@ -68,7 +65,6 @@ class Config:
         DB_NAME = yaml_config['DB_NAME'].strip()
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME'].strip()
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com"
-        logging.info(f"Exectue actions via Service Account: {SERVICE_ACCOUNT_EMAIL}")
         GCP_CRED = get_gcp_credential()
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
@@ -80,6 +76,7 @@ class Config:
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
         GCP_CRED = get_gcp_credential()
         
+    
     # Cloud Task
     # TIME_SLOT_PROCESS_MESSAGES_TO_LLM = yaml_config.get('TIME_SLOT_PROCESS_MESSAGES_TO_LLM', 5)
     # SESSION_EXPIRED_TIME = yaml_config.get('SESSION_EXPIRED_TIME', 600)
@@ -87,7 +84,8 @@ class Config:
     # Message Queue
     # QUEUE_MESSAGE_STORE = yaml_config['QUEUE_MESSAGE_STORE']
     # QUEUE_LOCATION_MESSAGE_STORE = yaml_config['QUEUE_LOCATION_MESSAGE_STORE']
-        
+    
+    
 class DB:
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
