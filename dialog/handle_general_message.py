@@ -57,16 +57,18 @@ def general_msg_logic(user_data, message_data, chat_history, all_messages):
         all_messages.append(message_1_text)
         
         # 組合 Assistant Message 回覆的訊息，存入 Chat History
-        message_data = {
-            'role': 2,    # 1: User, 2: Assistant
-            'message': reply_content,   
-            'message_timestamp': reply_timestamp
-        }
-        add_chat_message(user_id, message_data)
+        # 若 LLM 沒有成功回覆，還是會送通知給用戶，但不會存入 Chat History
+        if not reply_timestamp == None:
+            message_data = {
+                'role': 2,    # 1: User, 2: Assistant
+                'message': reply_content,   
+                'message_timestamp': reply_timestamp
+            }
+            add_chat_message(user_id, message_data)
         
-        # 更新用戶對話次數和最後對話時間
-        user_data['conversation_count'] += 2        # 一則 User message，一則 Assistant message
-        user_data['last_message_timestamp'] = message_timestamp     # user message 的 timestamp        
+            # 更新用戶對話次數和最後對話時間
+            user_data['conversation_count'] += 2        # 一則 User message，一則 Assistant message
+            user_data['last_message_timestamp'] = message_timestamp     # user message 的 timestamp        
         
         # 判斷是否需要提供學習卡片
         if user_data['conversation_count'] % message_for_review_learning_card == 0:

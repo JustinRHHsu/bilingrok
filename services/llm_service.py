@@ -21,24 +21,29 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
     
     dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
     prompt_template = load_prompts(dir_sys_prompt, "system_prompt")
+    # print(f"[DEBUG] prompt_template: {prompt_template}")
     
     dir_agent_prompt = Config.AGENT_CHARACTER_PATH
     agent_character_prompt = load_prompts(dir_agent_prompt, "agent_justin")
     agent_character_data = {"agent_character": agent_character_prompt}
+    # print(f"[DEBUG] agent_character_data: {agent_character_data}")
     
     # 把 system_prompt_template 裡的 user_data 和 agent_character_data 帶進去，達到個人化效果
     sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data, agent_character_data)
+    # print(f"[DEBUG] sys_prompt: {sys_prompt}")
     
     messages=[
         {"role": "system", "content": sys_prompt},
         *transform_chat_history(chat_history),
         {"role": "user", "content": user_message}
     ]
+    print(f"[DEBUG] messages: {messages}")
     
     try:
         client = OpenAI(api_key=Config.GROK_API_KEY, 
                         base_url="https://api.x.ai/v1"
                         )
+        print(f"[DEBUG] client: {client}")
         
         response = client.chat.completions.create(
             model='grok-beta',
@@ -46,16 +51,19 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
             max_tokens=100,
             temperature=0.5,
         )
+        print(f"[DEBUG] response: {response}")
         
         reply_content = response.choices[0].message.content
         reply_timestamp = int(f"{response.created}000")     # Grok API timestamp in seconds, so add 3 zeros to convert to milliseconds  
         prompt_tokens = response.usage.prompt_tokens
         completion_tokens = response.usage.completion_tokens
+        print(f"[DEBUG] reply_content: {reply_content}")
         
         user_data['prompt_tokens'] += prompt_tokens
         logging.info(f"Prompt tokens: {prompt_tokens}")
         user_data['completion_tokens'] += completion_tokens
         logging.info(f"Completion tokens: {completion_tokens}")
+        print(f"[DEBUG] user_data: {user_data}")
         
         return user_data, reply_content, reply_timestamp
         
@@ -66,9 +74,10 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
             f"錯誤類型: {type(e).__name__}"
         )
         
-        reply_content = "Sorry, I'm having trouble understanding you right now. Please try again later."
+        reply_content = "[System] Sorry, I'm having trouble understanding you right now. Please try again later."
+        reply_timestamp = None
         
-        return user_data, reply_content
+        return user_data, reply_content, reply_timestamp
 
 
 def conversation_review_card_generation(user_data, chat_history):
