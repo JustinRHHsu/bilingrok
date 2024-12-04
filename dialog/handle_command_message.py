@@ -16,21 +16,15 @@ def command_logic(user_data, user_message, all_messages):
     translations = load_translations(native_lang)
     time_zone = Config.TIME_ZONE_UTC_PLUS_8
     
-    # print(f"===== translations =====\n{translations}\n====================")
-    
-    # all_messages = []
-    
     # General: User Message 符合 API Key 格式(xai-開頭)，期望設置 API Key
     if user_message.startswith('xai-'):
         api_key = user_message.strip()
-        print(f"Receive xai-api-key: {api_key}")
         api_key_length = 84  # 假設 api key 的總長度為 84 個字元
         
         # 檢查 API Key 長度是否符合
         if len(user_message) == api_key_length:
             # 檢查 API Key 是否有效
             if check_llm_api(api_key):
-                print(f"[INFO] API Key verification success!")
                 
                 # api_key 無值，新創建的 API Key
                 if not user_data['api_key'] or user_data['api_key'] == '':
@@ -46,35 +40,28 @@ def command_logic(user_data, user_message, all_messages):
                 
                 # api_key 已存在，拿新的 API Key 重新設置
                 else:
-                    print(f"[INFO] API Key already exists, update the API Key.")
                     user_data['api_key'] = api_key
                     user_data['api_key_updated_timestamp'] = datetime.now(time_zone)
                 
-                print(f"[INFO] API Key updated successfully!")
                 # 通知 API Key 更新成功！
                 message_1_text = create_text_message(translations["api_key_set_success"]["text"])
                 all_messages = [message_1_text]
                 
-                print(f"[INFO] Notify the user to start matching language partner.")
                 # 顯示配對語言夥伴的訊息
                 message_2_text = create_text_message(translations["notify_start_matching"]["text"])
                 all_messages = [message_2_text]
                 
-                print(f"[INFO] Notify the user to start matching language partner.")
                 img_url =  "https://storage.googleapis.com/linebot_materials/hey_small.jpeg"
                 # signed_img_url = generate_signed_url("linebot_materials","onboarding-start", 3600)
                 aspectRatio = "100:100"
                 action_text = "/MatchPartner"
                 message_3_text = create_flex_image_action_message("flex_image_action", img_url, aspectRatio, action_text)
                 all_messages.append(message_3_text)     
-                print(f"[INFO] Notify the user to start matching language partner.")
                 
             else:
-                print(f"[ERROR] API Key verification failed!")
                 message_1_text = create_text_message(translations["api_key_verification_failed"]["text"])
                 all_messages = [message_1_text]
         else:
-            print(f"[ERROR] API Key format error!")
             message_1_text = create_text_message(translations["api_key_format_error"]["text"])
             all_messages = [message_1_text]    
     
@@ -128,7 +115,6 @@ def command_logic(user_data, user_message, all_messages):
                 item = {"label": row[1], "text": f"/lang: {row[0]}"}
                 language_list.append(item)
 
-        # print(f"quick_reply_items={language_list}")
         message_1_quick_reply = create_quick_reply_message(text, language_list)
         all_messages.append(message_1_quick_reply)
     

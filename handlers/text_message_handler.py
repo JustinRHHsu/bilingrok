@@ -1,18 +1,11 @@
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 
 from services.firestore_service import get_or_create_user, update_user_profile
-# from services.llm_service import get_ai_assistant_response, conversation_review_card_generation 
 
-# from handlers.api_key_handler import handle_api_key_command
-# from handlers.feedback_handler import handle_feedback_command
 from handlers.reply_message import line_reply_message
-
-# from services.cloud_task_service import create_or_update_task
-
 from handlers.load_animation import send_loading_animation
 from dialog.handle_command_message import command_logic
 from dialog.handle_general_message import general_msg_logic
-# from handlers.line_bot_message_builder import create_text_message, create_flex_image_action_message
 
 
 def register_text_handler(handler, configuration):

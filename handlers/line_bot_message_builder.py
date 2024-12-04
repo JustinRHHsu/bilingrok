@@ -55,8 +55,6 @@ def create_image_message(original_url, preview_url):
 
 
 
-
-
 def create_flex_message(alt_text, json_filename, native_lang='en-us', flex_config={}):
     """
     建立 Flex Message。
@@ -81,14 +79,12 @@ def create_flex_message(alt_text, json_filename, native_lang='en-us', flex_confi
         for key, value in translations.items():
             placeholder = f"{{{key}}}"
             if placeholder in flex_message_str:
-                print(f"## Replacing placeholder: {placeholder} with {value['text']}")
                 flex_message_str = flex_message_str.replace(placeholder, value['text'])
 
         # 替換 flex_config 中的 placeholder
         for key, value in flex_config.items():
             placeholder = f"{{{key}}}"
             if placeholder in flex_message_str:
-                print(f"## Replacing placeholder: {placeholder} with {value}")
                 flex_message_str = flex_message_str.replace(placeholder, value)
 
     # 將 JSON 字串轉換為 FlexContainer 物件
@@ -132,8 +128,6 @@ def create_flex_youtube_message(json_filename, video_url, video_preview_image_ur
     # 將 JSON 轉換為字串格式
     flex_message_str = json.dumps(flex_message_json)
     
-    print(f"## Flex Message String: {flex_message_str}")
-
     # 將 JSON 字串轉換為 FlexContainer 物件
     flex_container = FlexContainer.from_json(flex_message_str)
 
@@ -149,35 +143,27 @@ def create_flex_youtube_message(json_filename, video_url, video_preview_image_ur
 
 def create_flex_image_action_message(json_filename, img_url, aspectRatio, action_text):
     
-    print(f"[create_flex_image_action_message] img_url: {img_url}, aspectRatio: {aspectRatio}, action_text: {action_text}")
     # 從 JSON 檔案讀取 Flex Message 結構
     with open(f'{Config.FLEX_LIBRARY_PATH}/{json_filename}.json', 'r', encoding='utf-8') as f:
         flex_message_json = json.load(f)
-    print(f"[create_flex_image_action_message] flex_message_json: {flex_message_json}")
     
     # 替換參數
     flex_message_json['hero']['url'] = img_url
     flex_message_json['hero']['aspectRatio'] = aspectRatio
     flex_message_json['hero']['action']['text'] = action_text
-    print(f"[create_flex_image_action_message] flex_message_json: {flex_message_json}")
     
     # 將 JSON 轉換為字串格式
     flex_message_str = json.dumps(flex_message_json)
-    print(f"[create_flex_image_action_message] flex_message_str: {flex_message_str}")
     
-    # print(f"## Flex Message String: {flex_message_str}")
-
     # 將 JSON 字串轉換為 FlexContainer 物件
     flex_container = FlexContainer.from_json(flex_message_str)
-    print(f"[create_flex_image_action_message] flex_container: {flex_container}")
-
+    
     # 建立 FlexMessage 物件
     flex_message = FlexMessage(
         alt_text="Onboarding...",
         contents=flex_container
     )
-    print(f"[create_flex_image_action_message] flex_message: {flex_message}")
-
+    
     return flex_message
 
 

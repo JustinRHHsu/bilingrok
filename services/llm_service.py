@@ -29,15 +29,12 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
     # 把 system_prompt_template 裡的 user_data 和 agent_character_data 帶進去，達到個人化效果
     sys_prompt = load_dynamic_variables_into_prompt(prompt_template, user_data, agent_character_data)
     
-    print(f"=== sys_prompt ===\n{sys_prompt}\n =====================")
-    
     messages=[
         {"role": "system", "content": sys_prompt},
         *transform_chat_history(chat_history),
         {"role": "user", "content": user_message}
     ]
-    # print(f"=== Messages prepared into LLM ===\n{messages}\n =====================")
-
+    
     try:
         client = OpenAI(api_key=Config.GROK_API_KEY, 
                         base_url="https://api.x.ai/v1"
@@ -49,7 +46,6 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
             max_tokens=100,
             temperature=0.5,
         )
-        # print(f"=== response ===\n{response}\n =====================")
         
         reply_content = response.choices[0].message.content
         reply_timestamp = int(f"{response.created}000")     # Grok API timestamp in seconds, so add 3 zeros to convert to milliseconds  
@@ -57,10 +53,8 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
         completion_tokens = response.usage.completion_tokens
         
         user_data['prompt_tokens'] += prompt_tokens
-        print(f"Prompt tokens: {prompt_tokens}")
         logging.info(f"Prompt tokens: {prompt_tokens}")
         user_data['completion_tokens'] += completion_tokens
-        print(f"Completion tokens: {completion_tokens}")
         logging.info(f"Completion tokens: {completion_tokens}")
         
         return user_data, reply_content, reply_timestamp
@@ -107,10 +101,8 @@ def conversation_review_card_generation(user_data, chat_history):
         completion_tokens = response.usage.completion_tokens
         
         user_data['prompt_tokens'] += prompt_tokens
-        print(f"Prompt tokens: {prompt_tokens}")
         logging.info(f"Prompt tokens: {prompt_tokens}")
         user_data['completion_tokens'] += completion_tokens
-        print(f"Completion tokens: {completion_tokens}")
         logging.info(f"Completion tokens: {completion_tokens}")
         
         return user_data, ai_suggestion
@@ -129,9 +121,6 @@ def conversation_review_card_generation(user_data, chat_history):
 
 
 def start_conversation_when_matched(user_data):
-    
-    print(f"=== start_conversation_when_matched ===")
-    
     # 生成話題開啟聊天
     dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
     prompt_template_name = 'conversation_starter'
@@ -166,10 +155,8 @@ def start_conversation_when_matched(user_data):
         completion_tokens = response.usage.completion_tokens
         
         user_data['prompt_tokens'] += prompt_tokens
-        print(f"Prompt tokens: {prompt_tokens}")
         logging.info(f"Prompt tokens: {prompt_tokens}")
         user_data['completion_tokens'] += completion_tokens
-        print(f"Completion tokens: {completion_tokens}")
         logging.info(f"Completion tokens: {completion_tokens}")
         
         return ai_suggestion
@@ -196,7 +183,6 @@ def transform_chat_history(chat_history):
     
     # Sort chat history by message timestamp in ascending order to maintain the order of conversation (最舊到最新)
     sorted_chat_history = sorted(chat_history, key=lambda x: x['message_timestamp'])
-    # print(f"=== sorted_chat_history ===\n{sorted_chat_history}\n =====================")
     
     transformed_history = []
     role_map = {'1': 'user', '2': 'assistant'}
@@ -224,21 +210,17 @@ def load_dynamic_variables_into_prompt(system_prompt, user_data, extra_data={}):
         if placeholder in user_data:
             system_prompt_load_dynamic = system_prompt_load_dynamic.replace(f'{{{placeholder}}}', str(user_data[placeholder]))
             
-    
     return system_prompt_load_dynamic
-
 
 
 
 def check_llm_api(api_key):
     try:
         key = api_key.strip()
-        print(f"=== key ===\n{key}\n =====================")
         client = OpenAI(api_key=key, 
                         base_url="https://api.x.ai/v1"
                         )
         test_message = [{"role": "system", "content": "Hello, how are you?"}]
-        print("[INFO] Testing LLM API connection...")
         
         response = client.chat.completions.create(
             model='grok-beta',
@@ -247,12 +229,11 @@ def check_llm_api(api_key):
             temperature=0.5,
             timeout=5  # 設置超時時間為5秒
         )
-        print(f"[INFO] LLM API response: {response}")
         
         if response and response.choices:
             return True
         else:
-            print("錯誤了")
+            print(" response.choices 錯誤了")
             return False
     except Exception as e:
         print(f"錯誤 Error: {e}")
