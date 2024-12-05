@@ -150,7 +150,7 @@
       "type": "sys_msg"
     },
     "topic_items": {
-      "text": ["What’s up?", "Let me ask you something.", "So annoying!", "I’m bored.", "Chat with me."],
+      "text": ["Hear what Trump said", "BLACKPINK rocked!", "Exploring today", "So mad right now", "boring now"],
       "desc": "Hey 後，讓用戶從裡面找話題",
       "type": "quick_reply_btn"
     },
