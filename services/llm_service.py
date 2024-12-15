@@ -8,6 +8,9 @@ from utils.prompt_utils import provide_summary
 from prompts.prompt_loader import load_prompts
 from datetime import datetime 
 
+from services.llm.LLM_Services import LLMService
+
+
 # 設定 logging
 logging.basicConfig(
     level=logging.ERROR,
@@ -17,12 +20,15 @@ logging.basicConfig(
 # 建立 logger
 logger = logging.getLogger(__name__)
 
+# 呼叫 LLM 生成 Conversation 回應
 def get_ai_assistant_response(user_data, chat_history, user_message):
     
+    # Load System Prompt Template
     dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
     prompt_template = load_prompts(dir_sys_prompt, "system_prompt")
     # print(f"[DEBUG] prompt_template: {prompt_template}")
     
+    # Laod Agent Prompt
     dir_agent_prompt = Config.AGENT_CHARACTER_PATH
     agent_character_prompt = load_prompts(dir_agent_prompt, "agent_justin")
     agent_character_data = {"agent_character": agent_character_prompt}
@@ -37,9 +43,25 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
         *transform_chat_history(chat_history),
         {"role": "user", "content": user_message}
     ]
-    print(f"[DEBUG] messages: {messages}")
+    # print(f"[DEBUG] messages: {messages}")
     
     try:
+        api_key_type = user_data.get('api_key_type')
+        print(f"[DEBUG] api_key_type: {api_key_type}")
+
+        # api_key = user_data.get('api_key', '')
+        api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
+        print(f"[DEBUG] api_key: {api_key}")
+        
+        # model = 'grok-beta'
+        model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
+        print(f"[DEBUG] model: {model}")
+        
+        llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
+        user_data, ai_suggestion, reply_timestamp = llm_service.completion(messages, user_data)
+        return user_data, ai_suggestion, reply_timestamp
+        
+        """
         api_key = user_data.get('api_key', '')
         client = OpenAI(api_key=api_key,
                         base_url="https://api.x.ai/v1"
@@ -67,6 +89,7 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
         print(f"[DEBUG] user_data: {user_data}")
         
         return user_data, reply_content, reply_timestamp
+        """        
         
     except Exception as e:
         # 使用 logger 記錄錯誤
@@ -80,7 +103,7 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
         
         return user_data, reply_content, reply_timestamp
 
-
+# 呼叫 LLM 生成學習卡片
 def conversation_review_card_generation(user_data, chat_history):
     # 生成語言學習卡片，系統訊息，不儲存
     
@@ -94,7 +117,27 @@ def conversation_review_card_generation(user_data, chat_history):
         {"role": "user", "content": chat_history_str}
     ]
 
+
+
     try:
+        # 使用新的 LLMService 類別
+        api_key_type = user_data.get('api_key_type')
+        print(f"[DEBUG] api_key_type: {api_key_type}")
+
+        # api_key = user_data.get('api_key', '')
+        api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
+        print(f"[DEBUG] api_key: {api_key}")
+        
+        # model = 'grok-beta'
+        model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
+        print(f"[DEBUG] model: {model}")
+        
+        llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
+        user_data, ai_suggestion, _ = llm_service.completion(messages, user_data)
+        return user_data, ai_suggestion
+        
+        
+        """
         api_key = user_data.get('api_key', '')
         client = OpenAI(api_key=api_key, 
                         base_url="https://api.x.ai/v1"
@@ -117,6 +160,7 @@ def conversation_review_card_generation(user_data, chat_history):
         logging.info(f"Completion tokens: {completion_tokens}")
         
         return user_data, ai_suggestion
+        """
         
     except Exception as e:
         # 使用 logger 記錄錯誤
@@ -130,7 +174,7 @@ def conversation_review_card_generation(user_data, chat_history):
         return user_data, reply_content
 
 
-
+# 呼叫 LLM 生成話題開啟聊天
 def start_conversation_when_matched(user_data):
     # 生成話題開啟聊天
     dir_sys_prompt = Config.PROMPT_TEMPLATE_PATH
@@ -150,6 +194,25 @@ def start_conversation_when_matched(user_data):
     ]
     
     try:
+        # 使用新的 LLMService 類別
+        api_key_type = user_data.get('api_key_type')
+        print(f"[DEBUG] api_key_type: {api_key_type}")
+
+        # api_key = user_data.get('api_key', '')
+        api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
+        print(f"[DEBUG] api_key: {api_key}")
+        
+        # model = 'grok-beta'
+        model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
+        print(f"[DEBUG] model: {model}")
+        
+        llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
+        _, ai_suggestion, _ = llm_service.completion(messages, user_data)
+        return ai_suggestion
+        
+        
+        
+        """
         client = OpenAI(api_key=Config.GROK_API_KEY, 
                         base_url="https://api.x.ai/v1"
                         )
@@ -171,6 +234,7 @@ def start_conversation_when_matched(user_data):
         logging.info(f"Completion tokens: {completion_tokens}")
         
         return ai_suggestion
+        """
         
     except Exception as e:
         # 使用 logger 記錄錯誤
@@ -224,7 +288,8 @@ def load_dynamic_variables_into_prompt(system_prompt, user_data, extra_data={}):
     return system_prompt_load_dynamic
 
 
-
+# 檢查 LLM API 金鑰是否有效
+# (### TO BE UPDATED)
 def check_llm_api(api_key):
     try:
         key = api_key.strip()

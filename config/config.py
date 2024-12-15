@@ -2,6 +2,7 @@ import os
 from datetime import timezone, timedelta
 from dotenv import load_dotenv
 import yaml
+import json
 from google.cloud import secretmanager
 from google.auth import default
 from google.oauth2 import service_account
@@ -58,28 +59,48 @@ class Config:
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()
     
+    MAIN_LLM_PROVIDER = yaml_config['MAIN_LLM_PROVIDER']
+    MAIN_LLM_MODEL = yaml_config['MAIN_LLM_MODEL']
+    
+    with open('config/main_model_service_by_provider.json', 'r') as file:
+        MAIN_MODEL_SERVICE_BY_PROVIDER = json.load(file)
+    print(f"MAIN_SERVICE_MODEL: {MAIN_MODEL_SERVICE_BY_PROVIDER}")
+    
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
         print(f"[Secret Key Source]: GCP")
-        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
         LINE_CHANNEL_ACCESS_TOKEN = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_SECRET')
-        GROK_API_KEY = access_secret_version(GCP_PROJECT_ID, 'XAI_API_KEY')
+        API_KEYS = {
+            'xai': access_secret_version(GCP_PROJECT_ID, 'XAI_API_KEY'),
+            'openai': access_secret_version(GCP_PROJECT_ID, 'OPENAI_API_KEY'),
+            'google': access_secret_version(GCP_PROJECT_ID, 'GEMINI_API_KEY')
+        }
         DB_NAME = yaml_config['DB_NAME'].strip()
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME'].strip()
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com"
+        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
+        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
         GCP_CRED = get_gcp_credential()
+        
+        
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
         print(f"[Secret Key Source]: .env")
         LINE_CHANNEL_ACCESS_TOKEN = os.getenv('STG_LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = os.getenv('STG_LINE_CHANNEL_SECRET')
-        GROK_API_KEY = os.getenv('XAI_API_KEY')
+        API_KEYS = {
+            'xai': os.getenv('XAI_API_KEY'),
+            'openai': os.getenv('OPENAI_API_KEY'),
+            'google': os.getenv('GEMINI_API_KEY')
+        }
         DB_NAME = yaml_config['DB_NAME'].strip()
         GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
+        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
         GCP_CRED = get_gcp_credential()
-        
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = yaml_config['GCP_SA_SECRET_FILE']
+
     
     # Cloud Task
     # TIME_SLOT_PROCESS_MESSAGES_TO_LLM = yaml_config.get('TIME_SLOT_PROCESS_MESSAGES_TO_LLM', 5)

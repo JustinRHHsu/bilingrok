@@ -6,6 +6,10 @@ SECRET_KEY_ENV: LOCAL
 ENVIRONMENT: DEV
 # DEV, PROD
 
+# LLM 設置參數
+MAIN_LLM_PROVIDER: google
+MAIN_LLM_MODEL: gemini-1.5-flash-002
+
 # GCP 設置參數
 GCP_PROJECT_ID: bilingrok
 SERVICE_ACCOUNT_NAME: bilingrok-linebot
@@ -58,6 +62,7 @@ MESSAGES_FOR_REVIEW_LEARNING_CARD: 10
 FLEX_LIBRARY_PATH: "line_message_template/flex_library"
 PROMPT_TEMPLATE_PATH: "prompts"
 AGENT_CHARACTER_PATH: "prompts/agent_character"
+
 
 # QUEUE_MESSAGE_STORE: line-msg-to-firestore
 # QUEUE_LOCATION_MESSAGE_STORE: asia-east1
