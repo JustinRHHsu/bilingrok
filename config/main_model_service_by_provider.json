@@ -1,0 +1,5 @@
+{
+    "xai": "grok-beta",
+    "openai": "gpt-4o-mini",
+    "google": "gemini-1.5-flash-002"
+}
