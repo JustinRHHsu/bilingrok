@@ -16,7 +16,6 @@ SERVICE_ACCOUNT_NAME: bilingrok-linebot
 SERVICE_ACCOUNT_DESCRIPTION: Handle Line Bot Webhook Events
 SERVICE_ACCOUNT_DISPLAY_NAME: bilingrok-linebot
 GCP_SA_SECRET_FILE: config/bilingrok-64cb8b639621.json
-# SERVICE_ACCOUNT: SERVICE_ACCOUNT_NAME@$GCP_PROJECT_ID.iam.gserviceaccount.com
 
 # Database 設置參數
 DB_NAME: bilingrok
