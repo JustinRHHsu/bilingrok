@@ -70,6 +70,9 @@ class Config:
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
         print(f"[Secret Key Source]: GCP")
+        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
+        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
+        GCP_CRED = get_gcp_credential()
         LINE_CHANNEL_ACCESS_TOKEN = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = access_secret_version(GCP_PROJECT_ID, 'LINE_CHANNEL_SECRET')
         API_KEYS = {
@@ -80,14 +83,15 @@ class Config:
         DB_NAME = yaml_config['DB_NAME'].strip()
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME'].strip()
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com"
-        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
-        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
-        GCP_CRED = get_gcp_credential()
         
         
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
         print(f"[Secret Key Source]: .env")
+        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
+        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
+        GCP_CRED = get_gcp_credential()
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = yaml_config['GCP_SA_SECRET_FILE']
         LINE_CHANNEL_ACCESS_TOKEN = os.getenv('STG_LINE_CHANNEL_ACCESS_TOKEN')
         LINE_CHANNEL_SECRET = os.getenv('STG_LINE_CHANNEL_SECRET')
         API_KEYS = {
@@ -96,10 +100,6 @@ class Config:
             'google': os.getenv('GEMINI_API_KEY')
         }
         DB_NAME = yaml_config['DB_NAME'].strip()
-        GCP_PROJECT_ID = yaml_config['GCP_PROJECT_ID'].strip()
-        GCP_REGION = yaml_config['CONTAINER_REGION'].strip()
-        GCP_CRED = get_gcp_credential()
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = yaml_config['GCP_SA_SECRET_FILE']
 
     
     # Cloud Task
