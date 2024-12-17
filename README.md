@@ -1,6 +1,10 @@
 # Bilingrok Language Partner Service
 Bilingrok is a language learning application that pairs users with language practice partners through the LINE platform, helping users practice languages in natural conversations.
 
+Bilingrok is a language learning application available on the LINE platform, which has 194 million monthly active users. It connects users with language practice partners—just like chatting with friends—enabling natural conversations to practice languages and build friendships.
+
+Whether you're one of the 10 million foreign workers across APAC countries (excluding China) or someone eager to learn a second or third language, Bilingrok makes it easy to chat and improve your language skills through LINE's real-time messaging.
+
 
 ## Project Structure
 project/
