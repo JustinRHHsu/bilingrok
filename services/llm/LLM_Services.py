@@ -3,6 +3,9 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
+# base_url=f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{location}/endpoints/openapi",
+# "google": "https://generativelanguage.googleapis.com/v1beta/openai/", 
+
 class LLMService:
     def __init__(self, api_type, api_key, model):
         self.api_type = api_type
@@ -25,6 +28,10 @@ class LLMService:
         else:
             raise ValueError(f"Unsupported api_type: {self.api_type}")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c080149a85a8f7e1bed1449d1f9515580ed4caa
     def completion(self, messages, user_data, max_tokens=4096, temperature=0.7, timeout=300):
         try:
             response = self.client.chat.completions.create(
@@ -55,6 +62,7 @@ class LLMService:
             reply_timestamp = None
             return user_data, reply_content, reply_timestamp
 
+<<<<<<< HEAD
 # 範例使用方式：
 # llm_service = LLMService(api_type="grok", api_key="YOUR_API_KEY", model="grok-beta")
 # messages = [
@@ -64,3 +72,5 @@ class LLMService:
 # user_data = {'prompt_tokens': 0, 'completion_tokens': 0}
 # user_data, reply_content, reply_timestamp = llm_service.completion(messages, user_data)
 # print(reply_content)
+=======
+>>>>>>> 7c080149a85a8f7e1bed1449d1f9515580ed4caa
