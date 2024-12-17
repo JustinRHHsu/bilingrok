@@ -47,49 +47,13 @@ def get_ai_assistant_response(user_data, chat_history, user_message):
     
     try:
         api_key_type = user_data.get('api_key_type')
-        print(f"[DEBUG] api_key_type: {api_key_type}")
-
-        # api_key = user_data.get('api_key', '')
         api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
-        print(f"[DEBUG] api_key: {api_key}")
-        
-        # model = 'grok-beta'
         model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
-        print(f"[DEBUG] model: {model}")
         
         llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
         user_data, ai_suggestion, reply_timestamp = llm_service.completion(messages, user_data)
         return user_data, ai_suggestion, reply_timestamp
-        
-        """
-        api_key = user_data.get('api_key', '')
-        client = OpenAI(api_key=api_key,
-                        base_url="https://api.x.ai/v1"
-                        )
-        print(f"[DEBUG] client: {client}")
-        
-        response = client.chat.completions.create(
-            model='grok-beta',
-            messages=messages,
-            max_tokens=100,
-            temperature=0.5,
-        )
-        print(f"[DEBUG] response: {response}")
-        
-        reply_content = response.choices[0].message.content
-        reply_timestamp = int(f"{response.created}000")     # Grok API timestamp in seconds, so add 3 zeros to convert to milliseconds  
-        prompt_tokens = response.usage.prompt_tokens
-        completion_tokens = response.usage.completion_tokens
-        print(f"[DEBUG] reply_content: {reply_content}")
-        
-        user_data['prompt_tokens'] += prompt_tokens
-        logging.info(f"Prompt tokens: {prompt_tokens}")
-        user_data['completion_tokens'] += completion_tokens
-        logging.info(f"Completion tokens: {completion_tokens}")
-        print(f"[DEBUG] user_data: {user_data}")
-        
-        return user_data, reply_content, reply_timestamp
-        """        
+          
         
     except Exception as e:
         # 使用 logger 記錄錯誤
@@ -117,50 +81,16 @@ def conversation_review_card_generation(user_data, chat_history):
         {"role": "user", "content": chat_history_str}
     ]
 
-
-
     try:
         # 使用新的 LLMService 類別
         api_key_type = user_data.get('api_key_type')
-        print(f"[DEBUG] api_key_type: {api_key_type}")
-
-        # api_key = user_data.get('api_key', '')
         api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
-        print(f"[DEBUG] api_key: {api_key}")
-        
-        # model = 'grok-beta'
         model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
-        print(f"[DEBUG] model: {model}")
         
         llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
         user_data, ai_suggestion, _ = llm_service.completion(messages, user_data)
         return user_data, ai_suggestion
         
-        
-        """
-        api_key = user_data.get('api_key', '')
-        client = OpenAI(api_key=api_key, 
-                        base_url="https://api.x.ai/v1"
-                        )
-        
-        response = client.chat.completions.create(
-            model='grok-beta',
-            messages=messages,
-            max_tokens=4096,
-            temperature=0.2,
-        )
-        
-        ai_suggestion = response.choices[0].message.content
-        prompt_tokens = response.usage.prompt_tokens
-        completion_tokens = response.usage.completion_tokens
-        
-        user_data['prompt_tokens'] += prompt_tokens
-        logging.info(f"Prompt tokens: {prompt_tokens}")
-        user_data['completion_tokens'] += completion_tokens
-        logging.info(f"Completion tokens: {completion_tokens}")
-        
-        return user_data, ai_suggestion
-        """
         
     except Exception as e:
         # 使用 logger 記錄錯誤
@@ -194,47 +124,15 @@ def start_conversation_when_matched(user_data):
     ]
     
     try:
-        # 使用新的 LLMService 類別
         api_key_type = user_data.get('api_key_type')
-        print(f"[DEBUG] api_key_type: {api_key_type}")
-
-        # api_key = user_data.get('api_key', '')
         api_key = Config.API_KEYS.get(api_key_type, Config.MAIN_LLM_PROVIDER)
-        print(f"[DEBUG] api_key: {api_key}")
-        
-        # model = 'grok-beta'
         model = Config.MAIN_MODEL_SERVICE_BY_PROVIDER.get(api_key_type, Config.MAIN_LLM_MODEL)
-        print(f"[DEBUG] model: {model}")
         
         llm_service = LLMService(api_type=api_key_type, api_key=api_key, model=model)
         _, ai_suggestion, _ = llm_service.completion(messages, user_data)
         return ai_suggestion
         
         
-        
-        """
-        client = OpenAI(api_key=Config.GROK_API_KEY, 
-                        base_url="https://api.x.ai/v1"
-                        )
-        
-        response = client.chat.completions.create(
-            model='grok-beta',
-            messages=messages,
-            max_tokens=4096,
-            temperature=0.7,
-        )
-        
-        ai_suggestion = response.choices[0].message.content
-        prompt_tokens = response.usage.prompt_tokens
-        completion_tokens = response.usage.completion_tokens
-        
-        user_data['prompt_tokens'] += prompt_tokens
-        logging.info(f"Prompt tokens: {prompt_tokens}")
-        user_data['completion_tokens'] += completion_tokens
-        logging.info(f"Completion tokens: {completion_tokens}")
-        
-        return ai_suggestion
-        """
         
     except Exception as e:
         # 使用 logger 記錄錯誤

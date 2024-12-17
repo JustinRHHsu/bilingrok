@@ -3,9 +3,6 @@ from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
-# base_url=f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{location}/endpoints/openapi",
-# "google": "https://generativelanguage.googleapis.com/v1beta/openai/", 
-
 class LLMService:
     def __init__(self, api_type, api_key, model):
         self.api_type = api_type
