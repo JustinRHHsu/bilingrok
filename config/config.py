@@ -44,8 +44,6 @@ def get_gcp_credential():
         logging.error("Error: No GCP credential found.")
         return None
 
-
-
 class Config:
     PORT = yaml_config['CONTAINER_PORT']
     DEBUG = yaml_config['DEBUG_MODE']
@@ -56,6 +54,8 @@ class Config:
     PROMPT_TEMPLATE_PATH = yaml_config['PROMPT_TEMPLATE_PATH']
     AGENT_CHARACTER_PATH = yaml_config['AGENT_CHARACTER_PATH']
     
+    DEFAULT_FREE_LLM = "google"
+    
     # 判斷 Secret Key 的儲存環境，決定向 .env 或 GCP Secret Manager 取得敏感資訊
     SECRET_KEY_ENV = yaml_config['SECRET_KEY_ENV'].strip()
     
@@ -65,7 +65,6 @@ class Config:
     with open('config/main_model_service_by_provider.json', 'r') as file:
         MAIN_MODEL_SERVICE_BY_PROVIDER = json.load(file)
     print(f"MAIN_SERVICE_MODEL: {MAIN_MODEL_SERVICE_BY_PROVIDER}")
-    
     
     if SECRET_KEY_ENV == 'GCP':
         logging.info("Accessing GCP Secret Manager...")
@@ -84,7 +83,6 @@ class Config:
         SERVICE_ACCOUNT_NAME = yaml_config['SERVICE_ACCOUNT_NAME'].strip()
         SERVICE_ACCOUNT_EMAIL = f"{SERVICE_ACCOUNT_NAME}@{GCP_PROJECT_ID}.iam.gserviceaccount.com"
         
-        
     elif SECRET_KEY_ENV == 'LOCAL':
         logging.info("Accessing local .env file...")
         print(f"[Secret Key Source]: .env")
@@ -101,17 +99,8 @@ class Config:
         }
         DB_NAME = yaml_config['DB_NAME'].strip()
 
-    
-    # Cloud Task
-    # TIME_SLOT_PROCESS_MESSAGES_TO_LLM = yaml_config.get('TIME_SLOT_PROCESS_MESSAGES_TO_LLM', 5)
-    # SESSION_EXPIRED_TIME = yaml_config.get('SESSION_EXPIRED_TIME', 600)
-    
-    # Message Queue
-    # QUEUE_MESSAGE_STORE = yaml_config['QUEUE_MESSAGE_STORE']
-    # QUEUE_LOCATION_MESSAGE_STORE = yaml_config['QUEUE_LOCATION_MESSAGE_STORE']
-    
-    
 class DB:
+    @staticmethod
     def init_firestore_db():
         if yaml_config['ENVIRONMENT'] == 'PROD':
             print(f"[PROD] Access: GCP Firestore with 'GCP Default Credentials'")

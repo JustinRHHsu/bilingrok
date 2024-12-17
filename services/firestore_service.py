@@ -5,12 +5,10 @@ from config.config import Config, DB
 import json
 import logging
 
-
 number_of_recent_messages = Config.NUMBER_OF_MESSASES_FROM_CHAT_HISTORY
 
 db = DB.init_firestore_db()
 # db = firestore.Client(project=Config.GCP_PROJECT_ID, credentials=Config.GCP_CRED, database=Config.DB_NAME)
-
 
 def load_schema(schema_filename):
     with open(f'db/{schema_filename}.json', 'r') as file:
@@ -54,9 +52,7 @@ def add_chat_message(user_id, chat_data):
     chat_history_ref.add(chat_data)
     logging.info(f"Save: {user_id}'s message to Chat History collection.")
 
-
 def get_recent_messages(user_id, limit=10):
-    
     chat_history_ref = db.collection('users').document(user_id).collection('chat_history')
     # Retrieve the most recent messages from the chat history for memory
     recent_messages = chat_history_ref.order_by('message_timestamp', direction=firestore.Query.DESCENDING).limit(limit).stream()

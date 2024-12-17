@@ -287,6 +287,24 @@ def command_logic(user_data, user_message, all_messages):
         all_messages.append(message_1_text)
     
     
+    elif user_message.startswith('/ILOVEJUSTIN'):
+        
+        default_free_llm = Config.DEFAULT_FREE_LLM
+        print(f"## Default Free LLM: {default_free_llm}")
+        
+        user_data['api_key_type'] = "google"
+        
+        user_data['api_key'] = Config.API_KEYS[{default_free_llm}]
+        print(f"## Default Free API Key: {user_data['api_key']}")
+        
+        user_data['api_key_created_timestamp'] = datetime.now(time_zone) + timedelta(days=30)
+        user_data['api_key_updated_timestamp'] = datetime.now(time_zone) + timedelta(days=30)
+
+        user_data['subscribe_item'] = "google-free"
+        user_data['subscribe_expired_timestamp'] = user_data['api_key_created_timestamp'] + timedelta(days=30)
+        user_data['credits'] = 0
+        
+    
     
     # 暫時未用
     elif user_message == "/sub: later":
