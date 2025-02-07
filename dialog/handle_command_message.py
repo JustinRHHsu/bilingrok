@@ -305,7 +305,7 @@ def command_logic(user_data, user_message, all_messages):
         user_data['credits'] = 0
         
         
-        text = "收到你對 Justin 的厚愛， Justin 決定送你一個月 BINLINGROK 體驗！"
+        text = "收到你對 Justin 的厚愛， Justin 決定送你一個月 BINLINGROK 體驗！\n\n發個 Hi 給我，在 BILINGROK 開始練習語言腦吧！"
         message_1_quick_reply = create_text_message(text)
         all_messages.append(message_1_quick_reply)
         
