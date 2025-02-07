@@ -294,7 +294,7 @@ def command_logic(user_data, user_message, all_messages):
         
         user_data['api_key_type'] = "google"
         
-        user_data['api_key'] = Config.API_KEYS[{default_free_llm}]
+        user_data['api_key'] = Config.API_KEYS[default_free_llm]
         print(f"## Default Free API Key: {user_data['api_key']}")
         
         user_data['api_key_created_timestamp'] = datetime.now(time_zone) + timedelta(days=30)
