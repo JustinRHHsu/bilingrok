@@ -301,8 +301,13 @@ def command_logic(user_data, user_message, all_messages):
         user_data['api_key_updated_timestamp'] = datetime.now(time_zone) + timedelta(days=30)
 
         user_data['subscribe_item'] = "google-free"
-        user_data['subscribe_expired_timestamp'] = user_data['api_key_created_timestamp'] + timedelta(days=30)
+        user_data['subscribe_expired_timestamp'] = user_data['api_key_created_timestamp']
         user_data['credits'] = 0
+        
+        
+        text = "收到你對 Justin 的厚愛， Justin 決定送你一個月 BINLINGROK 體驗！"
+        message_1_quick_reply = create_text_message(text)
+        all_messages.append(message_1_quick_reply)
         
     
     
